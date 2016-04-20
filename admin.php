@@ -46,9 +46,9 @@
                 //Auf die DB-Verbindung wird eine Methode eingesetzt, die einen String mit SQL akzeptiert und an die DB sendet.
                 //Der Code wird in $stmt gespeichert
                 try{
-                    $abfr = $db->prepare("SELECT Benutzer.Benutzername
+                    $abfr = $db->prepare('SELECT Benutzer.Benutzername
                                                   FROM Benutzer 
-                                                  WHERE Benutzer.Typ=:Typ");
+                                                  WHERE Benutzer.Typ=:Typ');
                     $abfr->bindValue(':Typ', 1, PDO::PARAM_INT);
                     $abfr->execute();
                     //Gibt das Ergebnis in Form eines mehrdimensionalen Arrays zurück und speichert es in der Variablen $erg
