@@ -1,6 +1,6 @@
 <?php
 
-    $dsn = 'mysql:host=localhost;dbname=u-fs096';
+    $dsn = 'mysql:host=https://mars.iuk.hdm-stuttgart.de;dbname=u-fs096'; //sobald das Projekt auf dem mars liegt, auf localhost ändern
     $dbuser = 'fs096';
     $dbpw = 'sah3Nahbae';
 
