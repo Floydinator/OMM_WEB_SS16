@@ -3,17 +3,26 @@
 <html>
     
     <head>
+
         <title>Adminbereich</title>
         
         <meta charset="utf-8"/>
         
-        <!-- Bootstrap Core CSS -->
+        <!-- Start Bootstrap Core CSS -->
+
         <link href="css/bootstrap.min.css" rel="stylesheet">
-        
-        <!-- Custom CSS -->
+
+        <!-- Ende Bootstrap Core CSS -->
+
+
+        <!-- Start Custom CSS -->
+
         <!--<link href="css/landing-page.css" rel="stylesheet"> -->
+
+        <!-- Ende Custom CSS -->
         
         <link type="text/css" rel="stylesheet" href="css/admin.css">
+
     </head>
         
     <body>
