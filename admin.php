@@ -46,16 +46,16 @@
                 //Auf die DB-Verbindung wird eine Methode eingesetzt, die einen String mit SQL akzeptiert und an die DB sendet.
                 //Der Code wird in $stmt gespeichert
                 try{
-                    $stmt = $verbindung->prepare('SELECT benutzer.benutzername
-                                                  FROM benutzer 
-                                                  WHERE benutzer.typ=:typ');
-                    $stmt->bindValue(':typ', 1, PDO::PARAM_INT);
-                    $stmt->execute();
+                    $abfr = $db->prepare("SELECT Benutzer.Benutzername
+                                                  FROM Benutzer 
+                                                  WHERE Benutzer.Typ=:Typ");
+                    $abfr->bindValue(':Typ', 1, PDO::PARAM_INT);
+                    $abfr->execute();
                     //Gibt das Ergebnis in Form eines mehrdimensionalen Arrays zurück und speichert es in der Variablen $erg
-                    $erg = $stmt->fetchAll();
+                    $erg = $abfr->fetchAll();
                     var_dump($erg);
                     //Abfrage schließen
-                    unset($stmt);
+                    unset($abfr);
                 }
                 catch(PDOException $e){
                     echo $e->getMessage();

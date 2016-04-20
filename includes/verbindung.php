@@ -4,6 +4,6 @@
     $dbuser = 'fs096';
     $dbpw = 'sah3Nahbae';
 
-    $verbindung = new PDO($dsn, $dbuser, $dbpw);
+    $db = new PDO($dsn, $dbuser, $dbpw);
 
 ?>
