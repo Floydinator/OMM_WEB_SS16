@@ -14,6 +14,6 @@
 <!-- Start Custom CSS -->
 
     <link href="../css/landing-page.css" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="../admin.css">
+    <link type="text/css" rel="stylesheet" href="../css/admin.css">
 
 <!-- Ende Custom CSS -->
