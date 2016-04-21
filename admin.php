@@ -8,6 +8,7 @@
         <?php include ("includes/head.php"); ?>
         <?php include ("includes/verbindung.php"); ?>
         <?php include ("includes/navigation.php"); ?>
+        <link type="text/css" rel="stylesheet" href="css/admin.css">
         
     </head>
         
