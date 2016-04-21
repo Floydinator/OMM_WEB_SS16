@@ -5,7 +5,7 @@
     <head>
 
         <title>Administration</title>
-        <?php include ("includes/head.php"); ?>
+        <?php include "includes/head.php"; ?>
         <?php include ("includes/verbindung.php"); ?>
         <?php include ("includes/navigation.php"); ?>
         
