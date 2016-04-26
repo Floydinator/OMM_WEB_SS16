@@ -30,6 +30,7 @@
                     <li>Dozent 3</li>
                     <li>Dozent 3</li>
                     <li>Dozent 3</li>
+                    <li>Dozent 3</li>
                 </ul>
             </div>
         </section>
