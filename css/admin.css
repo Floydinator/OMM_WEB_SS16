@@ -1,5 +1,6 @@
 body {
     background-color: #26bdf0;
+    overflow: hidden;
 }
 
 #brand {
