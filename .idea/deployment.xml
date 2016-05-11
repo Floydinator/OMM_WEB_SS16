@@ -5,7 +5,7 @@
       <paths name="TeachBox">
         <serverdata>
           <mappings>
-            <mapping deploy="/public_html" local="$PROJECT_DIR$" web="/" />
+            <mapping local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
