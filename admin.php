@@ -71,8 +71,7 @@ catch(PDOException $e){
 <!-- Start Dozenten per Formular einlesen -->
 <div class="container">
     <section class="row  row-centered">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
+        <div class="col-md-4 col-md-offset-4">
             <form role="form">
                 <div class="form-group" role="form" method="get" action="reg.php">
                     <label for="name">Neuen Dozent anlegen</label>
@@ -81,7 +80,6 @@ catch(PDOException $e){
                 <button type="submit" class="btn btn-primary btn-md">Anlegen</button>
             </form>
         </div>
-        <div class="col-md-4"></div>
     </section>
 </div>
 <!-- Ende Dozenten per Formular einlesen -->
