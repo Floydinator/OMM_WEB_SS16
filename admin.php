@@ -57,7 +57,7 @@ catch(PDOException $e){
 <div class="container">
 <section class="row  row-centered">
     <div class="col-md-8 col-md-offset-2">
-        <label for="name">Bereits angelegte Dozenten</label>
+        <label for="name" id="angelegt">Bereits angelegte Dozenten</label>
         <ul class="list-group">
             <?php foreach ($erg AS $dozent): ?>
                 <li class="list-group-item"><?php echo $dozent['Benutzername']; ?></li>
