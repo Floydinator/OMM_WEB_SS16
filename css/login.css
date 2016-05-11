@@ -1,0 +1,24 @@
+#brand {
+    font-size: large;
+    font-weight: bolder;
+}
+
+footer {
+    position: relative;
+    top: 0px;
+    background-color: #f7ecc0;
+}
+
+.breadcrumb {
+    background-color: #f7ecc0;
+}
+
+.navbar-default {
+    background-color: #f7ecc0;
+    margin-bottom: 0px;
+}
+
+.intro-header {
+    background: url(../img/jumbo.jpg) no-repeat center center;
+    margin-top: 0px;
+}
