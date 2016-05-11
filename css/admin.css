@@ -9,6 +9,8 @@ body {
 
 .list-group {
     border: 2px solid black;
+    height: 600px;
+    overflow: auto;
 }
 
 .list-group li:nth-child(odd) {
