@@ -30,7 +30,7 @@ body {
 }
 
 footer {
-    margin-top: 20px;
+    margin-top: -20px;
     height: 20px;
     background-color: #26bdf0;
 }
