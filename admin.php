@@ -42,7 +42,11 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="login.html">Logout</a>
+                    <form class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <a href="login.html" class="btn btn-info" role="button">Logout</a>
+                        </div>
+                    </form>
                 </li>
             </ul>
         </div>
