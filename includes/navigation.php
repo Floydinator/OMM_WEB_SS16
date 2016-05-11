@@ -23,4 +23,4 @@
     </div>
     <!-- /.container -->
 </nav>
-<!-- Ende der Navigation -->
+<!-- Ende Navigation -->
