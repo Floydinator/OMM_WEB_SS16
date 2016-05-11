@@ -53,7 +53,7 @@ catch(PDOException $e){
 ?>
 <!-- Ende Dozenten aus DB abfragen -->
 
-<!-- Start Dozenten per foreach in Tabelle ausgeben -->
+<!-- Start Dozenten per foreach in Tabelle ausgeben lassen -->
 <section class="row  row-centered">
     <div class="col-md-2"></div>
     <div class="col-md-8">
