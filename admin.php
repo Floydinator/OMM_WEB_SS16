@@ -41,9 +41,9 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <form class="navbar-form navbar-left" role="search">
+                        <form class="navbar-form navbar-right" role="search">
                             <div class="form-group">
-                                <a href="login.html" class="btn btn-info" role="button">Logout</a>
+                                <a href="login.php" class="btn btn-info" role="button">Logout</a>
                             </div>
                         </form>
                     </li>
