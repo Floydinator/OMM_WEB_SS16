@@ -29,12 +29,7 @@ body {
 }
 
 footer {
-    position: relative;
     background-color: #26bdf0;
-}
-
-.breadcrumb {
-    background-color: #f7ecc0;
 }
 
 .navbar-default {
