@@ -55,8 +55,7 @@ catch(PDOException $e){
 
 <!-- Start Dozenten per foreach in Tabelle ausgeben -->
 <section class="row  row-centered">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
+    <div class="col-md-8 col-md-offset-2">
         <label for="name">Bereits angelegte Dozenten</label>
         <ul class="list-group">
             <?php foreach ($erg AS $dozent): ?>
@@ -64,7 +63,6 @@ catch(PDOException $e){
             <?php endforeach; ?>
         </ul>
     </div>
-    <div class="col-md-2"></div>
 </section>
 <!-- Ende Dozenten per foreach in Tabelle ausgeben -->
 
