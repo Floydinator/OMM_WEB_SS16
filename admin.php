@@ -57,6 +57,7 @@ catch(PDOException $e){
 <section class="row  row-centered">
     <div class="col-md-2"></div>
     <div class="col-md-8">
+        <label for="name">Bereits angelegte Dozenten</label>
         <ul class="list-group">
             <?php foreach ($erg AS $dozent): ?>
                 <li class="list-group-item"><?php echo $dozent['Benutzername']; ?></li>
@@ -74,7 +75,7 @@ catch(PDOException $e){
         <div class="col-md-4">
             <form role="form">
                 <div class="form-group" role="form" method="get" action="reg.php">
-                    <label for="name">Neuer Dozent</label>
+                    <label for="name">Neuen Dozent anlegen</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="Benutzername" value="<?php echo $_GET['name']; ?>">
                 </div>
                 <button type="submit" class="btn btn-primary btn-md">Anlegen</button>
