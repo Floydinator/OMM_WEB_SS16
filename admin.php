@@ -54,6 +54,7 @@ catch(PDOException $e){
 <!-- Ende Dozenten aus DB abfragen -->
 
 <!-- Start Dozenten per foreach in Tabelle ausgeben -->
+<div class="container">
 <section class="row  row-centered">
     <div class="col-md-8 col-md-offset-2">
         <label for="name">Bereits angelegte Dozenten</label>
@@ -64,6 +65,7 @@ catch(PDOException $e){
         </ul>
     </div>
 </section>
+</div>
 <!-- Ende Dozenten per foreach in Tabelle ausgeben -->
 
 <!-- Start Dozenten per Formular einlesen -->
