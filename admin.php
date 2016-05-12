@@ -17,7 +17,7 @@
         <!-- Start Bootstrap Einbindung -->
         <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> <!-- Die Fehlermeldung kann ignoriert werden -->
-        <script src="/js/bootstrap.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Ende Bootstrap Einbindung -->
 
@@ -105,7 +105,7 @@
         <div class="container">
             <section class="row  row-centered">
                 <div class="col-md-8 col-md-offset-2"> <!--  Die Anzahl der Bootstrapspalten muss immer 12 sein -->
-                    <label for="name">Bereits angelegte Dozenten</label>
+                    <p class="überschrift">Bereits angelegte Dozenten</p>
                     <ul class="list-group">
                         <?php foreach ($erg AS $dozent): ?>
                         <li class="list-group-item"><?php echo $dozent['Benutzername']; ?></li>
@@ -124,10 +124,11 @@
                 <div class="col-md-4 col-md-offset-4"> <!--  Die Anzahl der Bootstrapspalten muss immer 12 sein -->
                     <form role="form">
                         <div class="form-group" role="form" method="get" action="reg.php">
-                            <label for="name">Neuen Dozent anlegen</label>
+                            <p class="überschrift">Neuen Dozent anlegen</p>
                             <input type="text" class="form-control" id="name" name="name" placeholder="Benutzername" value="<?php echo $_GET['name']; ?>">
+                            <input type="text" class="form-control" id="passwort" name="passwort" placeholder="Passwort" value="">
                         </div>
-                        <button type="submit" class="btn btn-primary btn-md">Anlegen</button>
+                        <button type="submit" class="btn btn-primary btn-md" id="button">Anlegen</button>
                     </form>
                 </div>
             </section>

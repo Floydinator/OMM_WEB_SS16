@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="de">
+<html lang="de" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <title>Startseite</title>
@@ -41,7 +41,7 @@
                             <input type="text" class="form-control" placeholder="Benutzername">
                             <input type="text" class="form-control" placeholder="Passwort">
                         </div>
-                        <button type="submit" class="btn btn-default">Log-In</button>
+                        <button type="submit" class="btn btn-default">Login</button>
                     </form>
                 </li>
             </ul>
@@ -58,7 +58,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="intro-message">
-                    <h1>Teach Box</h1>
+                    <h1>TeachBox</h1>
                     <h3>Ihre Anwendung für schnelle Umfragen!</h3>
                     <hr class="intro-divider">
                 </div>
@@ -152,18 +152,16 @@
             <div class="col-md-4 col-md-offset-4 col-sm-12">
                 <hr class="section-heading-spacer">
                 <div class="clearfix"></div>
-                <h2 class="section-heading">Login</h2>
-                <p class="lead">Melden sie sich an um Teil dieses Projektes zu werden!</p>
+                <h2 class="section-heading" id="login">Login</h2>
+                <p class="lead" id="überschrift">Anmelden und sofort loslegen!</p>
                 <form class="formular" role="form" method="post" action="anlegen.php">
                     <div class="formular-eingabe">
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Benutzername eingeben" value="">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Benutzername" value="">
                     </div>
                     <div class="formular-eingabe">
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Passwort eingeben" value="">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Passwort" value="">
                     </div>
-                    <div class="formular-button">
-                        <input id="submit" name="submit" type="submit" value="Log-In" class="btn btn-primary">
-                    </div>
+                    <button id="submit" type="submit" class="btn btn-primary">Login</button>
                 </form>
             </div>
         </div>
@@ -187,7 +185,7 @@
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> <!-- Die Fehlermeldung kann ignoriert werden -->
 <!-- javascript -->
-<script src="bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 </body>
 
 </html>

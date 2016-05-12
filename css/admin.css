@@ -1,6 +1,5 @@
 body {
     background-color: #26bdf0;
-    overflow: hidden;
 }
 
 #brand {
@@ -21,18 +20,10 @@ body {
     background-color: #dbdbdb;
 }
 
-.formular {
-    margin-top: 20px;
-}
-
-.formular-eingabe {
-    margin-bottom: 15px;
-}
 
 footer {
-    margin-top: -20px;
-    height: 20px;
-    background-color: #26bdf0;
+    margin-top: 20px;
+    background-color: #f7ecc0;
 }
 
 .navbar-default {
@@ -41,5 +32,14 @@ footer {
 
 label {
 
+}
+
+#button {
+    display: block;
+    margin: 0 auto;
+}
+
+.überschrift {
+    text-align: center;
 }
 

@@ -1,0 +1,44 @@
+body {
+    background-color: #26bdf0;
+    overflow: hidden;
+}
+
+#brand {
+    font-size: large;
+    font-weight: bolder;
+}
+
+.list-group {
+    height: 300px;
+    overflow: auto;
+}
+
+.list-group li:nth-child(odd) {
+    background-color: #ededed;
+}
+
+.list-group li:nth-child(even) {
+    background-color: #dbdbdb;
+}
+
+.formular {
+    margin-top: 20px;
+}
+
+.formular-eingabe {
+    margin-bottom: 15px;
+}
+
+footer {
+    margin-top: -20px;
+    height: 20px;
+    background-color: #26bdf0;
+}
+
+.navbar-default {
+    background-color: #f7ecc0;
+}
+
+label {
+
+}

@@ -22,3 +22,17 @@ footer {
     background: url(../img/jumbo.jpg) no-repeat center center;
     margin-top: 0px;
 }
+
+#login {
+    text-align: center;
+}
+
+#submit {
+    display: block;
+    margin: 0 auto;
+    margin-top: 15px;
+}
+
+#überschrift {
+    text-align: center;
+}
