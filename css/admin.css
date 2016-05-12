@@ -1,29 +1,45 @@
 body {
     background-color: #26bdf0;
+    overflow: hidden;
 }
-div > a {
+
+#brand {
+    font-size: large;
     font-weight: bolder;
 }
 
-#dozenten {
-    list-style-type: none;
-    position: relative;
-    top: 70px;
-    border: 2px solid black;
+.list-group {
+    height: 300px;
+    overflow: auto;
 }
 
-#dozenten li {
-    margin: 10px;
-    width: 300px;
-    border: 2px solid black;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
+.list-group li:nth-child(odd) {
+    background-color: #ededed;
+}
+
+.list-group li:nth-child(even) {
+    background-color: #dbdbdb;
 }
 
 .formular {
-    position: relative;
-    top: 90px;
-    text-align: center;
+    margin-top: 20px;
+}
+
+.formular-eingabe {
+    margin-bottom: 15px;
+}
+
+footer {
+    margin-top: -20px;
+    height: 20px;
+    background-color: #26bdf0;
+}
+
+.navbar-default {
+    background-color: #f7ecc0;
+}
+
+label {
+
 }
 

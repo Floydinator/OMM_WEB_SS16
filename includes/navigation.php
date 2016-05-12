@@ -1,4 +1,5 @@
-<nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+<!-- Start Navigation -->
+<nav class="navbar navbar-default topnav" role="navigation">
     <div class="container topnav">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -8,13 +9,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand topnav" href="#">Teach Box</a>
+            <a class="navbar-brand topnav" id="brand">TeachBox</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="#">Logout</a>
+                    <a href="login.html">Logout</a>
                 </li>
             </ul>
         </div>
@@ -22,3 +23,4 @@
     </div>
     <!-- /.container -->
 </nav>
+<!-- Ende Navigation -->
