@@ -1,3 +1,4 @@
+<!-- Ende Datenbankverbindung -->
 <?php
 
     //$dsn = 'mysql:host=mars.iuk.hdm-stuttgart.de;dbname=u-fs096;port=3306'; //sobald das Projekt auf dem mars liegt, auf localhost ändern
@@ -8,3 +9,4 @@
     $db = new PDO($dsn, $dbuser, $dbpw);
 
 ?>
+<!-- Start Datenbankverbindung -->
