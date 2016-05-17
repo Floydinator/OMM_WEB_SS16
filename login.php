@@ -87,8 +87,7 @@
         </div>
         <!-- Ende Header -->
 
-
-        <!-- Anfang Page Content -->
+        
         <!-- Anfang Teil 1 -->
         <div class="content-section-a">
             <div class="container">
