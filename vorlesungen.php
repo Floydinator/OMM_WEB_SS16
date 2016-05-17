@@ -30,7 +30,6 @@
 
         <!-- Start Include Dateien -->
         <?php include ("includes/verbindung.php"); ?>
-        <?php include ("includes/reg.php"); ?>
         <!-- Ende Include Dateien -->
 
 
@@ -77,9 +76,7 @@
         </nav>
         <!-- Ende Navigation -->
 
-
-
-
+        
         <!-- Start Vorlesungen in Tabelle ausgeben -->
         <div class="container">
             <section class="row  row-centered">
@@ -101,12 +98,13 @@
         </div>
         <!-- Ende Vorlesungen in Tabelle ausgeben -->
 
-        <!-- Start Vorlesungen per Formular einlesen -->
+        
+        <!-- Start Vorlesung per Formular einlesen -->
         <div class="container">
             <section class="row  row-centered">
-                <div class="col-md-4 col-md-offset-4"> <!--  Die Anzahl der Bootstrapspalten muss immer 12 sein -->
+                <div class="col-md-4 col-md-offset-4"> 
                     <form role="form">
-                        <div class="form-group" role="form" method="get" action="reg.php">
+                        <div class="form-group" role="form" method="get" action="">
                             <p class="überschrift">Neue Vorlesung anlegen</p>
                             <input type="text" class="form-control" id="name" name="name" placeholder="Vorlesung" value="">
                         </div>
@@ -115,7 +113,7 @@
                 </div>
             </section>
         </div>
-        <!-- Ende Vorlesungen per Formular einlesen -->
+        <!-- Ende Vorlesung per Formular einlesen -->
 
 
         <!-- Start Footer -->
@@ -153,6 +151,7 @@
 
 
     </body>
+
 
 
 

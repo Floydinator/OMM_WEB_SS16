@@ -78,25 +78,25 @@
         <!-- Start Dozenten auslesen -->
         <!-- Start Dozenten aus DB abfragen -->
         <?php
-        //Auf die DB-Verbindung wird eine Methode eingesetzt, die einen String mit SQL akzeptiert und an die DB sendet.
-        //Der Code wird in $abfr gespeichert
-        try
-        {
-            $abfr = $db->prepare('SELECT Benutzername
-                                  FROM Benutzer 
-                                  WHERE Typ=:typ');
-            $abfr->bindValue(':typ', 1, PDO::PARAM_INT);
-            $abfr->execute();
-            //Gibt das Ergebnis in Form eines mehrdimensionalen Arrays zurück und speichert es in der Variablen $abfr
-            //fetch wird nur zum auslesen benötigt
-            $erg = $abfr->fetchAll();
-            //var_dump($abfr->errorInfo());
-            //Abfrage schließen
-            unset($abfr);
-        }
-        catch(PDOException $e){
-            echo $e->getMessage();
-        }
+            //Auf die DB-Verbindung wird eine Methode eingesetzt, die einen String mit SQL akzeptiert und an die DB sendet.
+            //Der Code wird in $abfr gespeichert
+            try
+            {
+                $abfr = $db->prepare('SELECT Benutzername
+                                      FROM Benutzer 
+                                      WHERE Typ=:typ');
+                $abfr->bindValue(':typ', 1, PDO::PARAM_INT);
+                $abfr->execute();
+                //Gibt das Ergebnis in Form eines mehrdimensionalen Arrays zurück und speichert es in der Variablen $abfr
+                //fetch wird nur zum auslesen benötigt
+                $erg = $abfr->fetchAll();
+                //var_dump($abfr->errorInfo());
+                //Abfrage schließen
+                unset($abfr);
+            }
+            catch(PDOException $e){
+                echo $e->getMessage();
+            }
         ?>
         <!-- Ende Dozenten aus DB abfragen -->
 
@@ -118,7 +118,7 @@
         <!-- Ende Dozenten auslesen -->
 
 
-        <!-- Start Dozenten per Formular einlesen -->
+        <!-- Start Dozent per Formular einlesen -->
         <div class="container">
             <section class="row  row-centered">
                 <div class="col-md-4 col-md-offset-4">
@@ -132,7 +132,7 @@
                 </div>
             </section>
         </div>
-        <!-- Ende Dozenten per Formular einlesen -->
+        <!-- Ende Dozent per Formular einlesen -->
 
 
         <!-- Start Footer -->

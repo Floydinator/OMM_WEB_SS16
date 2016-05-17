@@ -1,0 +1,44 @@
+body {
+    background-color: #26bdf0;
+}
+
+#brand {
+    font-size: large;
+    font-weight: bolder;
+}
+
+.list-group {
+    height: 250px;
+    overflow: auto;
+}
+
+.list-group li:nth-child(odd) {
+    background-color: #ededed;
+}
+
+.list-group li:nth-child(even) {
+    background-color: #dbdbdb;
+}
+
+footer {
+    margin-top: 85px;
+    background-color: #f7ecc0;
+}
+
+.navbar-default {
+    background-color: #f7ecc0;
+    margin-bottom: 84px;
+}
+
+#button {
+    display: block;
+    margin: 0 auto;
+}
+
+.überschrift {
+    text-align: center;
+}
+
+.radio {
+    text-align: center;
+}

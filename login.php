@@ -27,6 +27,11 @@
         <!-- Ende Custom CSS -->
 
 
+        <!-- Start Include Dateien -->
+        <?php include ("includes/verbindung.php"); ?>
+        <!-- Ende Include Dateien -->
+
+
     </head>
 
 
@@ -53,13 +58,19 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <form class="navbar-form navbar-right" role="search">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Benutzername">
-                                    <input type="text" class="form-control" placeholder="Passwort">
+
+
+                            <!-- Start Login Formular-->
+                            <form class="navbar-form navbar-right" role="form">
+                                <div class="form-group" method="get" action="login.php">
+                                    <input type="text" class="form-control" id="name" placeholder="Benutzername" value="<?php echo $_GET['name']; ?>">
+                                    <input type="text" class="form-control" id="pw" placeholder="Passwort" value="<?php echo $_GET['pw']; ?>">
                                 </div>
-                                <button type="submit" class="btn btn-default">Login</button>
+                                <button type="submit" class="btn btn-default" id="button">Login</button>
                             </form>
+                            <!-- Ende Login Formular-->
+
+
                         </li>
                     </ul>
                 </div>
@@ -68,6 +79,67 @@
             <!-- /.container -->
         </nav>
         <!-- Ende Navigation -->
+
+
+        <!-- Start Login -->
+        <?php
+
+        $name = $_GET['name'];
+        $name->errorInfo;
+        $pw = $_GET['pw'];
+        $pw->errorInfo();
+        $pw = md5($pw);
+        $pw->errorInfo();
+
+        //Benutzertyp in Variable $typ speichern
+        try
+        {
+            $abfr = $db->prepare('SELECT Typ
+                                      FROM Benutzer
+                                      WHERE Benutzername=:name');
+            $abfr->bindValue(':name', $name, PDO::PARAM_STR);
+            $abfr->execute();
+            $typ = $abfr->fetch();
+            $typ->errorInfo;
+            unset($abfr);
+        }
+        catch(PDOException $e){
+            echo $e->getMessage();
+        }
+
+        //Passwort aus der Datenbank in Variable $pwabfr speichern
+        try
+        {
+            $abfr = $db->prepare('SELECT Passwort
+                                      FROM Benutzer
+                                      WHERE Benutzername=:name');
+            $abfr->bindValue(':name', $name, PDO::PARAM_STR);
+            $abfr->execute();
+            $pwabfr = $abfr->fetch();
+            $pwabfr->errorInfo;
+            unset($abfr);
+        }
+        catch(PDOException $e){
+            echo $e->getMessage();
+        }
+
+        if ($typ==0 && $pwabfr==$pw)
+        {
+            header("Location: https://mars.iuk.hdm-stuttgart.de/~fs096/admin.php");
+            exit;
+        }
+        elseif ($typ==1 && $pwabfr==$pw)
+        {
+            header("Location: https://mars.iuk.hdm-stuttgart.de/~fs096/vorlesungen.php");
+            exit;
+        }
+        else
+        {
+            echo "Fehler!";
+        }
+
+        ?>
+        <!-- Ende Login -->
 
 
         <!-- Anfang Header -->
@@ -88,7 +160,7 @@
         <!-- Ende Header -->
 
         
-        <!-- Anfang Teil 1 -->
+        <!-- Start Features -->
         <div class="content-section-a">
             <div class="container">
                 <div class="row">
@@ -107,10 +179,8 @@
             </div>
             <!-- /.container -->
         </div>
-        <!-- Ende Teil 1 -->
 
 
-        <!-- Anfang Teil 2 -->
         <div class="content-section-b">
             <div class="container">
                 <div class="row">
@@ -128,10 +198,8 @@
             </div>
             <!-- /.container -->
         </div>
-        <!-- Ende Teil 2 -->
 
 
-        <!-- Anfang Teil 3 -->
         <div class="content-section-a">
             <div class="container">
                 <div class="row">
@@ -149,10 +217,8 @@
             </div>
             <!-- /.container -->
         </div>
-        <!-- Ende Teil 3 -->
 
 
-        <!-- Anfang Teil 4 -->
         <div class="content-section-b">
             <div class="container">
                 <div class="row">
@@ -169,7 +235,7 @@
         </div>
         <!-- /.container -->
         </div>
-        <!-- Ende Teil 4 -->
+        <!-- Ende Features -->
 
 
         <!-- Anfang Login-Formular -->
