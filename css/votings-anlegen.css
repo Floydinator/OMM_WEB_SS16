@@ -21,12 +21,13 @@ body {
 }
 
 footer {
-    margin-top: 20px;
+    margin-top: 127px;
     background-color: #f7ecc0;
 }
 
 .navbar-default {
     background-color: #f7ecc0;
+    margin-bottom: 127px;
 }
 
 #button {
@@ -36,14 +37,6 @@ footer {
 
 .überschrift {
     text-align: center;
-}
-
-.formular {
-    margin-top: 20px;
-}
-
-.formular-eingabe {
-    margin-bottom: 15px;
 }
 
 nav div a {

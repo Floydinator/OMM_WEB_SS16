@@ -1,6 +1,5 @@
 body {
     background-color: #26bdf0;
-    overflow: hidden;
 }
 
 #brand {
@@ -21,6 +20,24 @@ body {
     background-color: #dbdbdb;
 }
 
+footer {
+    margin-top: 20px;
+    background-color: #f7ecc0;
+}
+
+.navbar-default {
+    background-color: #f7ecc0;
+}
+
+#button {
+    display: block;
+    margin: 0 auto;
+}
+
+.überschrift {
+    text-align: center;
+}
+
 .formular {
     margin-top: 20px;
 }
@@ -29,16 +46,7 @@ body {
     margin-bottom: 15px;
 }
 
-footer {
-    margin-top: -20px;
-    height: 20px;
-    background-color: #26bdf0;
-}
-
-.navbar-default {
-    background-color: #f7ecc0;
-}
-
-label {
-
+nav div a {
+    margin-left: 10px;
+    margin-right: 10px;
 }

@@ -20,7 +20,6 @@ body {
     background-color: #dbdbdb;
 }
 
-
 footer {
     margin-top: 20px;
     background-color: #f7ecc0;
@@ -28,10 +27,6 @@ footer {
 
 .navbar-default {
     background-color: #f7ecc0;
-}
-
-label {
-
 }
 
 #button {

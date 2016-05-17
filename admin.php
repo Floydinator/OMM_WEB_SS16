@@ -104,7 +104,7 @@
         <!-- Start Dozenten per foreach in Tabelle ausgeben -->
         <div class="container">
             <section class="row  row-centered">
-                <div class="col-md-8 col-md-offset-2"> <!--  Die Anzahl der Bootstrapspalten muss immer 12 sein -->
+                <div class="col-md-8 col-md-offset-2">
                     <p class="überschrift">Bereits angelegte Dozenten</p>
                     <ul class="list-group">
                         <?php foreach ($erg AS $dozent): ?>
@@ -121,12 +121,11 @@
         <!-- Start Dozenten per Formular einlesen -->
         <div class="container">
             <section class="row  row-centered">
-                <div class="col-md-4 col-md-offset-4"> <!--  Die Anzahl der Bootstrapspalten muss immer 12 sein -->
+                <div class="col-md-4 col-md-offset-4">
                     <form role="form">
                         <div class="form-group" role="form" method="get" action="reg.php">
                             <p class="überschrift">Neuen Dozent anlegen</p>
                             <input type="text" class="form-control" id="name" name="name" placeholder="Benutzername" value="<?php echo $_GET['name']; ?>">
-                            <input type="text" class="form-control" id="passwort" name="passwort" placeholder="Passwort" value="">
                         </div>
                         <button type="submit" class="btn btn-primary btn-md" id="button">Anlegen</button>
                     </form>

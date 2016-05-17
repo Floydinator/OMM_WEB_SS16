@@ -10,6 +10,8 @@ body {
 .list-group {
     height: 300px;
     overflow: auto;
+    margin-top: 75px;
+    margin-bottom: 68px;
 }
 
 .list-group li:nth-child(odd) {
@@ -29,24 +31,14 @@ footer {
     background-color: #f7ecc0;
 }
 
-#button {
-    display: block;
-    margin: 0 auto;
-}
-
 .überschrift {
     text-align: center;
-}
-
-.formular {
-    margin-top: 20px;
-}
-
-.formular-eingabe {
-    margin-bottom: 15px;
+    position: relative;
+    top: 60px;
 }
 
 nav div a {
     margin-left: 10px;
     margin-right: 10px;
 }
+
