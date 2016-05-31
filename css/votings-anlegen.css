@@ -21,13 +21,13 @@ body {
 }
 
 footer {
-    margin-top: 127px;
+    margin-top: 104px;
     background-color: #f7ecc0;
 }
 
 .navbar-default {
     background-color: #f7ecc0;
-    margin-bottom: 127px;
+    margin-bottom: 105px;
 }
 
 #button {
@@ -42,4 +42,12 @@ footer {
 nav div a {
     margin-left: 10px;
     margin-right: 10px;
+}
+
+#frage {
+    margin-bottom: 30px;
+}
+
+.antwort {
+    margin-bottom: 5px;
 }

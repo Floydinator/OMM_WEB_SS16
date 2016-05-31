@@ -53,18 +53,19 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand topnav" id="brand">TeachBox</a>
+                    <a class="navbar-brand topnav" id="brand"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> TeachBox</a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <form class="navbar-form navbar-right" role="search">
+                            <form class="navbar-form navbar-right">
                                 <div class="form-group">
-                                    <a href="votings.php">Votings</a>
-                                    <a href="votings-anlegen.php">Votings anlegen</a>
-                                    <a href="papierkorb.php">Papierkorb</a>
-                                    <a href="login.php" class="btn btn-info" role="button">Logout</a>
+                                    <a><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Vorlesungen</a>
+                                    <a href="votings.php"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Votings</a>
+                                    <a href="votings-anlegen.php"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Votings anlegen</a>
+                                    <a href="papierkorb.php"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Papierkorb</a>
+                                    <a href="login.php" class="btn btn-info" role="button"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a>
                                 </div>
                             </form>
                         </li>
@@ -77,26 +78,52 @@
         <!-- Ende Navigation -->
 
         
-        <!-- Start Vorlesungen in Tabelle ausgeben -->
+        <!-- Start Vorlesungen auslesen -->
+        <!-- Start Vorlesungen aus DB abfragen -->
+        <?php
+        //Auf die DB-Verbindung wird eine Methode eingesetzt, die einen String mit SQL akzeptiert und an die DB sendet.
+        //Der Code wird in $abfr gespeichert
+        try
+        {
+            $abfr = $db->prepare('SELECT Vorlesung.Vorlesungsname
+                                  FROM Vorlesung, Benutzer
+                                  WHERE Benutzer.Benutzername=:benutzername');
+            $abfr->bindValue(':benutzername', 'Hausmann', PDO::PARAM_STR);
+            $abfr->execute();
+            $erg = $abfr->fetchAll();
+            //var_dump($erg);
+            unset($abfr);
+        }
+        catch(PDOException $e){
+            echo $e->getMessage();
+        }
+        ?>
+        <!-- Ende Vorlesungen aus DB abfragen -->
+
+
+        <!-- Start Vorlesungen per foreach in Tabelle ausgeben -->
         <div class="container">
             <section class="row  row-centered">
                 <div class="col-md-8 col-md-offset-2">
                     <p class="überschrift">Bereits angelegte Vorlesungen</p>
                     <ul class="list-group">
-                            <li class="list-group-item">Vorlesung 1 <button type="submit" class="btn btn-primary btn-md pull-right">Löschen</button></li>
-                            <li class="list-group-item">Vorlesung 1 <button type="submit" class="btn btn-primary btn-md pull-right">Löschen</button></li>
-                            <li class="list-group-item">Vorlesung 1 <button type="submit" class="btn btn-primary btn-md pull-right">Löschen</button></li>
-                            <li class="list-group-item">Vorlesung 1 <button type="submit" class="btn btn-primary btn-md pull-right">Löschen</button></li>
-                            <li class="list-group-item">Vorlesung 1 <button type="submit" class="btn btn-primary btn-md pull-right">Löschen</button></li>
-                            <li class="list-group-item">Vorlesung 1 <button type="submit" class="btn btn-primary btn-md pull-right">Löschen</button></li>
-                            <li class="list-group-item">Vorlesung 1 <button type="submit" class="btn btn-primary btn-md pull-right">Löschen</button></li>
-                            <li class="list-group-item">Vorlesung 1 <button type="submit" class="btn btn-primary btn-md pull-right">Löschen</button></li>
-                            <li class="list-group-item"></li>
+                            <li class="list-group-item">Vorlesung 1
+                                <div class="dropdown pull-right">
+                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                        <li><a href="#">Löschen</a></li>
+                                    </ul>
+                                </div>
+                            </li>
                     </ul>
                 </div>
             </section>
         </div>
-        <!-- Ende Vorlesungen in Tabelle ausgeben -->
+        <!-- Start Dozenten per foreach in Tabelle ausgeben -->
+        <!-- Ende Vorlesungen auslesen -->
 
         
         <!-- Start Vorlesung per Formular einlesen -->
@@ -108,7 +135,7 @@
                             <p class="überschrift">Neue Vorlesung anlegen</p>
                             <input type="text" class="form-control" id="name" name="name" placeholder="Vorlesung" value="">
                         </div>
-                        <button type="submit" class="btn btn-primary btn-md" id="button">Anlegen</button>
+                        <button type="submit" class="btn btn-primary btn-md" id="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Anlegen</button>
                     </form>
                 </div>
             </section>
@@ -119,27 +146,6 @@
         <!-- Start Footer -->
         <footer>
             <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <ul class="list-inline">
-                            <li>
-                                <a class="active">Vorlesungen</a>
-                            </li>
-                            <li class="footer-menu-divider">&sdot;</li>
-                            <li>
-                                <a href="votings.php">Votings</a>
-                            </li>
-                            <li class="footer-menu-divider">&sdot;</li>
-                            <li>
-                                <a href="votings-anlegen.php">Votings anlegen</a>
-                            </li>
-                            <li class="footer-menu-divider">&sdot;</li>
-                            <li>
-                                <a href="papierkorb.php">Papierkorb</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
                 <div class="row">
                     <div class="col-md-12">
                         <p class="copyright small">&copy; 2016 Erich Keller, Lukas Vogelmann, Florian Schönberger</p>

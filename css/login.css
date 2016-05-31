@@ -15,12 +15,11 @@ footer {
 
 .navbar-default {
     background-color: #f7ecc0;
-    margin-bottom: 0px;
 }
 
 .intro-header {
     background: url(../img/jumbo.jpg) no-repeat center center;
-    margin-top: 0px;
+    margin-top: 70px;
 }
 
 #login {
@@ -35,4 +34,14 @@ footer {
 
 #überschrift {
     text-align: center;
+}
+
+nav div a {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.intro-message {
+    padding-top: 50px;
+    padding-bottom: 50px;
 }

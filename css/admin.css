@@ -12,14 +12,6 @@ body {
     overflow: auto;
 }
 
-.list-group li:nth-child(odd) {
-    background-color: #ededed;
-}
-
-.list-group li:nth-child(even) {
-    background-color: #dbdbdb;
-}
-
 footer {
     margin-top: 20px;
     background-color: #f7ecc0;
@@ -38,3 +30,19 @@ footer {
     text-align: center;
 }
 
+nav div a {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+@media only screen and (max-device-width: 768px) {
+    .navbar .navbar-right {
+        display: inline-block;
+        float: none;
+    }
+
+    .navbar .navbar-collapse {
+        text-align: center;
+    }
+
+}

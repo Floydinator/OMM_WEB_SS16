@@ -12,14 +12,6 @@ body {
     overflow: auto;
 }
 
-.list-group li:nth-child(odd) {
-    background-color: #ededed;
-}
-
-.list-group li:nth-child(even) {
-    background-color: #dbdbdb;
-}
-
 footer {
     margin-top: 20px;
     background-color: #f7ecc0;

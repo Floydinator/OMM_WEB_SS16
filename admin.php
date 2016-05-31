@@ -54,15 +54,15 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand topnav" id="brand">TeachBox</a>
+                    <a class="navbar-brand topnav" id="brand"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> TeachBox</a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <form class="navbar-form navbar-right" role="search">
+                            <form class="navbar-form navbar-right">
                                 <div class="form-group">
-                                    <a href="login.php" class="btn btn-info" role="button">Logout</a>
+                                    <a href="login.php" class="btn btn-info" role="button"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a>
                                 </div>
                             </form>
                         </li>
@@ -90,11 +90,12 @@
                 //Gibt das Ergebnis in Form eines mehrdimensionalen Arrays zurück und speichert es in der Variablen $abfr
                 //fetch wird nur zum auslesen benötigt
                 $erg = $abfr->fetchAll();
-                //var_dump($abfr->errorInfo());
+                //var_dump($erg);
                 //Abfrage schließen
                 unset($abfr);
             }
-            catch(PDOException $e){
+            catch(PDOException $e)
+            {
                 echo $e->getMessage();
             }
         ?>
@@ -122,12 +123,13 @@
         <div class="container">
             <section class="row  row-centered">
                 <div class="col-md-4 col-md-offset-4">
-                    <form role="form">
-                        <div class="form-group" role="form" method="get" action="reg.php">
+                    <form role="form" method="GET" action="includes/reg.php">
+                        <div class="form-group">
                             <p class="überschrift">Neuen Dozent anlegen</p>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Benutzername" value="<?php echo $_GET['name']; ?>">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Benutzername">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Email">
                         </div>
-                        <button type="submit" class="btn btn-primary btn-md" id="button">Anlegen</button>
+                        <button type="submit" class="btn btn-primary btn-md" id="button"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Anlegen</button>
                     </form>
                 </div>
             </section>

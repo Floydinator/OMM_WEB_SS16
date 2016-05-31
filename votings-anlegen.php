@@ -50,17 +50,18 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand topnav" id="brand">TeachBox</a>
+                    <a class="navbar-brand topnav" id="brand"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> TeachBox</a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <form class="navbar-form navbar-right" role="search">
-                                <a href="vorlesungen.php">Vorlesungen</a>
-                                <a href="votings.php">Votings</a>
-                                <a href="papierkorb.php">Papierkorb</a>
-                                <a href="login.php" class="btn btn-info" role="button">Logout</a>
+                            <form class="navbar-form navbar-right">
+                                <a href="vorlesungen.php"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Vorlesungen</a>
+                                <a href="votings.php"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Votings</a>
+                                <a><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Votings anlegen</a>
+                                <a href="papierkorb.php"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Papierkorb</a>
+                                <a href="login.php" class="btn btn-info" role="button"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a>
                             </form>
                         </li>
                     </ul>
@@ -79,13 +80,13 @@
                     <form role="form" id="formular">
                         <div class="form-group" role="form" method="get" action="">
                             <p class="überschrift">Neues Voting anlegen</p>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Frage" value="">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Antwort 1" value="">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Antwort 2" value="">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Antwort 3" value="">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Antwort 4" value="">
+                            <input type="text" class="form-control" id="frage" name="name" placeholder="Frage" value="">
+                            <input type="text" class="form-control antwort" name="name" placeholder="Antwort 1" value="">
+                            <input type="text" class="form-control antwort" name="name" placeholder="Antwort 2" value="">
+                            <input type="text" class="form-control antwort" name="name" placeholder="Antwort 3" value="">
+                            <input type="text" class="form-control antwort" name="name" placeholder="Antwort 4" value="">
                         </div>
-                        <button type="submit" class="btn btn-primary btn-md" id="button">Anlegen</button>
+                        <button type="submit" class="btn btn-primary btn-md" id="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Anlegen</button>
                     </form>
                 </div>
             </section>
@@ -96,27 +97,6 @@
         <!-- Start Footer -->
         <footer>
             <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <ul class="list-inline">
-                            <li>
-                                <a href="vorlesungen.php">Vorlesungen</a>
-                            </li>
-                            <li class="footer-menu-divider">&sdot;</li>
-                            <li>
-                                <a href="votings.php">Votings</a>
-                            </li>
-                            <li class="footer-menu-divider">&sdot;</li>
-                            <li>
-                                <a class="active">Votings anlegen</a>
-                            </li>
-                            <li class="footer-menu-divider">&sdot;</li>
-                            <li>
-                                <a href="papierkorb.php">Papierkorb</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
                 <div class="row">
                     <div class="col-md-12">
                         <p class="copyright small">&copy; 2016 Erich Keller, Lukas Vogelmann, Florian Schönberger</p>

@@ -53,7 +53,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand topnav" id="brand">TeachBox</a>
+                    <a class="navbar-brand topnav" id="brand"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> TeachBox</a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -63,8 +63,8 @@
             <!-- /.container -->
         </nav>
         <!-- Ende Navigation -->
-
-        
+            
+            
         <!-- Start Frage auslesen -->
         <div class="container">
             <section class="row  row-centered">
@@ -78,7 +78,7 @@
         
         <!-- Start Antworten in Tabelle auslesen -->
         <div class="container">
-            <section class="row  row-centered">
+            <section class="row">
                 <div class="col-md-8 col-md-offset-2">
                     <ul class="list-group">
                         <li class="list-group-item">
@@ -102,12 +102,34 @@
                             </div>
                         </li>
                     </ul>
-                    <button type="submit" class="btn btn-primary btn-md" id="button">Absenden</button>
+                    <button type="submit" class="btn btn-primary btn-md" data-toggle="modal" data-target="#Modal1" id="button"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> Absenden</button>
                 </div>
             </section>
         </div>
         <!-- Ende Antworten in Tabelle auslesen -->
-        
+
+
+        <!-- Modal -->
+        <div id="Modal1" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Danke für deine Teilnahme!</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Deine Ergebnisse wurde erfolgreich abgeschickt und gespeichert.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Schließen</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
 
         <!-- Start Footer -->
         <footer>
@@ -120,7 +142,7 @@
             </div>
         </footer>
         <!-- Ende Footer -->
-
+    
 
     </body>
 

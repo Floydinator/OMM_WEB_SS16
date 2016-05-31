@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="de" xmlns="http://www.w3.org/1999/html">
+<html lang="de">
 
 
 
@@ -29,6 +29,7 @@
 
         <!-- Start Include Dateien -->
         <?php include ("includes/verbindung.php"); ?>
+        <?php include ("includes/session.php"); ?>
         <!-- Ende Include Dateien -->
 
 
@@ -42,7 +43,7 @@
 
 
         <!-- Start Navigation -->
-        <nav class="navbar navbar-default topnav" role="navigation">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container topnav">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -52,7 +53,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand topnav" id="brand">TeachBox</a>
+                    <a class="navbar-brand topnav" id="brand"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> TeachBox</a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -61,12 +62,12 @@
 
 
                             <!-- Start Login Formular-->
-                            <form class="navbar-form navbar-right" role="form">
-                                <div class="form-group" method="get" action="login.php">
-                                    <input type="text" class="form-control" id="name" placeholder="Benutzername" value="<?php echo $_GET['name']; ?>">
-                                    <input type="text" class="form-control" id="pw" placeholder="Passwort" value="<?php echo $_GET['pw']; ?>">
+                            <form class="navbar-form navbar-right" role="form" method="POST" action="login.php">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Benutzername">
+                                    <input type="password" class="form-control" id="pw" name="pw" placeholder="Passwort">
                                 </div>
-                                <button type="submit" class="btn btn-default" id="button">Login</button>
+                                <button type="submit" class="btn btn-default" id="button"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Login</button>
                             </form>
                             <!-- Ende Login Formular-->
 
@@ -81,67 +82,6 @@
         <!-- Ende Navigation -->
 
 
-        <!-- Start Login -->
-        <?php
-
-        $name = $_GET['name'];
-        $name->errorInfo;
-        $pw = $_GET['pw'];
-        $pw->errorInfo();
-        $pw = md5($pw);
-        $pw->errorInfo();
-
-        //Benutzertyp in Variable $typ speichern
-        try
-        {
-            $abfr = $db->prepare('SELECT Typ
-                                      FROM Benutzer
-                                      WHERE Benutzername=:name');
-            $abfr->bindValue(':name', $name, PDO::PARAM_STR);
-            $abfr->execute();
-            $typ = $abfr->fetch();
-            $typ->errorInfo;
-            unset($abfr);
-        }
-        catch(PDOException $e){
-            echo $e->getMessage();
-        }
-
-        //Passwort aus der Datenbank in Variable $pwabfr speichern
-        try
-        {
-            $abfr = $db->prepare('SELECT Passwort
-                                      FROM Benutzer
-                                      WHERE Benutzername=:name');
-            $abfr->bindValue(':name', $name, PDO::PARAM_STR);
-            $abfr->execute();
-            $pwabfr = $abfr->fetch();
-            $pwabfr->errorInfo;
-            unset($abfr);
-        }
-        catch(PDOException $e){
-            echo $e->getMessage();
-        }
-
-        if ($typ==0 && $pwabfr==$pw)
-        {
-            header("Location: https://mars.iuk.hdm-stuttgart.de/~fs096/admin.php");
-            exit;
-        }
-        elseif ($typ==1 && $pwabfr==$pw)
-        {
-            header("Location: https://mars.iuk.hdm-stuttgart.de/~fs096/vorlesungen.php");
-            exit;
-        }
-        else
-        {
-            echo "Fehler!";
-        }
-
-        ?>
-        <!-- Ende Login -->
-
-
         <!-- Anfang Header -->
         <div class="intro-header">
             <div class="container">
@@ -151,6 +91,30 @@
                             <h1>TeachBox</h1>
                             <h3>Ihre Anwendung für schnelle Umfragen!</h3>
                             <hr class="intro-divider">
+
+
+                            <!-- Anfang Login-Formular -->
+                            <div class="row">
+                                <div class="col-md-4 col-md-offset-4 col-sm-12">
+                                    <div class="clearfix"></div>
+                                    <h2 class="section-heading" id="login">Login</h2>
+                                    <p class="lead" id="überschrift">Anmelden und sofort loslegen!</p>
+
+                                    <form class="formular" role="form" method="POST" action="login.php">
+                                        <div class="formular-eingabe">
+                                            <input type="text" class="form-control" id="name" name="name" placeholder="Benutzername">
+                                        </div>
+                                        <div class="formular-eingabe">
+                                            <input type="password" class="form-control" id="pw" name="pw" placeholder="Passwort">
+                                        </div>
+                                        <button id="button" type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Login</button>
+                                    </form>
+
+                                </div>
+                            </div>
+                            <!-- Ende Login-Formular -->
+
+
                         </div>
                     </div>
                 </div>
@@ -238,32 +202,6 @@
         <!-- Ende Features -->
 
 
-        <!-- Anfang Login-Formular -->
-        <div class="content-section-a">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4 col-md-offset-4 col-sm-12">
-                        <hr class="section-heading-spacer">
-                        <div class="clearfix"></div>
-                        <h2 class="section-heading" id="login">Login</h2>
-                        <p class="lead" id="überschrift">Anmelden und sofort loslegen!</p>
-                        <form class="formular" role="form" method="post" action="anlegen.php">
-                            <div class="formular-eingabe">
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Benutzername" value="">
-                            </div>
-                            <div class="formular-eingabe">
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Passwort" value="">
-                            </div>
-                            <button id="submit" type="submit" class="btn btn-primary">Login</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <!-- /.container -->
-        </div>
-        <!-- Ende Login-Formular -->
-
-
         <!-- Start Footer -->
         <footer>
             <div class="container">
@@ -275,6 +213,92 @@
             </div>
         </footer>
         <!-- Ende Footer -->
+
+
+        <!-- Start Login -->
+        <?php
+
+            $name = $_POST['name'];
+            $pw = $_POST['pw'];
+            //var_dump($pw); echo "\n";
+            $pw = md5($pw);
+            //var_dump($pw); echo "\n";
+            $login = false;
+
+            //Start Benutzertyp in Variable $typ speichern
+            try
+            {
+                $abfr = $db->prepare('SELECT Typ
+                                      FROM Benutzer
+                                      WHERE Benutzername=:benutzername');
+                $abfr->bindValue(':benutzername', $name, PDO::PARAM_STR);
+                $abfr->execute();
+                $typ = $abfr->fetch();
+                //var_dump($typ);
+                $typ = $typ['Typ'];
+                //var_dump($typ);
+                unset($abfr);
+            }
+            catch(PDOException $e)
+            {
+                echo $e->getMessage();
+            }
+            //Ende Benutzertyp in Variable $typ speichern
+
+
+            //Start Passwort aus der Datenbank in Variable $pwabfr speichern
+            try
+            {
+                $abfr = $db->prepare('SELECT Passwort
+                                      FROM Benutzer
+                                      WHERE Benutzername=:benutzername');
+                $abfr->bindValue(':benutzername', $name, PDO::PARAM_STR);
+                $abfr->execute();
+                $pwabfr = $abfr->fetch();
+                //var_dump($pwabfr);
+                $pwabfr = $pwabfr['Passwort'];
+                //var_dump($pwabfr);
+                unset($abfr);
+            }
+            catch(PDOException $e)
+            {
+                echo $e->getMessage();
+            }
+            //Ende Passwort aus der Datenbank in Variable $pwabfr speichern
+
+
+            // Start Benutzertyp und Passwort abgleichen
+            if ($typ == 0 AND $pwabfr == $pw)
+            {
+                $login = true;
+                if ($login = true)
+                {
+                    //echo "admin.php";
+                    header('Location: https://mars.iuk.hdm-stuttgart.de/~fs096/admin.php');
+                    //exit;
+                }
+            }
+            elseif ($typ == 1 AND $pwabfr == $pw)
+            {
+                $login = true;
+                if ($login = true)
+                {
+                    //echo "vorlesungen.php";
+                    header('Location: https://mars.iuk.hdm-stuttgart.de/~fs096/vorlesungen.php');
+                    //exit;
+                }
+            }
+            else
+            {
+                //var_dump($pw); echo "--- <br />";
+                //var_dump($pwabfr); echo "--- <br />";
+                //echo "Fehler!";
+                //header("Location: https://mars.iuk.hdm-stuttgart.de/~fs096/login.php");
+            }
+            // Ende Benutzertyp und Passwort abgleichen
+
+        ?>
+        <!-- Ende Login -->
 
 
     </body>
