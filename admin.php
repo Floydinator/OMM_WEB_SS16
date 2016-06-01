@@ -25,6 +25,8 @@
         <!-- Start Custom CSS -->
         <link href="css/landing-page.css" rel="stylesheet" media="screen">
         <link href="css/admin.css" rel="stylesheet" type="text/css" media="screen">
+        <link href='https://fonts.googleapis.com/css?family=Patua+One' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Roboto:700' rel='stylesheet' type='text/css'>
         <!-- Ende Custom CSS -->
 
 
@@ -42,6 +44,8 @@
 
     <body>
 
+
+        <div id="full">
 
         <!-- Start Navigation -->
         <nav class="navbar navbar-default topnav" role="navigation">
@@ -62,7 +66,7 @@
                         <li>
                             <form class="navbar-form navbar-right">
                                 <div class="form-group">
-                                    <a href="login.php" class="btn btn-info" role="button"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a>
+                                    <a href="login.php" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a>
                                 </div>
                             </form>
                         </li>
@@ -100,8 +104,10 @@
             }
         ?>
         <!-- Ende Dozenten aus DB abfragen -->
-
-
+            
+            
+        <div id="vertical">
+            
         <!-- Start Dozenten per foreach in Tabelle ausgeben -->
         <div class="container">
             <section class="row  row-centered">
@@ -129,12 +135,15 @@
                             <input type="text" class="form-control" id="name" name="name" placeholder="Benutzername">
                             <input type="email" class="form-control" id="email" name="email" placeholder="Email">
                         </div>
-                        <button type="submit" class="btn btn-primary btn-md" id="button"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Anlegen</button>
+                        <button type="submit" class="btn btn-primary btn-md" id="button">Anlegen</button>
                     </form>
                 </div>
             </section>
         </div>
         <!-- Ende Dozent per Formular einlesen -->
+            
+        </div>
+        </div>
 
 
         <!-- Start Footer -->

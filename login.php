@@ -24,6 +24,8 @@
         <!-- Start Custom CSS -->
         <link href="css/landing-page.css" rel="stylesheet" media="screen">
         <link href="css/login.css" rel="stylesheet" type="text/css" media="screen">
+        <link href='https://fonts.googleapis.com/css?family=Patua+One' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Roboto:700' rel='stylesheet' type='text/css'>
         <!-- Ende Custom CSS -->
 
 
@@ -67,7 +69,7 @@
                                     <input type="text" class="form-control" id="name" name="name" placeholder="Benutzername">
                                     <input type="password" class="form-control" id="pw" name="pw" placeholder="Passwort">
                                 </div>
-                                <button type="submit" class="btn btn-default" id="button"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Login</button>
+                                <button type="submit" class="btn btn-danger" id="button"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Login</button>
                             </form>
                             <!-- Ende Login Formular-->
 

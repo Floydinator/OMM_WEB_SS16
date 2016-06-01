@@ -1,25 +1,22 @@
 #brand {
-    font-size: large;
+    font-size: 20px;
     font-weight: bolder;
+    color: #FF3030;
+    font-family: 'Roboto', sans-serif;
 }
 
 footer {
-    position: relative;
-    top: 0px;
-    background-color: #f7ecc0;
-}
-
-.breadcrumb {
-    background-color: #f7ecc0;
+    background-color: #333333;
+    color: #FF3030;
+    font-family: 'Roboto', sans-serif;
 }
 
 .navbar-default {
-    background-color: #f7ecc0;
+    background-color: #333333;
 }
 
 .intro-header {
     background: url(../img/jumbo.jpg) no-repeat center center;
-    margin-top: 70px;
 }
 
 #login {
@@ -34,6 +31,9 @@ footer {
 
 #überschrift {
     text-align: center;
+    color: #CD0000;
+    font-family: 'Patua One', cursive;
+    font-size: large;
 }
 
 nav div a {
@@ -45,3 +45,4 @@ nav div a {
     padding-top: 50px;
     padding-bottom: 50px;
 }
+

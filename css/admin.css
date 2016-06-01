@@ -1,10 +1,13 @@
 body {
-    background-color: #26bdf0;
+    background-color: #FFFAF0;
+    position: relative
 }
 
 #brand {
-    font-size: large;
+    font-size: 20px;
     font-weight: bolder;
+    color: #FF3030;
+    font-family: 'Roboto', sans-serif;
 }
 
 .list-group {
@@ -13,12 +16,13 @@ body {
 }
 
 footer {
-    margin-top: 20px;
-    background-color: #f7ecc0;
+    background-color: #333333;
+    color: #FF3030;
+    font-family: 'Roboto', sans-serif;
 }
 
 .navbar-default {
-    background-color: #f7ecc0;
+    background-color: #333333;
 }
 
 #button {
@@ -28,6 +32,9 @@ footer {
 
 .überschrift {
     text-align: center;
+    color: #CD0000;
+    font-family: 'Patua One', cursive;
+    font-size: large;
 }
 
 nav div a {
@@ -35,14 +42,10 @@ nav div a {
     margin-right: 10px;
 }
 
-@media only screen and (max-device-width: 768px) {
-    .navbar .navbar-right {
-        display: inline-block;
-        float: none;
-    }
+#full {
+    height: 100%;
+}
 
-    .navbar .navbar-collapse {
-        text-align: center;
-    }
+#vertical {
 
 }

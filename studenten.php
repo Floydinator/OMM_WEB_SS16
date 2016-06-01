@@ -25,6 +25,8 @@
         <!-- Start Custom CSS -->
         <link href="css/landing-page.css" rel="stylesheet" media="screen">
         <link href="css/studenten.css" rel="stylesheet" type="text/css" media="screen">
+        <link href='https://fonts.googleapis.com/css?family=Patua+One' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Roboto:700' rel='stylesheet' type='text/css'>
         <!-- Ende Custom CSS -->
     
     
@@ -42,6 +44,8 @@
     <body>
 
 
+        <div id="full">
+        
         <!-- Start Navigation -->
         <nav class="navbar navbar-default topnav" role="navigation">
             <div class="container topnav">
@@ -109,6 +113,8 @@
         <!-- Ende Antworten in Tabelle auslesen -->
 
 
+        </div>
+        
         <!-- Modal -->
         <div id="Modal1" class="modal fade" role="dialog">
             <div class="modal-dialog">

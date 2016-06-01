@@ -25,6 +25,8 @@
         <!-- Start Custom CSS -->
         <link href="css/landing-page.css" rel="stylesheet" media="screen">
         <link href="css/vorlesungen.css" rel="stylesheet" type="text/css" media="screen">
+        <link href='https://fonts.googleapis.com/css?family=Patua+One' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Roboto:700' rel='stylesheet' type='text/css'>
         <!-- Ende Custom CSS -->
 
 
@@ -42,6 +44,8 @@
     <body>
 
 
+        <div id="full">
+        
         <!-- Start Navigation -->
         <nav class="navbar navbar-default topnav" role="navigation">
             <div class="container topnav">
@@ -65,7 +69,7 @@
                                     <a href="votings.php"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Votings</a>
                                     <a href="votings-anlegen.php"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Votings anlegen</a>
                                     <a href="papierkorb.php"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Papierkorb</a>
-                                    <a href="login.php" class="btn btn-info" role="button"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a>
+                                    <a href="login.php" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a>
                                 </div>
                             </form>
                         </li>
@@ -118,6 +122,7 @@
                                     </ul>
                                 </div>
                             </li>
+                            <li class="list-group-item"></li>
                     </ul>
                 </div>
             </section>
@@ -135,12 +140,14 @@
                             <p class="überschrift">Neue Vorlesung anlegen</p>
                             <input type="text" class="form-control" id="name" name="name" placeholder="Vorlesung" value="">
                         </div>
-                        <button type="submit" class="btn btn-primary btn-md" id="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Anlegen</button>
+                        <button type="submit" class="btn btn-primary btn-md" id="button">Anlegen</button>
                     </form>
                 </div>
             </section>
         </div>
         <!-- Ende Vorlesung per Formular einlesen -->
+        
+        </div>    
 
 
         <!-- Start Footer -->
