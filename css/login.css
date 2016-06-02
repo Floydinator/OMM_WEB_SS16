@@ -17,16 +17,12 @@ footer {
 
 .intro-header {
     background: url(../img/jumbo.jpg) no-repeat center center;
+    background-size: cover;
+    height: 100%;
 }
 
 #login {
     text-align: center;
-}
-
-#submit {
-    display: block;
-    margin: 0 auto;
-    margin-top: 15px;
 }
 
 #überschrift {
@@ -46,3 +42,15 @@ nav div a {
     padding-bottom: 50px;
 }
 
+#button {
+    margin-top: 15px;
+}
+
+#full {
+    height: 100%;
+}
+
+.section-heading {
+    color: #CD0000;
+    font-family: 'Patua One', cursive;
+}

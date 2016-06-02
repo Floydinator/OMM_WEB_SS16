@@ -9,7 +9,7 @@
     <head>
     
     
-        <title>Dozentenbereich - Votings</title>
+        <title>Dozentenbereich - Votings anlegen</title>
     
         <meta charset="utf-8"/>
     

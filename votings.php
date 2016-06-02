@@ -86,175 +86,168 @@
                 <div class="col-md-8 col-md-offset-2">
                     <p class="überschrift">Bereits angelegte Votings</p>
                     <ul class="list-group">
-                        <li class="list-group-item">Voting 1
-                            <div class="dropdown pull-right">
-                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        <li class="list-group-item">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default">Voting 1</button>
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li><a data-toggle="modal" data-target="#live">Live schalten</a></li>
-                                    <li><a data-toggle="modal" data-target="#beenden">Beenden</a></li>
-                                    <li><a data-toggle="modal" data-target="#ergebnisse">Ergebnisse anzeigen</a></li>
-                                    <li><a data-toggle="modal" data-target="#löschen">Löschen</a></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#live">Live schalten</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#beenden">Beenden</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#ergebnisse">Ergebnisse anzeigen</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#" ata-toggle="modal" data-target="#löschen">Löschen</a></li>
                                 </ul>
                             </div>
                         </li>
-                        <li class="list-group-item">Voting 1
-                            <div class="dropdown pull-right">
-                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        <li class="list-group-item">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default">Voting 1</button>
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li><a data-toggle="modal" data-target="#live">Live schalten</a></li>
-                                    <li><a data-toggle="modal" data-target="#beenden">Beenden</a></li>
-                                    <li><a data-toggle="modal" data-target="#ergebnisse">Ergebnisse anzeigen</a></li>
-                                    <li><a data-toggle="modal" data-target="#löschen">Löschen</a></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#live">Live schalten</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#beenden">Beenden</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#ergebnisse">Ergebnisse anzeigen</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#" ata-toggle="modal" data-target="#löschen">Löschen</a></li>
                                 </ul>
                             </div>
                         </li>
-                        <li class="list-group-item">Voting 1
-                            <div class="dropdown pull-right">
-                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        <li class="list-group-item">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default">Voting 1</button>
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li><a data-toggle="modal" data-target="#live">Live schalten</a></li>
-                                    <li><a data-toggle="modal" data-target="#beenden">Beenden</a></li>
-                                    <li><a data-toggle="modal" data-target="#ergebnisse">Ergebnisse anzeigen</a></li>
-                                    <li><a data-toggle="modal" data-target="#löschen">Löschen</a></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#live">Live schalten</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#beenden">Beenden</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#ergebnisse">Ergebnisse anzeigen</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#" ata-toggle="modal" data-target="#löschen">Löschen</a></li>
                                 </ul>
                             </div>
                         </li>
-                        <li class="list-group-item">Voting 1
-                            <div class="dropdown pull-right">
-                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        <li class="list-group-item">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default">Voting 1</button>
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li><a data-toggle="modal" data-target="#live">Live schalten</a></li>
-                                    <li><a data-toggle="modal" data-target="#beenden">Beenden</a></li>
-                                    <li><a data-toggle="modal" data-target="#ergebnisse">Ergebnisse anzeigen</a></li>
-                                    <li><a data-toggle="modal" data-target="#löschen">Löschen</a></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#live">Live schalten</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#beenden">Beenden</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#ergebnisse">Ergebnisse anzeigen</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#" ata-toggle="modal" data-target="#löschen">Löschen</a></li>
                                 </ul>
                             </div>
                         </li>
-                        <li class="list-group-item">Voting 1
-                            <div class="dropdown pull-right">
-                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        <li class="list-group-item">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default">Voting 1</button>
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li><a data-toggle="modal" data-target="#live">Live schalten</a></li>
-                                    <li><a data-toggle="modal" data-target="#beenden">Beenden</a></li>
-                                    <li><a data-toggle="modal" data-target="#ergebnisse">Ergebnisse anzeigen</a></li>
-                                    <li><a data-toggle="modal" data-target="#löschen">Löschen</a></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#live">Live schalten</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#beenden">Beenden</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#ergebnisse">Ergebnisse anzeigen</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#" ata-toggle="modal" data-target="#löschen">Löschen</a></li>
                                 </ul>
                             </div>
                         </li>
-                        <li class="list-group-item">Voting 1
-                            <div class="dropdown pull-right">
-                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        <li class="list-group-item">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default">Voting 1</button>
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li><a data-toggle="modal" data-target="#live">Live schalten</a></li>
-                                    <li><a data-toggle="modal" data-target="#beenden">Beenden</a></li>
-                                    <li><a data-toggle="modal" data-target="#ergebnisse">Ergebnisse anzeigen</a></li>
-                                    <li><a data-toggle="modal" data-target="#löschen">Löschen</a></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#live">Live schalten</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#beenden">Beenden</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#ergebnisse">Ergebnisse anzeigen</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#" ata-toggle="modal" data-target="#löschen">Löschen</a></li>
                                 </ul>
                             </div>
                         </li>
-                        <li class="list-group-item">Voting 1
-                            <div class="dropdown pull-right">
-                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        <li class="list-group-item">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default">Voting 1</button>
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li><a data-toggle="modal" data-target="#live">Live schalten</a></li>
-                                    <li><a data-toggle="modal" data-target="#beenden">Beenden</a></li>
-                                    <li><a data-toggle="modal" data-target="#ergebnisse">Ergebnisse anzeigen</a></li>
-                                    <li><a data-toggle="modal" data-target="#löschen">Löschen</a></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#live">Live schalten</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#beenden">Beenden</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#ergebnisse">Ergebnisse anzeigen</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#" ata-toggle="modal" data-target="#löschen">Löschen</a></li>
                                 </ul>
                             </div>
                         </li>
-                        <li class="list-group-item">Voting 1
-                            <div class="dropdown pull-right">
-                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        <li class="list-group-item">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default">Voting 1</button>
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li><a data-toggle="modal" data-target="#live">Live schalten</a></li>
-                                    <li><a data-toggle="modal" data-target="#beenden">Beenden</a></li>
-                                    <li><a data-toggle="modal" data-target="#ergebnisse">Ergebnisse anzeigen</a></li>
-                                    <li><a data-toggle="modal" data-target="#löschen">Löschen</a></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#live">Live schalten</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#beenden">Beenden</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#ergebnisse">Ergebnisse anzeigen</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#" ata-toggle="modal" data-target="#löschen">Löschen</a></li>
                                 </ul>
                             </div>
                         </li>
-                        <li class="list-group-item">Voting 1
-                            <div class="dropdown pull-right">
-                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        <li class="list-group-item">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default">Voting 1</button>
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li><a data-toggle="modal" data-target="#live">Live schalten</a></li>
-                                    <li><a data-toggle="modal" data-target="#beenden">Beenden</a></li>
-                                    <li><a data-toggle="modal" data-target="#ergebnisse">Ergebnisse anzeigen</a></li>
-                                    <li><a data-toggle="modal" data-target="#löschen">Löschen</a></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#live">Live schalten</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#beenden">Beenden</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#ergebnisse">Ergebnisse anzeigen</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#" ata-toggle="modal" data-target="#löschen">Löschen</a></li>
                                 </ul>
                             </div>
                         </li>
-                        <li class="list-group-item">Voting 1
-                            <div class="dropdown pull-right">
-                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li><a data-toggle="modal" data-target="#live">Live schalten</a></li>
-                                    <li><a data-toggle="modal" data-target="#beenden">Beenden</a></li>
-                                    <li><a data-toggle="modal" data-target="#ergebnisse">Ergebnisse anzeigen</a></li>
-                                    <li><a data-toggle="modal" data-target="#löschen">Löschen</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="list-group-item">Voting 1
-                            <div class="dropdown pull-right">
-                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li><a data-toggle="modal" data-target="#live">Live schalten</a></li>
-                                    <li><a data-toggle="modal" data-target="#beenden">Beenden</a></li>
-                                    <li><a data-toggle="modal" data-target="#ergebnisse">Ergebnisse anzeigen</a></li>
-                                    <li><a data-toggle="modal" data-target="#löschen">Löschen</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="list-group-item">Voting 1
-                            <div class="dropdown pull-right">
-                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li><a data-toggle="modal" data-target="#live">Live schalten</a></li>
-                                    <li><a data-toggle="modal" data-target="#beenden">Beenden</a></li>
-                                    <li><a data-toggle="modal" data-target="#ergebnisse">Ergebnisse anzeigen</a></li>
-                                    <li><a data-toggle="modal" data-target="#löschen">Löschen</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="list-group-item"></li>
                     </ul>
                 </div>
             </section>

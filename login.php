@@ -44,6 +44,8 @@
     <body>
 
 
+        <div id="full">
+            
         <!-- Start Navigation -->
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container topnav">
@@ -69,7 +71,7 @@
                                     <input type="text" class="form-control" id="name" name="name" placeholder="Benutzername">
                                     <input type="password" class="form-control" id="pw" name="pw" placeholder="Passwort">
                                 </div>
-                                <button type="submit" class="btn btn-danger" id="button"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Login</button>
+                                <button type="submit" class="btn btn-danger" id="navbutton"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Login</button>
                             </form>
                             <!-- Ende Login Formular-->
 
@@ -124,6 +126,8 @@
             <!-- /.container -->
         </div>
         <!-- Ende Header -->
+            
+        </div>    
 
         
         <!-- Start Features -->

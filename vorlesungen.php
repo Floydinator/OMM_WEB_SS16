@@ -111,18 +111,18 @@
                 <div class="col-md-8 col-md-offset-2">
                     <p class="überschrift">Bereits angelegte Vorlesungen</p>
                     <ul class="list-group">
-                            <li class="list-group-item">Vorlesung 1
-                                <div class="dropdown pull-right">
-                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                        <li><a href="#">Löschen</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="list-group-item"></li>
+                            <li class="list-group-item">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default">Vorlesung 1</button>
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Löschen</a></li>
+                                </ul>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </section>
