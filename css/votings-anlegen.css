@@ -47,8 +47,10 @@ footer {
 }
 
 nav div a {
+    font-size: 12px;
     margin-left: 10px;
     margin-right: 10px;
+    color: #00B2EE;
 }
 
 #frage {
@@ -59,6 +61,20 @@ nav div a {
     margin-bottom: 5px;
 }
 
-#full {
-    height: 100%;
+@media screen and (min-device-height: 700px){
+    #full {
+        height: 100%;
+    }
+}
+
+.glyphicon {
+    font-size: 12px;
+}
+
+#brand-glyphicon {
+    font-size: 20px;
+}
+
+nav div a:hover {
+    color: #FFFAF0;
 }

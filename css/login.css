@@ -46,11 +46,17 @@ nav div a {
     margin-top: 15px;
 }
 
-#full {
-    height: 100%;
+@media screen and (min-device-height: 700px){
+    #full {
+        height: 100%;
+    }
 }
 
 .section-heading {
     color: #CD0000;
     font-family: 'Patua One', cursive;
+}
+
+#brand-glyphicon {
+    font-size: 20px;
 }

@@ -35,7 +35,7 @@
         <?php include ("includes/reg.php"); ?>
         <!-- Ende Include Dateien -->
 
-
+        
     </head>
 
 
@@ -58,7 +58,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand topnav" id="brand"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> TeachBox</a>
+                    <a class="navbar-brand topnav" id="brand"><span id="brand-glyphicon" class="glyphicon glyphicon-home" aria-hidden="true"></span> TeachBox</a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -106,8 +106,6 @@
         <!-- Ende Dozenten aus DB abfragen -->
             
             
-        <div id="vertical">
-            
         <!-- Start Dozenten per foreach in Tabelle ausgeben -->
         <div class="container">
             <section class="row  row-centered">
@@ -141,8 +139,7 @@
             </section>
         </div>
         <!-- Ende Dozent per Formular einlesen -->
-            
-        </div>
+
         </div>
 
 
