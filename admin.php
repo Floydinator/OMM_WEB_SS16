@@ -124,7 +124,7 @@
 
 
         <!-- Start Dozent per Formular einlesen -->
-        <div class="container">
+        <div class="container" id="formular">
             <section class="row  row-centered">
                 <div class="col-md-4 col-md-offset-4">
                     <form role="form" method="GET" action="includes/reg.php">

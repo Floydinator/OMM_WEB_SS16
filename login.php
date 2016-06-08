@@ -1,3 +1,93 @@
+<!-- Start Include Dateien -->
+<?php include ("includes/verbindung.php"); ?>
+<?php include ("includes/session.php"); ?>
+<!-- Ende Include Dateien -->
+
+<!-- Start Login -->
+<?php
+
+$name = $_POST['name'];
+$pw = $_POST['pw'];
+//var_dump($pw); echo "\n";
+$pw = md5($pw);
+//var_dump($pw); echo "\n";
+$login = false;
+
+//Start Benutzertyp in Variable $typ speichern
+try
+{
+    $abfr = $db->prepare('SELECT Typ
+                                      FROM Benutzer
+                                      WHERE Benutzername=:benutzername');
+    $abfr->bindValue(':benutzername', $name, PDO::PARAM_STR);
+    $abfr->execute();
+    $typ = $abfr->fetch();
+    //var_dump($typ);
+    $typ = $typ['Typ'];
+    //var_dump($typ);
+    unset($abfr);
+}
+catch(PDOException $e)
+{
+    echo $e->getMessage();
+}
+//Ende Benutzertyp in Variable $typ speichern
+
+
+//Start Passwort aus der Datenbank in Variable $pwabfr speichern
+try
+{
+    $abfr = $db->prepare('SELECT Passwort
+                                      FROM Benutzer
+                                      WHERE Benutzername=:benutzername');
+    $abfr->bindValue(':benutzername', $name, PDO::PARAM_STR);
+    $abfr->execute();
+    $pwabfr = $abfr->fetch();
+    //var_dump($pwabfr);
+    $pwabfr = $pwabfr['Passwort'];
+    //var_dump($pwabfr);
+    unset($abfr);
+}
+catch(PDOException $e)
+{
+    echo $e->getMessage();
+}
+//Ende Passwort aus der Datenbank in Variable $pwabfr speichern
+
+
+// Start Benutzertyp und Passwort abgleichen
+if ($typ == 0 AND $pwabfr == $pw)
+{
+    $login = true;
+    if ($login = true)
+    {
+        //echo "admin.php";
+        header('Location: https://mars.iuk.hdm-stuttgart.de/~fs096/admin.php');
+        //exit;
+    }
+}
+elseif ($typ == 1 AND $pwabfr == $pw)
+{
+    $login = true;
+    if ($login = true)
+    {
+        //echo "vorlesungen.php";
+        header('Location: https://mars.iuk.hdm-stuttgart.de/~fs096/vorlesungen.php');
+        //exit;
+    }
+}
+else
+{
+    //var_dump($pw); echo "--- <br />";
+    //var_dump($pwabfr); echo "--- <br />";
+    //echo "Fehler!";
+    //header("Location: https://mars.iuk.hdm-stuttgart.de/~fs096/login.php");
+}
+// Ende Benutzertyp und Passwort abgleichen
+
+?>
+<!-- Ende Login -->
+
 <!DOCTYPE html>
 
 <html lang="de">
@@ -24,15 +114,7 @@
         <!-- Start Custom CSS -->
         <link href="css/landing-page.css" rel="stylesheet" media="screen">
         <link href="css/login.css" rel="stylesheet" type="text/css" media="screen">
-        <link href='https://fonts.googleapis.com/css?family=Patua+One' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Roboto:700' rel='stylesheet' type='text/css'>
         <!-- Ende Custom CSS -->
-
-
-        <!-- Start Include Dateien -->
-        <?php include ("includes/verbindung.php"); ?>
-        <?php include ("includes/session.php"); ?>
-        <!-- Ende Include Dateien -->
 
 
     </head>
@@ -44,8 +126,6 @@
     <body>
 
 
-        <div id="full">
-            
         <!-- Start Navigation -->
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container topnav">
@@ -57,7 +137,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand topnav" id="brand"><span id="brand-glyphicon" class="glyphicon glyphicon-home" aria-hidden="true"></span> TeachBox</a>
+                    <a class="navbar-brand topnav" id="brand"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> TeachBox</a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -71,7 +151,7 @@
                                     <input type="text" class="form-control" id="name" name="name" placeholder="Benutzername">
                                     <input type="password" class="form-control" id="pw" name="pw" placeholder="Passwort">
                                 </div>
-                                <button type="submit" class="btn btn-danger" id="navbutton"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Login</button>
+                                <button type="submit" class="btn btn-default" id="button"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Login</button>
                             </form>
                             <!-- Ende Login Formular-->
 
@@ -126,8 +206,6 @@
             <!-- /.container -->
         </div>
         <!-- Ende Header -->
-            
-        </div>    
 
         
         <!-- Start Features -->
@@ -219,92 +297,6 @@
             </div>
         </footer>
         <!-- Ende Footer -->
-
-
-        <!-- Start Login -->
-        <?php
-
-            $name = $_POST['name'];
-            $pw = $_POST['pw'];
-            //var_dump($pw); echo "\n";
-            $pw = md5($pw);
-            //var_dump($pw); echo "\n";
-            $login = false;
-
-            //Start Benutzertyp in Variable $typ speichern
-            try
-            {
-                $abfr = $db->prepare('SELECT Typ
-                                      FROM Benutzer
-                                      WHERE Benutzername=:benutzername');
-                $abfr->bindValue(':benutzername', $name, PDO::PARAM_STR);
-                $abfr->execute();
-                $typ = $abfr->fetch();
-                //var_dump($typ);
-                $typ = $typ['Typ'];
-                //var_dump($typ);
-                unset($abfr);
-            }
-            catch(PDOException $e)
-            {
-                echo $e->getMessage();
-            }
-            //Ende Benutzertyp in Variable $typ speichern
-
-
-            //Start Passwort aus der Datenbank in Variable $pwabfr speichern
-            try
-            {
-                $abfr = $db->prepare('SELECT Passwort
-                                      FROM Benutzer
-                                      WHERE Benutzername=:benutzername');
-                $abfr->bindValue(':benutzername', $name, PDO::PARAM_STR);
-                $abfr->execute();
-                $pwabfr = $abfr->fetch();
-                //var_dump($pwabfr);
-                $pwabfr = $pwabfr['Passwort'];
-                //var_dump($pwabfr);
-                unset($abfr);
-            }
-            catch(PDOException $e)
-            {
-                echo $e->getMessage();
-            }
-            //Ende Passwort aus der Datenbank in Variable $pwabfr speichern
-
-
-            // Start Benutzertyp und Passwort abgleichen
-            if ($typ == 0 AND $pwabfr == $pw)
-            {
-                $login = true;
-                if ($login = true)
-                {
-                    //echo "admin.php";
-                    header('Location: https://mars.iuk.hdm-stuttgart.de/~fs096/admin.php');
-                    //exit;
-                }
-            }
-            elseif ($typ == 1 AND $pwabfr == $pw)
-            {
-                $login = true;
-                if ($login = true)
-                {
-                    //echo "vorlesungen.php";
-                    header('Location: https://mars.iuk.hdm-stuttgart.de/~fs096/vorlesungen.php');
-                    //exit;
-                }
-            }
-            else
-            {
-                //var_dump($pw); echo "--- <br />";
-                //var_dump($pwabfr); echo "--- <br />";
-                //echo "Fehler!";
-                //header("Location: https://mars.iuk.hdm-stuttgart.de/~fs096/login.php");
-            }
-            // Ende Benutzertyp und Passwort abgleichen
-
-        ?>
-        <!-- Ende Login -->
 
 
     </body>

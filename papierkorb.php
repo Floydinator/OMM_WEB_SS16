@@ -78,145 +78,56 @@
             <!-- /.container -->
         </nav>
         <!-- Ende Navigation -->
-        
 
-        <!-- Start gelöschte Votings per foreach in Tabelle ausgeben -->
+
+        <!-- Start Votings im Papierkorb auslesen -->
+        <!-- Start Votings aus DB abfragen -->
+        <?php
+        //Auf die DB-Verbindung wird eine Methode eingesetzt, die einen String mit SQL akzeptiert und an die DB sendet.
+        //Der Code wird in $abfr gespeichert
+        try
+        {
+            $abfr = $db->prepare('SELECT Votingname
+                                  FROM Voting
+                                  WHERE Papierkorb=:papierkorb');
+            $abfr->bindValue(':papierkorb', 1, PDO::PARAM_INT);
+            $abfr->execute();
+            $erg = $abfr->fetchAll();
+            //var_dump($erg);
+            unset($abfr);
+        }
+        catch(PDOException $e)
+        {
+            echo $e->getMessage();
+        }
+        ?>
+        <!-- Ende Votings aus DB abfragen -->
+
+
+        <!-- Start Votings per foreach in Tabelle ausgeben -->
         <div class="container">
             <section class="row  row-centered">
                 <div class="col-md-8 col-md-offset-2">
                     <p class="überschrift">Gelöschte Votings</p>
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default">Voting 1</button>
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="caret"></span>
-                                    <span class="sr-only">Toggle Dropdown</span>
-                                </button>
+                    <ul class="nav nav-pills nav-stacked" id="pills">
+
+                        <?php foreach ($erg AS $voting): ?>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php echo $voting['Votingname']; ?>
+                                    <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Wiederherstellen</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#">Endgültig löschen</a></li>
+                                    <li><a href="includes/wiederherstellen.php?name=<?php echo $voting['Votingname']; ?>">Wiederherstellen</a></li>
+                                    <li><a href="includes/end_loeschen.php?name=<?php echo $voting['Votingname']; ?>">Endgültig löschen</a></li>
                                 </ul>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default">Voting 1</button>
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="caret"></span>
-                                    <span class="sr-only">Toggle Dropdown</span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Wiederherstellen</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#">Endgültig löschen</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default">Voting 1</button>
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="caret"></span>
-                                    <span class="sr-only">Toggle Dropdown</span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Wiederherstellen</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#">Endgültig löschen</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default">Voting 1</button>
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="caret"></span>
-                                    <span class="sr-only">Toggle Dropdown</span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Wiederherstellen</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#">Endgültig löschen</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default">Voting 1</button>
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="caret"></span>
-                                    <span class="sr-only">Toggle Dropdown</span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Wiederherstellen</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#">Endgültig löschen</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default">Voting 1</button>
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="caret"></span>
-                                    <span class="sr-only">Toggle Dropdown</span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Wiederherstellen</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#">Endgültig löschen</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default">Voting 1</button>
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="caret"></span>
-                                    <span class="sr-only">Toggle Dropdown</span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Wiederherstellen</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#">Endgültig löschen</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default">Voting 1</button>
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="caret"></span>
-                                    <span class="sr-only">Toggle Dropdown</span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Wiederherstellen</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#">Endgültig löschen</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default">Voting 1</button>
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="caret"></span>
-                                    <span class="sr-only">Toggle Dropdown</span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Wiederherstellen</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#">Endgültig löschen</a></li>
-                                </ul>
-                            </div>
-                        </li>
+                            </li>
+                        <?php endforeach; ?>
+
                     </ul>
                 </div>
             </section>
         </div>
-        <!-- Ende gelöschte Votings per foreach in Tabelle ausgeben -->
+        <!-- Ende Votings per foreach in Tabelle ausgeben -->
+        <!-- Ende Votings im Papierkorb auslesen -->
 
 
         </div>

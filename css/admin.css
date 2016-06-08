@@ -1,5 +1,5 @@
 body {
-    background-color: #FFFAF0;
+    background-color: #FFFFFF;
 }
 
 #brand {
@@ -9,9 +9,17 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+.btn-danger {
+    background-color: #FF3030;
+}
+
 .list-group {
     height: 300px;
     overflow: auto;
+}
+
+#formular {
+    margin-top: 20px;
 }
 
 footer {
@@ -31,7 +39,7 @@ footer {
 
 .überschrift {
     text-align: center;
-    color: #CD0000;
+    color: #FF3030;
     font-family: 'Patua One', cursive;
     font-size: large;
 }

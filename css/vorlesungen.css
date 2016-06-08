@@ -1,5 +1,5 @@
 body {
-    background-color: #FFFAF0;
+    background-color: #FFFFFF;
 }
 
 #brand {
@@ -9,7 +9,7 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-.list-group {
+#pills {
     height: 300px;
     overflow: auto;
 }

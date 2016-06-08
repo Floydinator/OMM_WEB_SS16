@@ -45,7 +45,7 @@
 
 
         <div id="full">
-        
+
         <!-- Start Navigation -->
         <nav class="navbar navbar-default topnav" role="navigation">
             <div class="container topnav">
@@ -80,179 +80,56 @@
         <!-- Ende Navigation -->
 
 
+        <!-- Start Votings auslesen -->
+        <!-- Start Votings aus DB abfragen -->
+        <?php
+            //Auf die DB-Verbindung wird eine Methode eingesetzt, die einen String mit SQL akzeptiert und an die DB sendet.
+            //Der Code wird in $abfr gespeichert
+            try
+            {
+                $abfr = $db->prepare('SELECT Votingname
+                                      FROM Voting
+                                      WHERE Papierkorb=:papierkorb');
+                $abfr->bindValue(':papierkorb', 0, PDO::PARAM_INT);
+                $abfr->execute();
+                $erg = $abfr->fetchAll();
+                //var_dump($erg);
+                unset($abfr);
+            }
+            catch(PDOException $e)
+            {
+                echo $e->getMessage();
+            }
+        ?>
+        <!-- Ende Votings aus DB abfragen -->
+
+
         <!-- Start Votings per foreach in Tabelle ausgeben -->
         <div class="container">
             <section class="row  row-centered">
                 <div class="col-md-8 col-md-offset-2">
                     <p class="überschrift">Bereits angelegte Votings</p>
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default">Voting 1</button>
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="caret"></span>
-                                    <span class="sr-only">Toggle Dropdown</span>
-                                </button>
+                    <ul class="nav nav-pills nav-stacked" id="pills">
+
+                        <?php foreach ($erg AS $voting): ?>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php echo $voting['Votingname']; ?>
+                                    <span class="caret"></span></a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li><a href="#" data-toggle="modal" data-target="#live">Live schalten</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#" data-toggle="modal" data-target="#beenden">Beenden</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#" data-toggle="modal" data-target="#ergebnisse">Ergebnisse anzeigen</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#" ata-toggle="modal" data-target="#löschen">Löschen</a></li>
+                                    <li><a href="#">Live schalten</a></li>
+                                    <li><a href="#">Beenden</a></li>
+                                    <li><a href="#">Ergebnisse anzeigen</a></li>
+                                    <li><a href="includes/loeschen.php?name=<?php echo $voting['Votingname']; ?>">Löschen</a></li>
                                 </ul>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default">Voting 1</button>
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="caret"></span>
-                                    <span class="sr-only">Toggle Dropdown</span>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li><a href="#" data-toggle="modal" data-target="#live">Live schalten</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#" data-toggle="modal" data-target="#beenden">Beenden</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#" data-toggle="modal" data-target="#ergebnisse">Ergebnisse anzeigen</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#" ata-toggle="modal" data-target="#löschen">Löschen</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default">Voting 1</button>
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="caret"></span>
-                                    <span class="sr-only">Toggle Dropdown</span>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li><a href="#" data-toggle="modal" data-target="#live">Live schalten</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#" data-toggle="modal" data-target="#beenden">Beenden</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#" data-toggle="modal" data-target="#ergebnisse">Ergebnisse anzeigen</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#" ata-toggle="modal" data-target="#löschen">Löschen</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default">Voting 1</button>
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="caret"></span>
-                                    <span class="sr-only">Toggle Dropdown</span>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li><a href="#" data-toggle="modal" data-target="#live">Live schalten</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#" data-toggle="modal" data-target="#beenden">Beenden</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#" data-toggle="modal" data-target="#ergebnisse">Ergebnisse anzeigen</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#" ata-toggle="modal" data-target="#löschen">Löschen</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default">Voting 1</button>
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="caret"></span>
-                                    <span class="sr-only">Toggle Dropdown</span>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li><a href="#" data-toggle="modal" data-target="#live">Live schalten</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#" data-toggle="modal" data-target="#beenden">Beenden</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#" data-toggle="modal" data-target="#ergebnisse">Ergebnisse anzeigen</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#" ata-toggle="modal" data-target="#löschen">Löschen</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default">Voting 1</button>
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="caret"></span>
-                                    <span class="sr-only">Toggle Dropdown</span>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li><a href="#" data-toggle="modal" data-target="#live">Live schalten</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#" data-toggle="modal" data-target="#beenden">Beenden</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#" data-toggle="modal" data-target="#ergebnisse">Ergebnisse anzeigen</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#" ata-toggle="modal" data-target="#löschen">Löschen</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default">Voting 1</button>
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="caret"></span>
-                                    <span class="sr-only">Toggle Dropdown</span>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li><a href="#" data-toggle="modal" data-target="#live">Live schalten</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#" data-toggle="modal" data-target="#beenden">Beenden</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#" data-toggle="modal" data-target="#ergebnisse">Ergebnisse anzeigen</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#" ata-toggle="modal" data-target="#löschen">Löschen</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default">Voting 1</button>
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="caret"></span>
-                                    <span class="sr-only">Toggle Dropdown</span>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li><a href="#" data-toggle="modal" data-target="#live">Live schalten</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#" data-toggle="modal" data-target="#beenden">Beenden</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#" data-toggle="modal" data-target="#ergebnisse">Ergebnisse anzeigen</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#" ata-toggle="modal" data-target="#löschen">Löschen</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default">Voting 1</button>
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="caret"></span>
-                                    <span class="sr-only">Toggle Dropdown</span>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li><a href="#" data-toggle="modal" data-target="#live">Live schalten</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#" data-toggle="modal" data-target="#beenden">Beenden</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#" data-toggle="modal" data-target="#ergebnisse">Ergebnisse anzeigen</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#" ata-toggle="modal" data-target="#löschen">Löschen</a></li>
-                                </ul>
-                            </div>
-                        </li>
+                            </li>
+                        <?php endforeach; ?>
+
                     </ul>
                 </div>
             </section>
         </div>
         <!-- Ende Votings per foreach in Tabelle ausgeben -->
+        <!-- Ende Votings auslesen -->
         
 
         <!-- Start Voting per Formular einlesen -->
@@ -260,9 +137,9 @@
             <section class="row  row-centered">
                 <div class="col-md-4 col-md-offset-4">
                     <form role="form">
-                        <div class="form-group" role="form" method="get" action="">
+                        <div class="form-group" role="form" method="POST" action="votings.php">
                             <p class="überschrift">Neues Voting anlegen</p>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Voting" value="">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Votingname">
                         </div>
                         <button type="submit" class="btn btn-primary btn-md" id="button">Anlegen</button>
                     </form>
@@ -271,9 +148,44 @@
         </div>
         <!-- Ende Voting per Formular einlesen -->
 
-           
-        </div>    
-        
+
+        </div>
+
+
+        <!-- Start Voting anlegen -->
+        <?php
+
+            $name = $_POST['name'];
+
+
+            if (isset($name))
+            {
+                try
+                {
+                    $abfr = $db->prepare('INSERT INTO Voting (Votingname)
+                                              VALUES (:name)');
+                    $abfr->bindParam(':name', $name, PDO::PARAM_STR);
+                    $abfr->execute();
+                    //var_dump($abfr->errorInfo());
+                    unset($abfr);
+                }
+                catch(PDOException $e)
+                {
+                    echo $e->getMessage();
+                }
+
+                header('Location: https://mars.iuk.hdm-stuttgart.de/~fs096/votings.php');
+            }
+            else
+            {
+                header('Location: https://mars.iuk.hdm-stuttgart.de/~fs096/votings.php');
+            }
+
+
+        ?>
+        <!-- Ende Voting anlegen -->
+
+
         <!-- Modal -->
         <div id="live" class="modal fade" role="dialog">
             <div class="modal-dialog">
