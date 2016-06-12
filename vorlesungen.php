@@ -25,8 +25,8 @@
         <!-- Start Custom CSS -->
         <link href="css/landing-page.css" rel="stylesheet" media="screen">
         <link href="css/vorlesungen.css" rel="stylesheet" type="text/css" media="screen">
-        <link href='https://fonts.googleapis.com/css?family=Patua+One' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Roboto:700' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
         <!-- Ende Custom CSS -->
 
 
@@ -45,7 +45,7 @@
 
 
         <div id="full">
-        
+
         <!-- Start Navigation -->
         <nav class="navbar navbar-default topnav" role="navigation">
             <div class="container topnav">
@@ -118,90 +118,6 @@
                                 <li><a href="#">Löschen</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Vorlesung 1
-                                <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Löschen</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Vorlesung 1
-                                <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Löschen</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Vorlesung 1
-                                <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Löschen</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Vorlesung 1
-                                <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Löschen</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Vorlesung 1
-                                <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Löschen</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Vorlesung 1
-                                <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Löschen</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Vorlesung 1
-                                <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Löschen</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Vorlesung 1
-                                <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Löschen</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Vorlesung 1
-                                <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Löschen</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Vorlesung 1
-                                <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Löschen</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Vorlesung 1
-                                <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Löschen</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Vorlesung 1
-                                <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Löschen</a></li>
-                            </ul>
-                        </li>
                     </ul>
                 </div>
             </section>
@@ -211,11 +127,11 @@
 
         
         <!-- Start Vorlesung per Formular einlesen -->
-        <div class="container">
+        <div class="container" id="formular">
             <section class="row  row-centered">
-                <div class="col-md-4 col-md-offset-4"> 
-                    <form role="form">
-                        <div class="form-group" role="form" method="get" action="">
+                <div class="col-md-4 col-md-offset-4">
+                    <form role="form" method="GET" action="">
+                        <div class="form-group">
                             <p class="überschrift">Neue Vorlesung anlegen</p>
                             <input type="text" class="form-control" id="name" name="name" placeholder="Vorlesung" value="">
                         </div>
@@ -225,20 +141,12 @@
             </section>
         </div>
         <!-- Ende Vorlesung per Formular einlesen -->
-        
-        </div>    
+
+        </div>
 
 
         <!-- Start Footer -->
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <p class="copyright small">&copy; 2016 Erich Keller, Lukas Vogelmann, Florian Schönberger</p>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        <?php include ("includes/footer.php"); ?>
         <!-- Ende Footer -->
 
 

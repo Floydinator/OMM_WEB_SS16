@@ -29,7 +29,7 @@
         try
         {
             $abfr = $db->prepare('INSERT INTO Benutzer (Typ, Benutzername, Passwort)
-                              VALUES (:typ, :name, :pw)');
+                                  VALUES (:typ, :name, :pw)');
             $abfr->bindParam(':typ', $typ, PDO::PARAM_STR);
             $abfr->bindParam(':name', $name, PDO::PARAM_STR);
             $abfr->bindParam(':pw', $pw, PDO::PARAM_STR);

@@ -1,13 +1,12 @@
 body {
     background-color: #FFFFFF;
-    position: relative
 }
 
 #brand {
     font-size: 20px;
     font-weight: bolder;
-    color: #FF3030;
-    font-family: 'Roboto', sans-serif;
+    color: #F63D3D;
+    font-family: 'Pacifico', cursive;
 }
 
 .list-group {
@@ -17,13 +16,13 @@ body {
 
 footer {
     background-color: #333333;
-    color: #FF3030;
-    font-family: 'Roboto', sans-serif;
+    color: #F63D3D;
+    font-family: 'Pacifico', cursive;
 }
 
 .navbar-default {
     background-color: #333333;
-    margin-bottom: 84px;
+    margin-bottom: 75px;
 }
 
 #button {
@@ -33,9 +32,10 @@ footer {
 
 .überschrift {
     text-align: center;
-    color: #CD0000;
-    font-family: 'Patua One', cursive;
+    color: #F63D3D;
+    font-family: 'Montserrat', sans-serif;
     font-size: large;
+    margin-bottom: 30px;
 }
 
 @media screen and (min-device-height: 700px){

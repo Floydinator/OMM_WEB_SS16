@@ -25,8 +25,8 @@
         <!-- Start Custom CSS -->
         <link href="css/landing-page.css" rel="stylesheet" media="screen">
         <link href="css/admin.css" rel="stylesheet" type="text/css" media="screen">
-        <link href='https://fonts.googleapis.com/css?family=Patua+One' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Roboto:700' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
         <!-- Ende Custom CSS -->
 
 
@@ -35,7 +35,7 @@
         <?php include ("includes/reg.php"); ?>
         <!-- Ende Include Dateien -->
 
-        
+
     </head>
 
 
@@ -104,8 +104,8 @@
             }
         ?>
         <!-- Ende Dozenten aus DB abfragen -->
-            
-            
+
+
         <!-- Start Dozenten per foreach in Tabelle ausgeben -->
         <div class="container">
             <section class="row  row-centered">
@@ -144,15 +144,7 @@
 
 
         <!-- Start Footer -->
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <p class="copyright small">&copy; 2016 Erich Keller, Lukas Vogelmann, Florian Schönberger</p>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        <?php include ("includes/footer.php"); ?>
         <!-- Ende Footer -->
 
     

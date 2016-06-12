@@ -25,8 +25,8 @@
         <!-- Start Custom CSS -->
         <link href="css/landing-page.css" rel="stylesheet" media="screen">
         <link href="css/votings.css" rel="stylesheet" type="text/css" media="screen">
-        <link href='https://fonts.googleapis.com/css?family=Patua+One' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Roboto:700' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
         <!-- Ende Custom CSS -->
 
 
@@ -116,9 +116,9 @@
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php echo $voting['Votingname']; ?>
                                     <span class="caret"></span></a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li><a href="#">Live schalten</a></li>
-                                    <li><a href="#">Beenden</a></li>
-                                    <li><a href="#">Ergebnisse anzeigen</a></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#live">Live schalten</a></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#beenden">Beenden</a></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#ergebnisse">Ergebnisse anzeigen</a></li>
                                     <li><a href="includes/loeschen.php?name=<?php echo $voting['Votingname']; ?>">Löschen</a></li>
                                 </ul>
                             </li>
@@ -133,11 +133,11 @@
         
 
         <!-- Start Voting per Formular einlesen -->
-        <div class="container">
+        <div class="container" id="formular">
             <section class="row  row-centered">
                 <div class="col-md-4 col-md-offset-4">
-                    <form role="form">
-                        <div class="form-group" role="form" method="POST" action="votings.php">
+                    <form role="form" method="GET" action="includes/voting_neu.php">
+                        <div class="form-group">
                             <p class="überschrift">Neues Voting anlegen</p>
                             <input type="text" class="form-control" id="name" name="name" placeholder="Votingname">
                         </div>
@@ -150,40 +150,6 @@
 
 
         </div>
-
-
-        <!-- Start Voting anlegen -->
-        <?php
-
-            $name = $_POST['name'];
-
-
-            if (isset($name))
-            {
-                try
-                {
-                    $abfr = $db->prepare('INSERT INTO Voting (Votingname)
-                                              VALUES (:name)');
-                    $abfr->bindParam(':name', $name, PDO::PARAM_STR);
-                    $abfr->execute();
-                    //var_dump($abfr->errorInfo());
-                    unset($abfr);
-                }
-                catch(PDOException $e)
-                {
-                    echo $e->getMessage();
-                }
-
-                header('Location: https://mars.iuk.hdm-stuttgart.de/~fs096/votings.php');
-            }
-            else
-            {
-                header('Location: https://mars.iuk.hdm-stuttgart.de/~fs096/votings.php');
-            }
-
-
-        ?>
-        <!-- Ende Voting anlegen -->
 
 
         <!-- Modal -->
@@ -238,10 +204,38 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Hier sehen sie die Ergebnisse ihres Votings grafisch dargestellt!</h4>
+                        <h4 class="modal-title">Hier sehen Sie die Ergebnisse Ihres Votings grafisch dargestellt!</h4>
                     </div>
                     <div class="modal-body">
-                        <p>Grafische Darstellung.</p>
+
+                        <p>Antwort 1</p>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style=" min-width: 2em; width: 60%;">
+                                60%
+                            </div>
+                        </div>
+
+                        <p>Antwort 2</p>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style=" min-width: 2em; width: 0%;">
+                                0%
+                            </div>
+                        </div>
+
+                        <p>Antwort 3</p>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style=" min-width: 2em; width: 90%;">
+                                90%
+                            </div>
+                        </div>
+
+                        <p>Antwort 4</p>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 25%;">
+                                25%
+                            </div>
+                        </div>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Schließen</button>
@@ -260,10 +254,10 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Ihre Voting ist nun gelöscht!</h4>
+                        <h4 class="modal-title">Ihr Voting ist nun gelöscht!</h4>
                     </div>
                     <div class="modal-body">
-                        <p>Gelöschte Votings können sie im Papierkorb wiederherstellen oder endgültig löschen.</p>
+                        <p>Gelöschte Votings können Sie im Papierkorb wiederherstellen oder endgültig löschen.</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Schließen</button>
@@ -275,15 +269,7 @@
 
 
         <!-- Start Footer -->
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <p class="copyright small">&copy; 2016 Erich Keller, Lukas Vogelmann, Florian Schönberger</p>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        <?php include ("includes/footer.php"); ?>
         <!-- Ende Footer -->
 
 

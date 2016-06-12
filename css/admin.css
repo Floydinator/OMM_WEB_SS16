@@ -5,12 +5,12 @@ body {
 #brand {
     font-size: 20px;
     font-weight: bolder;
-    color: #FF3030;
-    font-family: 'Roboto', sans-serif;
+    color: #F63D3D;
+    font-family: 'Pacifico', cursive;
 }
 
 .btn-danger {
-    background-color: #FF3030;
+    background-color: #F63D3D;
 }
 
 .list-group {
@@ -24,8 +24,8 @@ body {
 
 footer {
     background-color: #333333;
-    color: #FF3030;
-    font-family: 'Roboto', sans-serif;
+    color: #F63D3D;
+    font-family: 'Pacifico', cursive;
 }
 
 .navbar-default {
@@ -39,8 +39,8 @@ footer {
 
 .überschrift {
     text-align: center;
-    color: #FF3030;
-    font-family: 'Patua One', cursive;
+    color: #F63D3D;
+    font-family: 'Montserrat', sans-serif;
     font-size: large;
 }
 

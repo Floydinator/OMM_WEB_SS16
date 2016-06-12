@@ -1,14 +1,14 @@
 #brand {
     font-size: 20px;
     font-weight: bolder;
-    color: #FF3030;
-    font-family: 'Roboto', sans-serif;
+    color: #F63D3D;
+    font-family: 'Pacifico', cursive;
 }
 
 footer {
     background-color: #333333;
-    color: #FF3030;
-    font-family: 'Roboto', sans-serif;
+    color: #F63D3D;
+    font-family: 'Pacifico', cursive;
 }
 
 .navbar-default {
@@ -25,11 +25,9 @@ footer {
     text-align: center;
 }
 
-#überschrift {
-    text-align: center;
-    color: #CD0000;
-    font-family: 'Patua One', cursive;
-    font-size: large;
+.section-heading {
+    color: #F63D3D;
+    font-family: 'Montserrat', sans-serif;
 }
 
 nav div a {
@@ -52,11 +50,19 @@ nav div a {
     }
 }
 
-.section-heading {
-    color: #CD0000;
-    font-family: 'Patua One', cursive;
-}
-
 #brand-glyphicon {
     font-size: 20px;
+}
+
+div.intro-header h1, h3 {
+    font-family: 'Pacifico', cursive;
+}
+
+div.intro-header h2, p {
+    font-family: 'Montserrat', sans-serif;
+}
+
+div img {
+    max-width: 60%;
+    max-height: 60%;
 }

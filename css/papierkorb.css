@@ -1,46 +1,47 @@
 body {
     background-color: #FFFFFF;
-    position: relative
 }
 
 #brand {
     font-size: 20px;
     font-weight: bolder;
-    color: #FF3030;
-    font-family: 'Roboto', sans-serif;
+    color: #F63D3D;
+    font-family: 'Pacifico', cursive;
+}
+
+.btn-danger {
+    background-color: #F63D3D;
 }
 
 #pills {
     height: 300px;
     overflow: auto;
-    margin-top: 75px;
-    margin-bottom: 68px;
 }
 
 footer {
     background-color: #333333;
-    color: #FF3030;
-    font-family: 'Roboto', sans-serif;
+    color: #F63D3D;
+    font-family: 'Pacifico', cursive;
 }
 
 .navbar-default {
     background-color: #333333;
+    margin-bottom: 75px;
 }
 
 .überschrift {
     text-align: center;
-    color: #CD0000;
-    font-family: 'Patua One', cursive;
+    color: #F63D3D;
+    font-family: 'Montserrat', sans-serif;
     font-size: large;
-    position: relative;
-    top: 60px;
+    margin-bottom: 30px;
 }
 
 nav div a {
     font-size: 12px;
     margin-left: 10px;
     margin-right: 10px;
-    color: #00B2EE;
+    color: #FFFFFF;
 }
 
 @media screen and (min-device-height: 700px){
@@ -49,14 +50,10 @@ nav div a {
     }
 }
 
-.glyphicon {
-    font-size: 12px;
-}
-
 #brand-glyphicon {
     font-size: 20px;
 }
 
 nav div a:hover {
-    color: #FFFAF0;
+    color: #F63D3D;
 }

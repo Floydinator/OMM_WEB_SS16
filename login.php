@@ -114,6 +114,9 @@ else
         <!-- Start Custom CSS -->
         <link href="css/landing-page.css" rel="stylesheet" media="screen">
         <link href="css/login.css" rel="stylesheet" type="text/css" media="screen">
+        <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+        <script src="https://use.fontawesome.com/8c154eb0d5.js"></script>
         <!-- Ende Custom CSS -->
 
 
@@ -124,46 +127,6 @@ else
 
 
     <body>
-
-
-        <!-- Start Navigation -->
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-            <div class="container topnav">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand topnav" id="brand"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> TeachBox</a>
-                </div>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-
-
-                            <!-- Start Login Formular-->
-                            <form class="navbar-form navbar-right" role="form" method="POST" action="login.php">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Benutzername">
-                                    <input type="password" class="form-control" id="pw" name="pw" placeholder="Passwort">
-                                </div>
-                                <button type="submit" class="btn btn-default" id="button"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Login</button>
-                            </form>
-                            <!-- Ende Login Formular-->
-
-
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container -->
-        </nav>
-        <!-- Ende Navigation -->
 
 
         <!-- Anfang Header -->
@@ -181,8 +144,8 @@ else
                             <div class="row">
                                 <div class="col-md-4 col-md-offset-4 col-sm-12">
                                     <div class="clearfix"></div>
-                                    <h2 class="section-heading" id="login">Login</h2>
-                                    <p class="lead" id="überschrift">Anmelden und sofort loslegen!</p>
+                                    <h2 id="login">Login</h2>
+                                    <p class="lead">Anmelden und sofort loslegen!</p>
 
                                     <form class="formular" role="form" method="POST" action="login.php">
                                         <div class="formular-eingabe">
@@ -213,7 +176,6 @@ else
             <div class="container">
                 <div class="row">
                     <div class="col-md-5 col-sm-6">
-                        <hr class="section-heading-spacer">
                         <div class="clearfix"></div>
                         <h2 class="section-heading">Was ist TeachBox?</h2>
                         <p class="lead">TeachBox ist eine Web-Anwendung für Lehrer, Dozenten und jeden der schnell, kostenlos und
@@ -221,7 +183,7 @@ else
                             am Ende grafisch auswerten lassen.</p>
                     </div>
                     <div class="col-md-5 col-md-offset-2 col-sm-6">
-                        <img class="img-responsive" src="img/icon_1.png" alt="">
+                        <img src="img/search.svg" alt="">
                     </div>
                 </div>
             </div>
@@ -233,14 +195,13 @@ else
             <div class="container">
                 <div class="row">
                     <div class="col-md-5 col-md-offset-1 col-sm-push-6  col-sm-6">
-                        <hr class="section-heading-spacer">
                         <div class="clearfix"></div>
                         <h2 class="section-heading">Umfragen erstellen</h2>
                         <p class="lead">Mit TeachBox können Sie ganz einfach und schnell Umfragen für ihre Schüler, Studenten oder
                             Freunde erstellen. Sie erstellen eine Frage und können bis zu vier Antwortmöglichkeiten wählen.</p>
                     </div>
                     <div class="col-md-5 col-sm-pull-6  col-sm-6">
-                        <img class="img-responsive" src="img/icon_2.png" alt="">
+                        <img src="img/todo.svg" alt="">
                     </div>
                 </div>
             </div>
@@ -252,14 +213,13 @@ else
             <div class="container">
                 <div class="row">
                     <div class="col-md-5 col-sm-6">
-                        <hr class="section-heading-spacer">
                         <div class="clearfix"></div>
                         <h2 class="section-heading">Umfragen live schalten</h2>
                         <p class="lead">Haben Sie eine Umfrage erstellt, können Sie diese live schalten, dass bedeutet die Umfrage
                             ist geöffnet und Personen können daran teilnehmen. Dies geschieht über einen automatisch generierten Link.</p>
                     </div>
                     <div class="col-md-5 col-md-offset-2 col-sm-6">
-                        <img class="img-responsive" src="img/icon_3.png" alt="">
+                        <img src="img/share.svg" alt="">
                     </div>
                 </div>
             </div>
@@ -271,13 +231,12 @@ else
             <div class="container">
                 <div class="row">
                     <div class="col-md-5 col-md-offset-1 col-sm-push-6  col-sm-6"">
-                    <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
                     <h2 class="section-heading">Ergebnisse präsentieren</h2>
                     <p class="lead">Ist die Umfrage beendet, können die Ergebnisse grafisch aufbereitet präsentiert werden. </p>
                 </div>
                 <div class="col-md-5 col-sm-pull-6  col-sm-6">
-                    <img class="img-responsive" src="img/icon_4.png" alt="">
+                    <img src="img/presentation.svg" alt=""/>
                 </div>
             </div>
         </div>
@@ -287,15 +246,7 @@ else
 
 
         <!-- Start Footer -->
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <p class="copyright small">&copy; 2016 Erich Keller, Lukas Vogelmann, Florian Schönberger</p>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        <?php include ("includes/footer.php"); ?>
         <!-- Ende Footer -->
 
 

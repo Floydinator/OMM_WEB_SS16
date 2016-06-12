@@ -25,8 +25,8 @@
         <!-- Start Custom CSS -->
         <link href="css/landing-page.css" rel="stylesheet" media="screen">
         <link href="css/votings-anlegen.css" rel="stylesheet" type="text/css" media="screen">
-        <link href='https://fonts.googleapis.com/css?family=Patua+One' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Roboto:700' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
         <!-- Ende Custom CSS -->
     
     
@@ -42,7 +42,7 @@
 
 
         <div id="full">
-        
+
         <!-- Start Navigation -->
         <nav class="navbar navbar-default topnav" role="navigation">
             <div class="container topnav">
@@ -78,17 +78,22 @@
 
         
         <!-- Start Frage und Antworten per Formular einlesen -->
+        <!-- Start Weitergabe des Votingnamens -->
+        <?php $name = $_GET['name']; ?>
+        <!-- Ende Weitergabe des Votingnamens -->
+
         <div class="container">
             <section class="row  row-centered">
                 <div class="col-md-8 col-md-offset-2">
-                    <form role="form" id="formular">
-                        <div class="form-group" role="form" method="get" action="">
+                    <form role="form" id="formular" method="POST" action="includes/voting_neu_fa.php">
+                        <div class="form-group">
                             <p class="überschrift">Neues Voting anlegen</p>
-                            <input type="text" class="form-control" id="frage" name="name" placeholder="Frage" value="">
-                            <input type="text" class="form-control antwort" name="name" placeholder="Antwort 1" value="">
-                            <input type="text" class="form-control antwort" name="name" placeholder="Antwort 2" value="">
-                            <input type="text" class="form-control antwort" name="name" placeholder="Antwort 3" value="">
-                            <input type="text" class="form-control antwort" name="name" placeholder="Antwort 4" value="">
+                            <input type="hidden" class="form-control" id="name" name="name" value="<?php echo "$name"; ?>">
+                            <input type="text" class="form-control" id="frage" name="frage" placeholder="Frage">
+                            <input type="text" class="form-control" id="ant1" name="ant1" placeholder="Antwort 1">
+                            <input type="text" class="form-control" id="ant2" name="ant2" placeholder="Antwort 2">
+                            <input type="text" class="form-control" id="ant3" name="ant3" placeholder="Antwort 3">
+                            <input type="text" class="form-control" id="ant4" name="ant4" placeholder="Antwort 4">
                         </div>
                         <button type="submit" class="btn btn-primary btn-md" id="button">Anlegen</button>
                     </form>
@@ -97,19 +102,12 @@
         </div>
         <!-- Ende Frage und Antworten per Formular einlesen -->
 
-            
+
         </div>
-        
+
+
         <!-- Start Footer -->
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <p class="copyright small">&copy; 2016 Erich Keller, Lukas Vogelmann, Florian Schönberger</p>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        <?php include ("includes/footer.php"); ?>
         <!-- Ende Footer -->
 
 
