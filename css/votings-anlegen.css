@@ -16,7 +16,7 @@ body {
 footer {
     background-color: #333333;
     color: #F63D3D;
-    font-family: 'Pacifico', cursive;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .navbar-default {
@@ -27,6 +27,12 @@ footer {
 #button {
     display: block;
     margin: 0 auto;
+    background-color: #333333;
+    border-color: #333333;
+}
+
+#button:hover {
+    background-color: #0f0f0f;
 }
 
 .überschrift {

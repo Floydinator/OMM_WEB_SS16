@@ -57,7 +57,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand topnav" id="brand"><span id="brand-glyphicon" class="glyphicon glyphicon-home" aria-hidden="true"></span> TeachBox</a>
+                    <a class="navbar-brand topnav" id="brand"><span id="brand-glyphicon" class="glyphicon glyphicon-home" aria-hidden="true"></span> TeachHaus</a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -65,8 +65,7 @@
                         <li>
                             <form class="navbar-form navbar-right">
                                 <a href="vorlesungen.php"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Vorlesungen</a>
-                                <a><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Votings</a>
-                                <a href="votings-anlegen.php"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Votings anlegen</a>
+                                <a href="votings.php"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Votings</a>
                                 <a href="papierkorb.php"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Papierkorb</a>
                                 <a href="login.php" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a>
                             </form>
@@ -116,8 +115,8 @@
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php echo $voting['Votingname']; ?>
                                     <span class="caret"></span></a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li><a href="#" data-toggle="modal" data-target="#live">Live schalten</a></li>
-                                    <li><a href="#" data-toggle="modal" data-target="#beenden">Beenden</a></li>
+                                    <li><a href="includes/voting_live.php?name=<?php echo $voting['Votingname']; ?>" data-toggle="modal" data-target="#live">Live schalten</a></li>
+                                    <li><a href="includes/voting_beenden.php?name=<?php echo $voting['Votingname']; ?>" data-toggle="modal" data-target="#beenden">Beenden</a></li>
                                     <li><a href="#" data-toggle="modal" data-target="#ergebnisse">Ergebnisse anzeigen</a></li>
                                     <li><a href="includes/loeschen.php?name=<?php echo $voting['Votingname']; ?>">Löschen</a></li>
                                 </ul>

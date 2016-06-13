@@ -8,7 +8,7 @@
 footer {
     background-color: #333333;
     color: #F63D3D;
-    font-family: 'Pacifico', cursive;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .navbar-default {
@@ -42,6 +42,12 @@ nav div a {
 
 #button {
     margin-top: 15px;
+    background-color: #333333;
+    border-color: #333333;
+}
+
+#button:hover {
+    background-color: #0f0f0f;
 }
 
 @media screen and (min-device-height: 700px){

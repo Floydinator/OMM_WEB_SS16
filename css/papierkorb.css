@@ -21,7 +21,7 @@ body {
 footer {
     background-color: #333333;
     color: #F63D3D;
-    font-family: 'Pacifico', cursive;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .navbar-default {
@@ -56,4 +56,8 @@ nav div a {
 
 nav div a:hover {
     color: #F63D3D;
+}
+
+.dropdown-toggle {
+    color: #0f0f0f;
 }

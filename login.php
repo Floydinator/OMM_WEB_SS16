@@ -135,7 +135,7 @@ else
                 <div class="row">
                     <div class="col-md-12">
                         <div class="intro-message">
-                            <h1>TeachBox</h1>
+                            <h1>TeachHaus</h1>
                             <h3>Ihre Anwendung für schnelle Umfragen!</h3>
                             <hr class="intro-divider">
 
@@ -177,9 +177,9 @@ else
                 <div class="row">
                     <div class="col-md-5 col-sm-6">
                         <div class="clearfix"></div>
-                        <h2 class="section-heading">Was ist TeachBox?</h2>
-                        <p class="lead">TeachBox ist eine Web-Anwendung für Lehrer, Dozenten und jeden der schnell, kostenlos und
-                            effizient Umfragen erstellen möchte. Mit TeachBox können Sie Umfragen erstellen, löschen, live schalten und
+                        <h2 class="section-heading">Was ist TeachHaus?</h2>
+                        <p class="lead">TeachHaus ist eine Web-Anwendung für Lehrer, Dozenten und jeden der schnell, kostenlos und
+                            effizient Umfragen erstellen möchte. Mit TeachHaus können Sie Umfragen erstellen, löschen, live schalten und
                             am Ende grafisch auswerten lassen.</p>
                     </div>
                     <div class="col-md-5 col-md-offset-2 col-sm-6">
@@ -197,7 +197,7 @@ else
                     <div class="col-md-5 col-md-offset-1 col-sm-push-6  col-sm-6">
                         <div class="clearfix"></div>
                         <h2 class="section-heading">Umfragen erstellen</h2>
-                        <p class="lead">Mit TeachBox können Sie ganz einfach und schnell Umfragen für ihre Schüler, Studenten oder
+                        <p class="lead">Mit TeachHaus können Sie ganz einfach und schnell Umfragen für ihre Schüler, Studenten oder
                             Freunde erstellen. Sie erstellen eine Frage und können bis zu vier Antwortmöglichkeiten wählen.</p>
                     </div>
                     <div class="col-md-5 col-sm-pull-6  col-sm-6">
