@@ -21,13 +21,10 @@ footer {
     height: 100%;
 }
 
-#login {
-    text-align: center;
-}
-
 .section-heading {
     color: #F63D3D;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Pacifico', cursive;
+    font-size: 35px;
 }
 
 nav div a {
@@ -36,18 +33,13 @@ nav div a {
 }
 
 .intro-message {
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding-top: 30px;
 }
 
-#button {
+.btn-danger {
     margin-top: 15px;
-    background-color: #333333;
-    border-color: #333333;
-}
-
-#button:hover {
-    background-color: #0f0f0f;
+    background-color: #F63D3D;
+    width: 100px;
 }
 
 @media screen and (min-device-height: 700px){
@@ -62,13 +54,26 @@ nav div a {
 
 div.intro-header h1, h3 {
     font-family: 'Pacifico', cursive;
+    color: #F63D3D;
 }
 
-div.intro-header h2, p {
+div.intro-header h2 {
     font-family: 'Montserrat', sans-serif;
 }
 
+div.intro-header p {
+    font-family: 'Montserrat', sans-serif;
+    color: #FFFFFF;
+    font-weight: normal;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+}
+
 div img {
-    max-width: 60%;
-    max-height: 60%;
+    max-width: 50%;
+    max-height: 50%;
+}
+
+div.intro-header hr {
+    margin-bottom: 50px;
+    margin-top: 50px;
 }

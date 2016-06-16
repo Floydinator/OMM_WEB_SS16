@@ -113,8 +113,8 @@
                     <p class="überschrift">Bereits angelegte Dozenten</p>
                     <ul class="list-group">
                         <?php foreach ($erg AS $dozent): ?>
-                        <li class="list-group-item"><?php echo $dozent['Benutzername']; ?></li>
-                    <?php endforeach; ?>
+                            <li class="list-group-item"><?php echo $dozent['Benutzername']; ?></li>
+                        <?php endforeach; ?>
                     </ul>
                 </div>
             </section>

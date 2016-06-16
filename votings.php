@@ -115,8 +115,8 @@
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php echo $voting['Votingname']; ?>
                                     <span class="caret"></span></a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li><a href="includes/voting_live.php?name=<?php echo $voting['Votingname']; ?>" data-toggle="modal" data-target="#live">Live schalten</a></li>
-                                    <li><a href="includes/voting_beenden.php?name=<?php echo $voting['Votingname']; ?>" data-toggle="modal" data-target="#beenden">Beenden</a></li>
+                                    <li><a href="includes/voting_live.php?name=<?php echo $voting['Votingname']; ?>">Live schalten</a></li>
+                                    <li><a href="includes/voting_beenden.php?name=<?php echo $voting['Votingname']; ?>">Beenden</a></li>
                                     <li><a href="#" data-toggle="modal" data-target="#ergebnisse">Ergebnisse anzeigen</a></li>
                                     <li><a href="includes/loeschen.php?name=<?php echo $voting['Votingname']; ?>">Löschen</a></li>
                                 </ul>
@@ -132,19 +132,31 @@
         
 
         <!-- Start Voting per Formular einlesen -->
-        <div class="container" id="formular">
-            <section class="row  row-centered">
-                <div class="col-md-4 col-md-offset-4">
-                    <form role="form" method="GET" action="includes/voting_neu.php">
-                        <div class="form-group">
+            <div class="container" id="formular">
+                <section class="row>
+                    <div class="col-md-8 col-md-offset-2">
+                        <form class="form-inline" method="GET" action="includes/voting_neu.php">
                             <p class="überschrift">Neues Voting anlegen</p>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Votingname">
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-md" id="button">Anlegen</button>
-                    </form>
-                </div>
-            </section>
-        </div>
+
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-2">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="name" name="name" placeholder="Votingname">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <button type="submit" class="btn btn-primary btn-md" id="button">Anlegen</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </section>
+            </div>
         <!-- Ende Voting per Formular einlesen -->
 
 
@@ -153,13 +165,13 @@
 
         <!-- Modal -->
         <div id="live" class="modal fade" role="dialog">
-            <div class="modal-dialog">
+            <div class="modal-dialog" id="live">
 
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Ihre Umfrage ist nun live!</h4>
+                        <h4 class="modal-title">Umfrage live</h4>
                     </div>
                     <div class="modal-body">
                         <p>Unter diesem Link können Personen daran teilnehmen:</p>
@@ -181,7 +193,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Ihre Umfrage ist nun geschlossen!</h4>
+                        <h4 class="modal-title">Umfrage geschlossen</h4>
                     </div>
                     <div class="modal-body">
                         <p>Es können keine weiteren Personen teilnehmen.</p>
@@ -203,7 +215,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Hier sehen Sie die Ergebnisse Ihres Votings grafisch dargestellt!</h4>
+                        <h4 class="modal-title">Ergebnisse Ihres Votings</h4>
                     </div>
                     <div class="modal-body">
 
@@ -253,7 +265,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Ihr Voting ist nun gelöscht!</h4>
+                        <h4 class="modal-title">Voting gelöscht</h4>
                     </div>
                     <div class="modal-body">
                         <p>Gelöschte Votings können Sie im Papierkorb wiederherstellen oder endgültig löschen.</p>
@@ -272,6 +284,13 @@
         <!-- Ende Footer -->
 
 
+        $(document).ready(function() {
+
+        if(window.location.href.indexOf('#live') != -1) {
+        $('#live').modal('show');
+        }
+
+        });
     </body>
 
 

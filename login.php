@@ -136,7 +136,7 @@ else
                     <div class="col-md-12">
                         <div class="intro-message">
                             <h1>TeachHaus</h1>
-                            <h3>Ihre Anwendung für schnelle Umfragen!</h3>
+                            <h3 class="abstand">Ihre Anwendung für schnelle Umfragen!</h3>
                             <hr class="intro-divider">
 
 
@@ -144,7 +144,6 @@ else
                             <div class="row">
                                 <div class="col-md-4 col-md-offset-4 col-sm-12">
                                     <div class="clearfix"></div>
-                                    <h2 id="login">Login</h2>
                                     <p class="lead">Anmelden und sofort loslegen!</p>
 
                                     <form class="formular" role="form" method="POST" action="login.php">
@@ -154,7 +153,7 @@ else
                                         <div class="formular-eingabe">
                                             <input type="password" class="form-control" id="pw" name="pw" placeholder="Passwort">
                                         </div>
-                                        <button id="button" type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Login</button>
+                                        <button id="button" type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Login</button>
                                     </form>
 
                                 </div>
@@ -172,7 +171,7 @@ else
 
         
         <!-- Start Features -->
-        <div class="content-section-a">
+        <div class="content-section-b">
             <div class="container">
                 <div class="row">
                     <div class="col-md-5 col-sm-6">
@@ -191,7 +190,7 @@ else
         </div>
 
 
-        <div class="content-section-b">
+        <div class="content-section-a">
             <div class="container">
                 <div class="row">
                     <div class="col-md-5 col-md-offset-1 col-sm-push-6  col-sm-6">
@@ -209,7 +208,7 @@ else
         </div>
 
 
-        <div class="content-section-a">
+        <div class="content-section-b">
             <div class="container">
                 <div class="row">
                     <div class="col-md-5 col-sm-6">
@@ -227,7 +226,7 @@ else
         </div>
 
 
-        <div class="content-section-b">
+        <div class="content-section-a">
             <div class="container">
                 <div class="row">
                     <div class="col-md-5 col-md-offset-1 col-sm-push-6  col-sm-6"">

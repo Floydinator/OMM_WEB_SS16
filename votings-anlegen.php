@@ -88,7 +88,9 @@
                         <div class="form-group">
                             <p class="überschrift">Neues Voting anlegen</p>
                             <input type="hidden" class="form-control" id="name" name="name" value="<?php echo "$name"; ?>">
+                            <p class="definierung">Geben Sie hier Ihre Frage ein</p>
                             <input type="text" class="form-control" id="frage" name="frage" placeholder="Frage">
+                            <p class="definierung">Geben Sie hier Ihre vier Antwortmöglichkeiten ein</p>
                             <input type="text" class="form-control" id="ant1" name="ant1" placeholder="Antwort 1">
                             <input type="text" class="form-control" id="ant2" name="ant2" placeholder="Antwort 2">
                             <input type="text" class="form-control" id="ant3" name="ant3" placeholder="Antwort 3">

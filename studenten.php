@@ -67,50 +67,202 @@
             <!-- /.container -->
         </nav>
         <!-- Ende Navigation -->
-            
-            
-        <!-- Start Frage auslesen -->
-        <div class="container">
-            <section class="row  row-centered">
-                <div class="col-md-8 col-md-offset-2">
-                    <p class="überschrift">Frage</p>
-                </div>
-            </section>
-        </div>
-        <!-- Ende Frage auslesen -->
 
-        
-        <!-- Start Antworten in Tabelle auslesen -->
-        <div class="container">
-            <section class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <div class="radio">
-                                <label><input type="radio" name="optradio">Antwort 1</label>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="radio">
-                                <label><input type="radio" name="optradio">Antwort 2</label>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="radio">
-                                <label><input type="radio" name="optradio">Antwort 3</label>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="radio">
-                                <label><input type="radio" name="optradio">Antwort 4</label>
-                            </div>
-                        </li>
-                    </ul>
-                    <button type="submit" class="btn btn-primary btn-md" data-toggle="modal" data-target="#Modal1" id="button"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> Absenden</button>
-                </div>
-            </section>
-        </div>
-        <!-- Ende Antworten in Tabelle auslesen -->
+
+        <?php $id = $_GET["id"]; ?>
+
+
+
+        <!-- Start Liveschaltung auslesen -->
+        <?php
+
+            try
+            {
+                $abfr = $db->prepare('SELECT Live
+                                      FROM Voting
+                                      WHERE VotID=:id');
+                $abfr->bindValue(':id', $id, PDO::PARAM_INT);
+                $abfr->execute();
+                $erg = $abfr->fetch();
+                //var_dump($erg);
+                unset($abfr);
+            }
+            catch(PDOException $e)
+            {
+                echo $e->getMessage();
+            }
+        ?>
+        <!-- Start Liveschaltung auslesen -->
+
+
+        <!-- Start Liveschaltung prüfen -->
+        <?php if ($erg['Live'] == 1)
+        { ?>
+            <!-- Start Frage anzeigen -->
+            <!-- Start Frage auslesen -->
+            <?php
+
+                try
+                {
+                    $abfr = $db->prepare('SELECT Frage
+                                          FROM Voting
+                                          WHERE VotID=:id');
+                    $abfr->bindValue(':id', $id, PDO::PARAM_INT);
+                    $abfr->execute();
+                    $erg = $abfr->fetch();
+                    //var_dump($erg);
+                    unset($abfr);
+                }
+                catch(PDOException $e)
+                {
+                    echo $e->getMessage();
+                }
+            ?>
+            <!-- Ende Frage auslesen -->
+
+
+            <!-- Start Frage ausgeben -->
+            <div class="container">
+                <section class="row  row-centered">
+                    <div class="col-md-8 col-md-offset-2">
+                        <p class="überschrift"><?php echo $erg['Frage']; ?></p>
+                    </div>
+                </section>
+            </div>
+            <!-- Ende Frage ausgeben -->
+            <!-- Ende Frage anzeigen -->
+
+
+            <!-- Start mögliche Antworten in Tabelle anzeigen -->
+            <!-- Start mögliche Antwort 1 auslesen -->
+            <?php
+
+                try
+                {
+                    $abfr = $db->prepare('SELECT Ant1
+                                          FROM Voting
+                                          WHERE VotID=:id');
+                    $abfr->bindValue(':id', $id, PDO::PARAM_INT);
+                    $abfr->execute();
+                    $erg1 = $abfr->fetch();
+                    //var_dump($erg);
+                    unset($abfr);
+                }
+                catch(PDOException $e)
+                {
+                    echo $e->getMessage();
+                }
+            ?>
+            <!-- Ende mögliche Antwort 1 auslesen -->
+
+
+            <!-- Start mögliche Antwort 2 auslesen -->
+            <?php
+
+                try
+                {
+                    $abfr = $db->prepare('SELECT Ant2
+                                          FROM Voting
+                                          WHERE VotID=:id');
+                    $abfr->bindValue(':id', $id, PDO::PARAM_INT);
+                    $abfr->execute();
+                    $erg2 = $abfr->fetch();
+                    //var_dump($erg);
+                    unset($abfr);
+                }
+                catch(PDOException $e)
+                {
+                    echo $e->getMessage();
+                }
+            ?>
+            <!-- Ende mögliche Antwort 2 auslesen -->
+
+
+            <!-- Start mögliche Antwort 3 auslesen -->
+            <?php
+
+                try
+                {
+                    $abfr = $db->prepare('SELECT Ant3
+                                          FROM Voting
+                                          WHERE VotID=:id');
+                    $abfr->bindValue(':id', $id, PDO::PARAM_INT);
+                    $abfr->execute();
+                    $erg3 = $abfr->fetch();
+                    //var_dump($erg);
+                    unset($abfr);
+                }
+                catch(PDOException $e)
+                {
+                    echo $e->getMessage();
+                }
+            ?>
+            <!-- Ende mögliche Antwort 3 auslesen -->
+
+
+            <!-- Start mögliche Antwort 4 auslesen -->
+            <?php
+
+                try
+                {
+                    $abfr = $db->prepare('SELECT Ant4
+                                          FROM Voting
+                                          WHERE VotID=:id');
+                    $abfr->bindValue(':id', $id, PDO::PARAM_INT);
+                    $abfr->execute();
+                    $erg4 = $abfr->fetch();
+                    //var_dump($erg);
+                    unset($abfr);
+                }
+                catch(PDOException $e)
+                {
+                    echo $e->getMessage();
+                }
+            ?>
+            <!-- Ende mögliche Antwort 4 auslesen -->
+
+
+            <!-- Start mögliche Antworten ausgeben -->
+            <div class="container">
+                <section class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <form role="form" action="ergebnisse.php" method="post">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <div class="radio">
+                                        <label><input type="radio" name="antwort" value="1" checked="checked"><?php echo $erg1['Ant1']; ?></label>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="radio">
+                                        <label><input type="radio" name="antwort" value="2"><?php echo $erg2['Ant2']; ?></label>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="radio">
+                                        <label><input type="radio" name="antwort" value="3"><?php echo $erg3['Ant3']; ?></label>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="radio">
+                                        <label><input type="radio" name="antwort" value="4"><?php echo $erg4['Ant4']; ?></label>
+                                    </div>
+                                </li>
+                            </ul>
+                            <button type="submit" class="btn btn-primary btn-md" id="button">Absenden</button>
+                        </form>
+                    </div>
+                </section>
+            </div>
+            <!-- Ende mögliche Antworten ausgeben -->
+            <!-- Ende mögliche Antworten in Tabelle anzeigen -->
+        <?php }
+        else
+        {
+            header("Location: https://mars.iuk.hdm-stuttgart.de/~fs096/sperre.php");
+        }
+        ?>
+        <!-- Ende Liveschaltung prüfen -->
 
 
         </div>

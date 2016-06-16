@@ -27,7 +27,8 @@ footer {
 
 #button {
     display: block;
-    margin: 0 auto;
+    float: right;
+    width: 100px;
     background-color: #333333;
     border-color: #333333;
 }
