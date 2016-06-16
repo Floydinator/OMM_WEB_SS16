@@ -117,7 +117,7 @@
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                     <li><a href="includes/voting_live.php?name=<?php echo $voting['Votingname']; ?>">Live schalten</a></li>
                                     <li><a href="includes/voting_beenden.php?name=<?php echo $voting['Votingname']; ?>">Beenden</a></li>
-                                    <li><a href="#" data-toggle="modal" data-target="#ergebnisse">Ergebnisse anzeigen</a></li>
+                                    <li><a href="ergebnisse.php?name=<?php echo $voting['Votingname']; ?>">Ergebnisse anzeigen</a></li>
                                     <li><a href="includes/loeschen.php?name=<?php echo $voting['Votingname']; ?>">Löschen</a></li>
                                 </ul>
                             </li>
@@ -283,14 +283,7 @@
         <?php include ("includes/footer.php"); ?>
         <!-- Ende Footer -->
 
-
-        $(document).ready(function() {
-
-        if(window.location.href.indexOf('#live') != -1) {
-        $('#live').modal('show');
-        }
-
-        });
+    
     </body>
 
 

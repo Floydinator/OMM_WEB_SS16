@@ -79,22 +79,62 @@
 
 
             <!-- Start Ergebnisse anzeigen -->
-            <!-- Start Ergebnisse berechnen -->
-            <?php
-                $antwort = $_POST['antwort'];
-                $teilnehmer = 0;
-                $ant1 = 0;
-                $ant2 = 0;
-                $ant3 = 0;
-                $ant4 = 0;
 
-                if ($antwort == 1)
+            <?php $name = $_GET["name"]; ?>
+
+            <!-- Start id auslesen -->
+            <?php
+
+            try
+            {
+                $abfr = $db->prepare('SELECT VotID
+                                      FROM Voting
+                                      WHERE Votingname=:name');
+                $abfr->bindValue(':name', $name, PDO::PARAM_STR);
+                $abfr->execute();
+                $id = $abfr->fetch();
+                var_dump($id);
+                unset($abfr);
+            }
+            catch(PDOException $e)
+            {
+                echo $e->getMessage();
+            }
+            ?>
+            <!-- Ende id auslesen -->
+
+            <br />
+
+            <!-- Start Teilnehmerzahl auslesen -->
+            <?php
+                try
                 {
-                    $ant1 = $ant1+1;
-                    var_dump($ant1);
+                    $abfr = $db->prepare('SELECT COUNT Ergebnis.Vote
+                                          FROM Ergebnis INNER JOIN Zuordnung_Voting_Ergebns
+                                          ON Ergebnis.ErgID = Zuordnung_Voting_Ergebns.ErgID
+                                          WHERE Ergebnis.ErgID=Zuordnung_Voting_Ergebns.ErgID');
+                    $abfr->bindValue(':typ', 1, PDO::PARAM_INT);
+                    $abfr->execute();
+                    $teilnehmer = $abfr->fetchAll();
+                    var_dump($teilnehmer);
+                    unset($abfr);
+                }
+                catch(PDOException $e)
+                {
+                    echo $e->getMessage();
                 }
             ?>
+            <!-- Ende Teilnehmerzahl auslesen -->
+
+
+            <!-- Start Antworten auslesen -->
+
+            <!-- Ende Antworten auslesen -->
+
+
             <!-- Start Ergebnisse berechnen -->
+
+            <!-- Ende berechnen -->
 
 
             <!-- Start Ergebnisse ausgeben -->

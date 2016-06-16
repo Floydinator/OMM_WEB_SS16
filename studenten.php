@@ -226,7 +226,7 @@
             <div class="container">
                 <section class="row">
                     <div class="col-md-8 col-md-offset-2">
-                        <form role="form" action="ergebnisse.php" method="post">
+                        <form role="form" action="includes/voting_speichern.php method="post">
                             <ul class="list-group">
                                 <li class="list-group-item">
                                     <div class="radio">

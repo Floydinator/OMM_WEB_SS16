@@ -1,6 +1,6 @@
 <!-- Start Include Dateien -->
 <?php include ("includes/verbindung.php"); ?>
-<?php include ("includes/session.php"); ?>
+<?php //include ("includes/session.php"); ?>
 <!-- Ende Include Dateien -->
 
 <!-- Start Login -->
@@ -8,23 +8,19 @@
 
 $name = $_POST['name'];
 $pw = $_POST['pw'];
-//var_dump($pw); echo "\n";
 $pw = md5($pw);
-//var_dump($pw); echo "\n";
 $login = false;
 
 //Start Benutzertyp in Variable $typ speichern
 try
 {
     $abfr = $db->prepare('SELECT Typ
-                                      FROM Benutzer
-                                      WHERE Benutzername=:benutzername');
+                          FROM Benutzer
+                          WHERE Benutzername=:benutzername');
     $abfr->bindValue(':benutzername', $name, PDO::PARAM_STR);
     $abfr->execute();
     $typ = $abfr->fetch();
-    //var_dump($typ);
     $typ = $typ['Typ'];
-    //var_dump($typ);
     unset($abfr);
 }
 catch(PDOException $e)
@@ -38,14 +34,12 @@ catch(PDOException $e)
 try
 {
     $abfr = $db->prepare('SELECT Passwort
-                                      FROM Benutzer
-                                      WHERE Benutzername=:benutzername');
+                          FROM Benutzer
+                          WHERE Benutzername=:benutzername');
     $abfr->bindValue(':benutzername', $name, PDO::PARAM_STR);
     $abfr->execute();
     $pwabfr = $abfr->fetch();
-    //var_dump($pwabfr);
     $pwabfr = $pwabfr['Passwort'];
-    //var_dump($pwabfr);
     unset($abfr);
 }
 catch(PDOException $e)
@@ -78,9 +72,6 @@ elseif ($typ == 1 AND $pwabfr == $pw)
 }
 else
 {
-    //var_dump($pw); echo "--- <br />";
-    //var_dump($pwabfr); echo "--- <br />";
-    //echo "Fehler!";
     //header("Location: https://mars.iuk.hdm-stuttgart.de/~fs096/login.php");
 }
 // Ende Benutzertyp und Passwort abgleichen

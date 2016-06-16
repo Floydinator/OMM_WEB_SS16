@@ -32,7 +32,6 @@
 
         <!-- Start Include Dateien -->
         <?php include ("includes/verbindung.php"); ?>
-        <?php include ("includes/reg.php"); ?>
         <!-- Ende Include Dateien -->
 
 
