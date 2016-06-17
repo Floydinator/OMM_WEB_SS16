@@ -114,6 +114,7 @@
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Vorlesung 1
                                 <span class="caret"></span></a>
                             <ul class="dropdown-menu">
+                                <li><a href="#">Öffnen</a></li>
                                 <li><a href="#">Löschen</a></li>
                             </ul>
                         </li>
@@ -124,22 +125,23 @@
         <!-- Start Dozenten per foreach in Tabelle ausgeben -->
         <!-- Ende Vorlesungen auslesen -->
 
-        
-        <!-- Start Vorlesung per Formular einlesen -->
-        <div class="container" id="formular">
-            <section class="row  row-centered">
-                <div class="col-md-4 col-md-offset-4">
-                    <form role="form" method="GET" action="">
-                        <div class="form-group">
+            
+            <!-- Start Vorlesung per Formular einlesen -->
+            <div class="container" id="formular">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <form class="form-inline" method="GET" action="">
                             <p class="überschrift">Neue Vorlesung anlegen</p>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Vorlesung" value="">
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-md" id="button">Anlegen</button>
-                    </form>
+                            <div class="form-group">
+                                <label class="sr-only" for="Vorlesung">Vorlesung</label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Vorlesung" value="">
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-md" id="button">Anlegen</button>
+                        </form>
+                    </div>
                 </div>
-            </section>
-        </div>
-        <!-- Ende Vorlesung per Formular einlesen -->
+            </div>
+            <!-- Ende Vorlesung per Formular einlesen -->
 
         </div>
 
@@ -147,7 +149,7 @@
         <!-- Start Footer -->
         <?php include ("includes/footer.php"); ?>
         <!-- Ende Footer -->
-
+    
 
     </body>
 

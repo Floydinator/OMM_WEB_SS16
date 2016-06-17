@@ -226,8 +226,9 @@
             <div class="container">
                 <section class="row">
                     <div class="col-md-8 col-md-offset-2">
-                        <form role="form" action="includes/voting_speichern.php method="post">
+                        <form role="form" method="POST" action="includes/voting_speichern.php">
                             <ul class="list-group">
+                                <input type="hidden" class="form-control" id="id" name="id" value="<?php echo "$id"; ?>">
                                 <li class="list-group-item">
                                     <div class="radio">
                                         <label><input type="radio" name="antwort" value="1" checked="checked"><?php echo $erg1['Ant1']; ?></label>

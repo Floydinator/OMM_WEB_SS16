@@ -91,7 +91,7 @@
                 $abfr->bindValue(':typ', 1, PDO::PARAM_INT);
                 $abfr->execute();
                 //Gibt das Ergebnis in Form eines mehrdimensionalen Arrays zurück und speichert es in der Variablen $abfr
-                //fetch wird nur zum auslesen benötigt
+                //fetch oder eine andere Variante wird nur zum lesen benötigt
                 $erg = $abfr->fetchAll();
                 //var_dump($erg);
                 //Abfrage schließen
@@ -124,12 +124,14 @@
 
         <!-- Start Dozent per Formular einlesen -->
         <div class="container" id="formular">
-            <section class="row  row-centered">
-                <div class="col-md-4 col-md-offset-4">
-                    <form role="form" method="GET" action="includes/reg.php">
+            <section class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <p class="überschrift">Neuen Dozent anlegen</p>
+                    <form class="form-inline" role="form" method="GET" action="includes/reg.php">
                         <div class="form-group">
-                            <p class="überschrift">Neuen Dozent anlegen</p>
                             <input type="text" class="form-control" id="name" name="name" placeholder="Benutzername">
+                        </div>
+                        <div class="form-group">
                             <input type="email" class="form-control" id="email" name="email" placeholder="Email">
                         </div>
                         <button type="submit" class="btn btn-primary btn-md" id="button">Anlegen</button>

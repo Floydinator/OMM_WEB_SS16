@@ -80,28 +80,12 @@
         
             <!-- Start Link anzeigen -->
         
-            <?php $name = $_GET["name"]; ?>
-        
-            <!-- Start id auslesen -->
             <?php
-        
-                try
-                {
-                    $abfr = $db->prepare('SELECT VotID
-                                          FROM Voting
-                                          WHERE Votingname=:name');
-                    $abfr->bindValue(':name', $name, PDO::PARAM_STR);
-                    $abfr->execute();
-                    $erg = $abfr->fetch();
-                    //var_dump($erg);
-                    unset($abfr);
-                }
-                catch(PDOException $e)
-                {
-                    echo $e->getMessage();
-                }
+
+                $name = $_GET["name"];
+                $id = $_GET["id"];
+
             ?>
-            <!-- Ende id auslesen -->
         
         
             <!-- Start Link ausgeben -->
@@ -111,7 +95,7 @@
         
                       <h1 class="überschrift">Ihre Umfrage ist live!</h1>
                       <p>Über den folgenden Link können Personen daran teilnehmen:</p>
-                      <p><a href="https://mars.iuk.hdm-stuttgart.de/~fs096/studenten.php?id=<?php echo $erg['VotID']; ?>">https://mars.iuk.hdm-stuttgart.de/~fs096/studenten.php?id=<?php echo $erg['VotID']; ?></a></p>
+                      <p><a href="https://mars.iuk.hdm-stuttgart.de/~fs096/studenten.php?id=<?php echo $id; ?>">https://mars.iuk.hdm-stuttgart.de/~fs096/studenten.php?id=<?php echo $id; ?></a></p>
         
                     </div>
                 </section>

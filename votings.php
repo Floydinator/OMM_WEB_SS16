@@ -64,10 +64,12 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li>
                             <form class="navbar-form navbar-right">
-                                <a href="vorlesungen.php"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Vorlesungen</a>
-                                <a href="votings.php"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Votings</a>
-                                <a href="papierkorb.php"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Papierkorb</a>
-                                <a href="login.php" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a>
+                                <div class="form-group">
+                                    <a href="vorlesungen.php"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Vorlesungen</a>
+                                    <a href="votings.php"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Votings</a>
+                                    <a href="papierkorb.php"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Papierkorb</a>
+                                    <a href="login.php" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a>
+                                </div>
                             </form>
                         </li>
                     </ul>
@@ -133,29 +135,18 @@
 
         <!-- Start Voting per Formular einlesen -->
             <div class="container" id="formular">
-                <section class="row>
-                    <div class="col-md-8 col-md-offset-2">
-                        <form class="form-inline" method="GET" action="includes/voting_neu.php">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <form class="form-inline" method="GET" action="votings-anlegen.php">
                             <p class="überschrift">Neues Voting anlegen</p>
-
-                            <div class="row">
-                                <div class="col-md-8 col-md-offset-2">
-                                    <div class="row">
-                                        <div class="col-md-8">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" id="name" name="name" placeholder="Votingname">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <button type="submit" class="btn btn-primary btn-md" id="button">Anlegen</button>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="Vorlesung">Vorlesung</label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Votingname">
                             </div>
-
+                            <button type="submit" class="btn btn-primary btn-md" id="button">Anlegen</button>
                         </form>
                     </div>
-                </section>
+                </div>
             </div>
         <!-- Ende Voting per Formular einlesen -->
 
@@ -283,7 +274,7 @@
         <?php include ("includes/footer.php"); ?>
         <!-- Ende Footer -->
 
-    
+
     </body>
 
 
