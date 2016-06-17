@@ -14,15 +14,17 @@
     {
         try
         {
-            $abfr = $db->prepare('UPDATE Voting
-                                  SET Frage = :frage, Ant1 = :ant1, Ant2 = :ant2, Ant3 = :ant3, Ant4 = :ant4
-                                  WHERE Votingname = :name');
+            $abfr = $db->prepare('INSERT INTO Voting (VorID, Votingname, Frage, Ant1, Ant2, Ant3, Ant4, Live, Papierkorb)
+                                  VALUES (:vorid, :name, :frage, :ant1, :ant2, :ant3, :ant4, :live, :papierkorb)');
+            $abfr->bindValue(':vorid', 1, PDO::PARAM_INT);   //Später ersetzen gegen den Wert aus der DB
+            $abfr->bindParam(':name', $name, PDO::PARAM_STR);
             $abfr->bindParam(':frage', $frage, PDO::PARAM_STR);
             $abfr->bindParam(':ant1', $ant1, PDO::PARAM_STR);
             $abfr->bindParam(':ant2', $ant2, PDO::PARAM_STR);
             $abfr->bindParam(':ant3', $ant3, PDO::PARAM_STR);
             $abfr->bindParam(':ant4', $ant4, PDO::PARAM_STR);
-            $abfr->bindParam(':name', $name, PDO::PARAM_STR);
+            $abfr->bindValue(':live', 0, PDO::PARAM_INT);
+            $abfr->bindValue(':papierkorb', 0, PDO::PARAM_INT);
             $abfr->execute();
             //var_dump($abfr->errorInfo());
             unset($abfr);

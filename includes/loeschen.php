@@ -4,6 +4,7 @@
     include ("verbindung.php");
 
     $name = $_GET["name"];
+
     $stmt = $db->prepare("UPDATE Voting
                           SET Papierkorb=:papierkorb
                           WHERE Votingname=:votingname");

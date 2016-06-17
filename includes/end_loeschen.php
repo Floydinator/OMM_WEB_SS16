@@ -4,13 +4,19 @@
     include ("verbindung.php");
 
     $name = $_GET["name"];
-    $stmt = $db->prepare("UPDATE Voting
-                          SET Papierkorb=:papierkorb
-                          WHERE Votingname=:votingname");
-    $stmt->bindValue(':papierkorb', 1, PDO::PARAM_INT);
-    $stmt->bindParam(':votingname', $name, PDO::PARAM_STR);
-    $stmt->execute();
-    unset($stmt);
+
+    try
+    {
+        $stmt3 = $db->prepare("DELETE FROM Voting
+                               WHERE Votingname=:name");
+        $stmt3->bindParam(':name', $name, PDO::PARAM_STR);
+        $stmt3->execute();
+        unset($stmt3);
+    }
+    catch(PDOException $e)
+    {
+        echo $e->getMessage();
+    }
 
     header('Location: ' . $_SERVER['HTTP_REFERER']);
 
