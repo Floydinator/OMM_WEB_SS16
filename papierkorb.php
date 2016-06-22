@@ -1,3 +1,9 @@
+<!-- Start Include Dateien -->
+<?php include ("includes/session.php"); ?>
+<?php include ("includes/verbindung.php"); ?>
+<!-- Ende Include Dateien -->
+
+
 <!DOCTYPE html>
 
 <html lang="de">
@@ -28,12 +34,7 @@
         <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
         <!-- Ende Custom CSS -->
-    
-    
-        <!-- Start Include Dateien -->
-        <?php include ("includes/verbindung.php"); ?>
-        <!-- Ende Include Dateien -->
-    
+
     
     </head>
     

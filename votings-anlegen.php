@@ -1,3 +1,9 @@
+<!-- Start Include Dateien -->
+<?php include ("includes/session.php"); ?>
+<?php include ("includes/verbindung.php"); ?>
+<!-- Ende Include Dateien -->
+
+
 <!DOCTYPE html>
 
 <html lang="de">
@@ -28,12 +34,7 @@
         <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
         <!-- Ende Custom CSS -->
-    
-    
-        <!-- Start Include Dateien -->
-        <?php include ("includes/verbindung.php"); ?>
-        <!-- Ende Include Dateien -->
-    
+
     
     </head>
     
@@ -79,30 +80,31 @@
 
         
         <!-- Start Frage und Antworten per Formular einlesen -->
-        <!-- Start Weitergabe des Votingnamens -->
-        <?php $name = $_GET['name']; ?>
-        <!-- Ende Weitergabe des Votingnamens -->
+            <!-- Start Weitergabe des Votingnamens -->
+            <?php $name = $_GET['name']; ?>
+            <!-- Ende Weitergabe des Votingnamens -->
 
-        <div class="container">
-            <section class="row  row-centered">
-                <div class="col-md-8 col-md-offset-2">
-                    <form role="form" id="formular" method="POST" action="includes/voting_neu_fa.php">
-                        <div class="form-group">
-                            <p class="überschrift">Neues Voting anlegen</p>
-                            <input type="hidden" class="form-control" id="name" name="name" value="<?php echo "$name"; ?>">
-                            <p class="definierung">Geben Sie hier Ihre Frage ein</p>
-                            <input type="text" class="form-control" id="frage" name="frage" placeholder="Frage">
-                            <p class="definierung">Geben Sie hier Ihre vier Antwortmöglichkeiten ein</p>
-                            <input type="text" class="form-control" id="ant1" name="ant1" placeholder="Antwort 1">
-                            <input type="text" class="form-control" id="ant2" name="ant2" placeholder="Antwort 2">
-                            <input type="text" class="form-control" id="ant3" name="ant3" placeholder="Antwort 3">
-                            <input type="text" class="form-control" id="ant4" name="ant4" placeholder="Antwort 4">
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-md" id="button">Anlegen</button>
-                    </form>
-                </div>
-            </section>
-        </div>
+
+            <div class="container">
+                <section class="row  row-centered">
+                    <div class="col-md-8 col-md-offset-2">
+                        <form role="form" id="formular" method="POST" action="includes/voting_neu_fa.php">
+                            <div class="form-group">
+                                <p class="überschrift">Neues Voting anlegen</p>
+                                <input type="hidden" class="form-control" id="name" name="name" value="<?php echo "$name"; ?>">
+                                <p class="definierung">Geben Sie hier Ihre Frage ein</p>
+                                <input type="text" class="form-control" id="frage" name="frage" placeholder="Frage (benötigt)">
+                                <p class="definierung">Geben Sie hier mindestens zwei Antwortmöglichkeiten ein</p>
+                                <input type="text" class="form-control" id="ant1" name="ant1" placeholder="Antwort 1 (benötigt)">
+                                <input type="text" class="form-control" id="ant2" name="ant2" placeholder="Antwort 2 (benötigt)">
+                                <input type="text" class="form-control" id="ant3" name="ant3" placeholder="Antwort 3">
+                                <input type="text" class="form-control" id="ant4" name="ant4" placeholder="Antwort 4">
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-md" id="button">Anlegen</button>
+                        </form>
+                    </div>
+                </section>
+            </div>
         <!-- Ende Frage und Antworten per Formular einlesen -->
 
 

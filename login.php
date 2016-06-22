@@ -1,83 +1,103 @@
+<!-- Start Session -->
+<?php session_start(); ?>
+<!-- Ende Session -->
+
+
 <!-- Start Include Dateien -->
 <?php include ("includes/verbindung.php"); ?>
-<?php //include ("includes/session.php"); ?>
 <!-- Ende Include Dateien -->
+
 
 <!-- Start Login -->
 <?php
 
-$name = $_POST['name'];
-$pw = $_POST['pw'];
-$pw = md5($pw);
-$login = false;
+    $name = $_POST['name'];
+    $_SESSION['username'] = $name;
+    $pw = $_POST['pw'];
+    $pw = md5($pw);
+    $login = false;
 
-//Start Benutzertyp in Variable $typ speichern
-try
-{
-    $abfr = $db->prepare('SELECT Typ
-                          FROM Benutzer
-                          WHERE Benutzername=:benutzername');
-    $abfr->bindValue(':benutzername', $name, PDO::PARAM_STR);
-    $abfr->execute();
-    $typ = $abfr->fetch();
-    $typ = $typ['Typ'];
-    unset($abfr);
-}
-catch(PDOException $e)
-{
-    echo $e->getMessage();
-}
-//Ende Benutzertyp in Variable $typ speichern
-
-
-//Start Passwort aus der Datenbank in Variable $pwabfr speichern
-try
-{
-    $abfr = $db->prepare('SELECT Passwort
-                          FROM Benutzer
-                          WHERE Benutzername=:benutzername');
-    $abfr->bindValue(':benutzername', $name, PDO::PARAM_STR);
-    $abfr->execute();
-    $pwabfr = $abfr->fetch();
-    $pwabfr = $pwabfr['Passwort'];
-    unset($abfr);
-}
-catch(PDOException $e)
-{
-    echo $e->getMessage();
-}
-//Ende Passwort aus der Datenbank in Variable $pwabfr speichern
-
-
-// Start Benutzertyp und Passwort abgleichen
-if ($typ == 0 AND $pwabfr == $pw)
-{
-    $login = true;
-    if ($login = true)
+    if (isset($name) AND isset($_SESSION['username']) AND isset($pw) AND isset($login))
     {
-        //echo "admin.php";
-        header('Location: https://mars.iuk.hdm-stuttgart.de/~fs096/admin.php');
-        //exit;
+        //<!-- Start Benutzertyp in Variable $typ speichern -->
+        try
+        {
+            $abfr = $db->prepare('SELECT Typ
+                                  FROM Benutzer
+                                  WHERE Benutzername=:benutzername');
+            $abfr->bindValue(':benutzername', $name, PDO::PARAM_STR);
+            $abfr->execute();
+            $typ = $abfr->fetch();
+            $typ = $typ['Typ'];
+            unset($abfr);
+        }
+        catch(PDOException $e)
+        {
+            echo $e->getMessage();
+        }
+        //<!-- Ende Benutzertyp in Variable $typ speichern -->
+
+
+        //<!-- Start Passwort aus der Datenbank in Variable $pwabfr speichern -->
+        try
+        {
+            $abfr = $db->prepare('SELECT Passwort
+                                  FROM Benutzer
+                                  WHERE Benutzername=:benutzername');
+            $abfr->bindValue(':benutzername', $name, PDO::PARAM_STR);
+            $abfr->execute();
+            $pwabfr = $abfr->fetch();
+            $pwabfr = $pwabfr['Passwort'];
+            unset($abfr);
+        }
+        catch(PDOException $e)
+        {
+            echo $e->getMessage();
+        }
+        //<!-- Ende Passwort aus der Datenbank in Variable $pwabfr speichern -->
+
+
+        //<!-- Start Benutzertyp und Passwort abgleichen -->
+        if ($typ == 0 AND $pwabfr == $pw)
+        {
+            $login = true;
+            if ($login = true)
+            {
+                //echo "admin.php";
+                header('Location: https://mars.iuk.hdm-stuttgart.de/~fs096/admin.php');
+                //exit;
+            }
+        }
+        elseif ($typ == 1 AND $pwabfr == $pw)
+        {
+            $login = true;
+            if ($login = true)
+            {
+                //echo "vorlesungen.php";
+                header('Location: https://mars.iuk.hdm-stuttgart.de/~fs096/vorlesungen.php');
+                //exit;
+            }
+        }
+        //<!-- Ende Benutzertyp und Passwort abgleichen -->
+
     }
-}
-elseif ($typ == 1 AND $pwabfr == $pw)
-{
-    $login = true;
-    if ($login = true)
+    else
     {
-        //echo "vorlesungen.php";
-        header('Location: https://mars.iuk.hdm-stuttgart.de/~fs096/vorlesungen.php');
-        //exit;
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
-}
-else
-{
-    //header("Location: https://mars.iuk.hdm-stuttgart.de/~fs096/login.php");
-}
-// Ende Benutzertyp und Passwort abgleichen
 
 ?>
 <!-- Ende Login -->
+
+
+
+
+
+<!-- --------------------------------------------------- PHP -> HTML ----------------------------------------------- -->
+
+
+
+
 
 <!DOCTYPE html>
 

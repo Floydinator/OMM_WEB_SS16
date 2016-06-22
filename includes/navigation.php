@@ -1,3 +1,8 @@
+<!-- Start Include Dateien -->
+<?php include ("session.php"); ?>
+<!-- Ende Include Dateien -->
+
+
 <!-- Start Navigation -->
         <nav class="navbar navbar-default topnav" role="navigation">
             <div class="container topnav">

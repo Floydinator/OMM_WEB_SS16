@@ -1,7 +1,13 @@
+<!-- Start Session -->
 <?php
-#Der Sessioncheck wird am Anfang der Loginseite eingefügt sogar vor dem HTML
+/*
+    session_start();
 
-session_start();
+    if(!isset($_SESSION['username']))
+    {
+        header('Location: https://mars.iuk.hdm-stuttgart.de/~fs096/login.php');
+        exit; //Mit die beenden wir den weiteren Scriptablauf
+    }
 
-echo session_id();
-?>
+*/?>
+<!-- Ende Session -->

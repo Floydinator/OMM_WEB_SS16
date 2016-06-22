@@ -1,3 +1,18 @@
+<!-- Start Gast Session -->
+<?php
+
+    session_set_cookie_params(3600);
+    session_start();
+
+?>
+<!-- Ende Gast Session -->
+
+
+<!-- Start Include Dateien -->
+<?php include ("includes/verbindung.php"); ?>
+<!-- Ende Include Dateien -->
+
+
 <!DOCTYPE html>
 
 <html lang="de">
@@ -28,11 +43,6 @@
         <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
         <!-- Ende Custom CSS -->
-
-
-        <!-- Start Include Dateien -->
-        <?php include ("includes/verbindung.php"); ?>
-        <!-- Ende Include Dateien -->
 
 
     </head>
@@ -83,7 +93,7 @@
                     <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2" id="maincontent">
 
                         <h1 class="überschrift">Danke für deine Teilnahme!</h1>
-                        <p>Wir haben deine Antworten erhalten.</p>
+                        <p>Das Voting ist beendet</p>
 
                     </div>
                 </section>

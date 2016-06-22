@@ -1,3 +1,9 @@
+<!-- Start Include Dateien -->
+<?php include ("includes/session.php"); ?>
+<?php include ("includes/verbindung.php"); ?>
+<!-- Ende Include Dateien -->
+
+
 <!DOCTYPE html>
 
 <html lang="de">
@@ -28,11 +34,6 @@
         <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
         <!-- Ende Custom CSS -->
-
-
-        <!-- Start Include Dateien -->
-        <?php include ("includes/verbindung.php"); ?>
-        <!-- Ende Include Dateien -->
 
 
     </head>
@@ -88,10 +89,8 @@
         //Der Code wird in $abfr gespeichert
         try
         {
-            $abfr = $db->prepare('SELECT Vorlesung.Vorlesungsname
-                                  FROM Vorlesung, Benutzer
-                                  WHERE Benutzer.Benutzername=:benutzername');
-            $abfr->bindValue(':benutzername', 'Hausmann', PDO::PARAM_STR);
+            $abfr = $db->prepare('SELECT Vorlesungsname
+                                  FROM Vorlesung');
             $abfr->execute();
             $erg = $abfr->fetchAll();
             //var_dump($erg);
@@ -110,31 +109,34 @@
                 <div class="col-md-8 col-md-offset-2">
                     <p class="überschrift">Bereits angelegte Vorlesungen</p>
                     <ul class="nav nav-pills nav-stacked" id="pills">
+
+                        <?php foreach ($erg AS $vorlesung):?>
                         <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Vorlesung 1
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php echo $vorlesung['Vorlesungsname']; ?>
                                 <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Öffnen</a></li>
-                                <li><a href="#">Löschen</a></li>
+                                <li><a href="votings.php">Anzeigen</a></li>
+                                <li><a href="includes/end_löschen_vorlesung.php?name=<?php echo $vorlesung['Vorlesungsname']; ?>">Löschen</a></li>
                             </ul>
                         </li>
+                        <?php endforeach; ?>
+
                     </ul>
                 </div>
             </section>
         </div>
-        <!-- Start Dozenten per foreach in Tabelle ausgeben -->
-        <!-- Ende Vorlesungen auslesen -->
+            <!-- Ende Vorlesungen auslesen -->
 
-            
+
             <!-- Start Vorlesung per Formular einlesen -->
             <div class="container" id="formular">
                 <div class="row">
                     <div class="col-md-6 col-md-offset-3">
-                        <form class="form-inline" method="GET" action="">
+                        <form class="form-inline" method="GET" action="includes/vorlesungen_neu_fa.php">
                             <p class="überschrift">Neue Vorlesung anlegen</p>
                             <div class="form-group">
                                 <label class="sr-only" for="Vorlesung">Vorlesung</label>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Vorlesung" value="">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Vorlesungsname">
                             </div>
                             <button type="submit" class="btn btn-primary btn-md" id="button">Anlegen</button>
                         </form>
@@ -142,6 +144,8 @@
                 </div>
             </div>
             <!-- Ende Vorlesung per Formular einlesen -->
+
+
 
         </div>
 

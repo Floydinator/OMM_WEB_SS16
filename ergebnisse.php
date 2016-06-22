@@ -1,3 +1,9 @@
+<!-- Start Include Dateien -->
+<?php include ("includes/session.php"); ?>
+<?php include ("includes/verbindung.php"); ?>
+<!-- Ende Include Dateien -->
+
+
 <!DOCTYPE html>
 
 <html lang="de">
@@ -28,11 +34,6 @@
         <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
         <!-- Ende Custom CSS -->
-
-
-        <!-- Start Include Dateien -->
-        <?php include ("includes/verbindung.php"); ?>
-        <!-- Ende Include Dateien -->
 
 
     </head>
@@ -79,70 +80,94 @@
 
 
             <!-- Start Ergebnisse anzeigen -->
-
             <?php $name = $_GET["name"]; ?>
 
-            <!-- Start id auslesen -->
-            <?php
+
+                <!-- Start id auslesen -->
+                <?php
+
+                    try
+                    {
+                        $abfr = $db->prepare('SELECT VotID
+                                              FROM Voting
+                                              WHERE Votingname=:name');
+                        $abfr->bindValue(':name', $name, PDO::PARAM_STR);
+                        $abfr->execute();
+                        $id = $abfr->fetch();
+                        $id = $id['VotID'];
+                        unset($abfr);
+                    }
+                    catch(PDOException $e)
+                    {
+                        echo $e->getMessage();
+                    }
+
+                ?>
+                <!-- Ende id auslesen -->
+
+
+                <!-- Start Teilnehmerzahl auslesen -->
+                <?php
+
+                    try
+                    {
+                        $abfr = $db->prepare('SELECT COUNT(*) AS Summe
+                                              FROM Ergebnis
+                                              WHERE VotID=:id');
+                        $abfr->bindValue(':id', $id, PDO::PARAM_INT);
+                        $abfr->execute();
+                        $sum = $abfr->fetch();
+                        $sum = $sum['Summe'];
+                        unset($abfr);
+                    }
+                    catch(PDOException $e)
+                    {
+                        echo $e->getMessage();
+                    }
+
+                ?>
+                <!-- Ende Teilnehmerzahl auslesen -->
+
+
+                <!-- Start Summe Antwort 1 auslesen -->
+                <?php
+
+                    try
+                    {
+                        $abfr = $db->prepare('SELECT COUNT(*) AS Ant1
+                                              FROM Ergebnis
+                                              WHERE VotID=:id
+                                              AND Vote=:ant1');
+                        $abfr->bindValue(':id', $id, PDO::PARAM_INT);
+                        $abfr->bindValue(':ant1', 1, PDO::PARAM_INT);
+                        $abfr->execute();
+                        $ant1 = $abfr->fetch();
+                        $ant1 = $ant1['Ant1'];
+                        unset($abfr);
+                    }
+                    catch(PDOException $e)
+                    {
+                        echo $e->getMessage();
+                    }
+
+                ?>
+                <!-- Ende Summe Antwort 1 auslesen -->
+
+
+                <!-- Start Summe Antwort 2 auslesen -->
+                <?php
 
                 try
                 {
-                    $abfr = $db->prepare('SELECT VotID
-                                          FROM Voting
-                                          WHERE Votingname=:name');
-                    $abfr->bindValue(':name', $name, PDO::PARAM_STR);
-                    $abfr->execute();
-                    $id = $abfr->fetch();
-                    $id = $id['VotID'];
-                    unset($abfr);
-                }
-                catch(PDOException $e)
-                {
-                    echo $e->getMessage();
-                }
-
-            ?>
-            <!-- Ende id auslesen -->
-
-<br >
-
-            <!-- Start Teilnehmerzahl auslesen -->
-            <?php
-
-                try
-                {
-                    $abfr = $db->prepare('SELECT COUNT(*) AS Summe
-                                          FROM Ergebnis
-                                          WHERE VotID=:id');
-                    $abfr->bindValue(':id', $id, PDO::PARAM_INT);
-                    $abfr->execute();
-                    $sum = $abfr->fetch();
-                    $sum = $sum['Summe'];
-                    unset($abfr);
-                }
-                catch(PDOException $e)
-                {
-                    echo $e->getMessage();
-                }
-
-            ?>
-            <!-- Ende Teilnehmerzahl auslesen -->
-
-
-            <!-- Start Summe Antwort 1 auslesen -->
-            <?php
-
-                try
-                {
-                    $abfr = $db->prepare('SELECT COUNT(*) AS Ant1
+                    $abfr = $db->prepare('SELECT COUNT(*) AS Ant2
                                           FROM Ergebnis
                                           WHERE VotID=:id
-                                          AND Vote=:ant1');
+                                          AND Vote=:ant2');
                     $abfr->bindValue(':id', $id, PDO::PARAM_INT);
-                    $abfr->bindValue(':ant1', 1, PDO::PARAM_INT);
+                    $abfr->bindValue(':ant2', 2, PDO::PARAM_INT);
                     $abfr->execute();
-                    $ant1 = $abfr->fetch();
-                    $ant1 = $ant1['Ant1'];
+                    $ant2 = $abfr->fetch();
+                    $ant2 = $ant2['Ant2'];
                     unset($abfr);
                 }
                 catch(PDOException $e)
@@ -150,133 +175,259 @@
                     echo $e->getMessage();
                 }
 
-            ?>
-            <!-- Ende Summe Antwort 1 auslesen -->
+                ?>
+                <!-- Ende Summe Antwort 2 auslesen -->
 
 
-            <!-- Start Summe Antwort 2 auslesen -->
-            <?php
+                <!-- Start Summe Antwort 3 auslesen -->
+                <?php
 
-            try
-            {
-                $abfr = $db->prepare('SELECT COUNT(*) AS Ant2
-                                      FROM Ergebnis
-                                      WHERE VotID=:id
-                                      AND Vote=:ant2');
-                $abfr->bindValue(':id', $id, PDO::PARAM_INT);
-                $abfr->bindValue(':ant2', 2, PDO::PARAM_INT);
-                $abfr->execute();
-                $ant2 = $abfr->fetch();
-                $ant2 = $ant2['Ant2'];
-                unset($abfr);
-            }
-            catch(PDOException $e)
-            {
-                echo $e->getMessage();
-            }
+                try
+                {
+                    $abfr = $db->prepare('SELECT COUNT(*) AS Ant3
+                                          FROM Ergebnis
+                                          WHERE VotID=:id
+                                          AND Vote=:ant3');
+                    $abfr->bindValue(':id', $id, PDO::PARAM_INT);
+                    $abfr->bindValue(':ant3', 3, PDO::PARAM_INT);
+                    $abfr->execute();
+                    $ant3 = $abfr->fetch();
+                    $ant3 = $ant3['Ant3'];
+                    unset($abfr);
+                }
+                catch(PDOException $e)
+                {
+                    echo $e->getMessage();
+                }
 
-            ?>
-            <!-- Ende Summe Antwort 2 auslesen -->
-
-
-            <!-- Start Summe Antwort 3 auslesen -->
-            <?php
-
-            try
-            {
-                $abfr = $db->prepare('SELECT COUNT(*) AS Ant3
-                                      FROM Ergebnis
-                                      WHERE VotID=:id
-                                      AND Vote=:ant3');
-                $abfr->bindValue(':id', $id, PDO::PARAM_INT);
-                $abfr->bindValue(':ant3', 3, PDO::PARAM_INT);
-                $abfr->execute();
-                $ant3 = $abfr->fetch();
-                $ant3 = $ant3['Ant3'];
-                unset($abfr);
-            }
-            catch(PDOException $e)
-            {
-                echo $e->getMessage();
-            }
-
-            ?>
-            <!-- Ende Summe Antwort 3 auslesen -->
+                ?>
+                <!-- Ende Summe Antwort 3 auslesen -->
 
 
-            <!-- Start Summe Antwort 4 auslesen -->
-            <?php
+                <!-- Start Summe Antwort 4 auslesen -->
+                <?php
 
-            try
-            {
-                $abfr = $db->prepare('SELECT COUNT(*) AS Ant4
-                                      FROM Ergebnis
-                                      WHERE VotID=:id
-                                      AND Vote=:ant4');
-                $abfr->bindValue(':id', $id, PDO::PARAM_INT);
-                $abfr->bindValue(':ant4', 4, PDO::PARAM_INT);
-                $abfr->execute();
-                $ant4 = $abfr->fetch();
-                $ant4 = $ant4['Ant4'];
-                unset($abfr);
-            }
-            catch(PDOException $e)
-            {
-                echo $e->getMessage();
-            }
+                try
+                {
+                    $abfr = $db->prepare('SELECT COUNT(*) AS Ant4
+                                          FROM Ergebnis
+                                          WHERE VotID=:id
+                                          AND Vote=:ant4');
+                    $abfr->bindValue(':id', $id, PDO::PARAM_INT);
+                    $abfr->bindValue(':ant4', 4, PDO::PARAM_INT);
+                    $abfr->execute();
+                    $ant4 = $abfr->fetch();
+                    $ant4 = $ant4['Ant4'];
+                    unset($abfr);
+                }
+                catch(PDOException $e)
+                {
+                    echo $e->getMessage();
+                }
 
-            ?>
-            <!-- Ende Summe Antwort 4 auslesen -->
-
-
-            <!-- Start Ergebnisse berechnen -->
-            <?php
-                $erg1 = round(100 / $sum * $ant1);
-                $erg2 = round(100 / $sum * $ant2);
-                $erg3 = round(100 / $sum * $ant3);
-                $erg4 = round(100 / $sum * $ant4);
-            ?>
-            <!-- Ende berechnen -->
+                ?>
+                <!-- Ende Summe Antwort 4 auslesen -->
 
 
-            <!-- Start Ergebnisse ausgeben -->
-            <div class="container">
-                <section class="row  row-centered">
-                    <div class="col-md-8 col-md-offset-2" id="maincontent">
+                <!-- Start Begrenzung -->
+                    <!-- Start Inhalt aus Ant3 auslesen -->
+                    <?php
 
-                        <h4 class="modal-title">Ergebnisse Ihres Votings</h4>
-                        <p>Antwort 1</p>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $erg1; ?>"; aria-valuemin="0" aria-valuemax="100" style=" min-width: 2em; width: <?php echo $erg1; ?>%;">
-                                <?php echo $erg1; ?>%
+                        try
+                        {
+                            $abfr = $db->prepare('SELECT Ant3
+                                                  FROM Voting
+                                                  WHERE VotID=:id');
+                            $abfr->bindValue(':id', $id, PDO::PARAM_INT);
+                            $abfr->execute();
+                            $grenz3 = $abfr->fetch();
+                            $grenz3 = $grenz3['Ant3'];
+                            unset($abfr);
+                        }
+                        catch(PDOException $e)
+                        {
+                            echo $e->getMessage();
+                        }
+
+                    ?>
+                    <!-- Start Inhalt aus Ant3 auslesen -->
+
+
+                    <!-- Start Inhalt aus Ant4 auslesen -->
+                    <?php
+
+                    try
+                    {
+                        $abfr = $db->prepare('SELECT Ant4
+                                              FROM Voting
+                                              WHERE VotID=:id');
+                        $abfr->bindValue(':id', $id, PDO::PARAM_INT);
+                        $abfr->execute();
+                        $grenz4 = $abfr->fetch();
+                        $grenz4 = $grenz4['Ant4'];
+                        unset($abfr);
+                    }
+                    catch(PDOException $e)
+                    {
+                        echo $e->getMessage();
+                    }
+
+                    ?>
+                    <!-- Start Inhalt aus Ant4 auslesen -->
+
+
+                    <?php
+                    //<!-- Start 2 Antwortmöglichkeiten -->
+                        if (($grenz4 == "") AND ($grenz3 == ""))
+                            { ?>
+
+                                <!-- Start Ergebnisse berechnen -->
+                                <?php
+                                    $erg1 = round(100 / $sum * $ant1);
+                                    $erg2 = round(100 / $sum * $ant2);
+                                ?>
+                                <!-- Ende berechnen -->
+
+
+                                <!-- Start Ergebnisse ausgeben -->
+                                <div class="container">
+                                    <section class="row  row-centered">
+                                        <div class="col-md-8 col-md-offset-2" id="maincontent">
+
+                                            <h4 class="modal-title">Ergebnisse Ihres Votings</h4>
+                                            <p><?php echo "Teilnehmer: $sum"; ?></p>
+                                            <p>Antwort 1</p>
+                                            <div class="progress">
+                                                <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $erg1; ?>"; aria-valuemin="0" aria-valuemax="100" style=" min-width: 2em; width: <?php echo $erg1; ?>%;">
+                                                    <?php echo $erg1; ?>%
+                                                </div>
+                                            </div>
+
+                                            <p>Antwort 2</p>
+                                            <div class="progress">
+                                                <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $erg2; ?>" aria-valuemin="0" aria-valuemax="100" style=" min-width: 2em; width: <?php echo $erg2; ?>%;">
+                                                    <?php echo $erg2; ?>%
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </section>
+                                </div>
+                                <!-- Ende Ergebnisse ausgeben -->
+
+                            <?php }
+                    //<!-- Ende 2 Antwortmöglichkeiten -->
+
+
+                    //<!-- Start 3 Antwortmöglichkeiten -->
+                        elseif ($grenz4 == "")
+                        { ?>
+
+                            <!-- Start Ergebnisse berechnen -->
+                            <?php
+                            $erg1 = round(100 / $sum * $ant1);
+                            $erg2 = round(100 / $sum * $ant2);
+                            $erg3 = round(100 / $sum * $ant3);
+                            ?>
+                            <!-- Ende berechnen -->
+
+
+                            <!-- Start Ergebnisse ausgeben -->
+                            <div class="container">
+                                <section class="row  row-centered">
+                                    <div class="col-md-8 col-md-offset-2" id="maincontent">
+
+                                        <h4 class="modal-title">Ergebnisse Ihres Votings</h4>
+                                        <p><?php echo "Teilnehmer: $sum"; ?></p>
+                                        <p>Antwort 1</p>
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $erg1; ?>"; aria-valuemin="0" aria-valuemax="100" style=" min-width: 2em; width: <?php echo $erg1; ?>%;">
+                                                <?php echo $erg1; ?>%
+                                            </div>
+                                        </div>
+
+                                        <p>Antwort 2</p>
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $erg2; ?>" aria-valuemin="0" aria-valuemax="100" style=" min-width: 2em; width: <?php echo $erg2; ?>%;">
+                                                <?php echo $erg2; ?>%
+                                            </div>
+                                        </div>
+
+                                        <p>Antwort 3</p>
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $erg3; ?>" aria-valuemin="0" aria-valuemax="100" style=" min-width: 2em; width: <?php echo $erg3; ?>%;">
+                                                <?php echo $erg3; ?>%
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </section>
                             </div>
-                        </div>
+                            <!-- Ende Ergebnisse ausgeben -->
 
-                        <p>Antwort 2</p>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $erg2; ?>" aria-valuemin="0" aria-valuemax="100" style=" min-width: 2em; width: <?php echo $erg2; ?>%;">
-                                <?php echo $erg2; ?>%
+                        <?php }
+                    //<!-- Ende 3 Antwortmöglichkeiten -->
+
+
+                    //<!-- Start 4 Antwortmöglichkeiten -->
+                        else
+                        { ?>
+
+                            <!-- Start Ergebnisse berechnen -->
+                            <?php
+                            $erg1 = round(100 / $sum * $ant1);
+                            $erg2 = round(100 / $sum * $ant2);
+                            $erg3 = round(100 / $sum * $ant3);
+                            $erg4 = round(100 / $sum * $ant4);
+                            ?>
+                            <!-- Ende berechnen -->
+
+
+                            <!-- Start Ergebnisse ausgeben -->
+                            <div class="container">
+                                <section class="row  row-centered">
+                                    <div class="col-md-8 col-md-offset-2" id="maincontent">
+
+                                        <h4 class="modal-title">Ergebnisse Ihres Votings</h4>
+                                        <p><?php echo "Teilnehmer: $sum"; ?></p>
+                                        <p>Antwort 1</p>
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $erg1; ?>"; aria-valuemin="0" aria-valuemax="100" style=" min-width: 2em; width: <?php echo $erg1; ?>%;">
+                                                <?php echo $erg1; ?>%
+                                            </div>
+                                        </div>
+
+                                        <p>Antwort 2</p>
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $erg2; ?>" aria-valuemin="0" aria-valuemax="100" style=" min-width: 2em; width: <?php echo $erg2; ?>%;">
+                                                <?php echo $erg2; ?>%
+                                            </div>
+                                        </div>
+
+                                        <p>Antwort 3</p>
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $erg3; ?>" aria-valuemin="0" aria-valuemax="100" style=" min-width: 2em; width: <?php echo $erg3; ?>%;">
+                                                <?php echo $erg3; ?>%
+                                            </div>
+                                        </div>
+
+                                        <p>Antwort 4</p>
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $erg4; ?>" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: <?php echo $erg4; ?>%;">
+                                                <?php echo $erg4; ?>%
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </section>
                             </div>
-                        </div>
+                            <!-- Ende Ergebnisse ausgeben -->
 
-                        <p>Antwort 3</p>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $erg3; ?>" aria-valuemin="0" aria-valuemax="100" style=" min-width: 2em; width: <?php echo $erg3; ?>%;">
-                                <?php echo $erg3; ?>%
-                            </div>
-                        </div>
+                    <?php } ?>
+                    <!-- Ende 4 Antwortmöglichkeiten -->
 
-                        <p>Antwort 4</p>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $erg4; ?>" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: <?php echo $erg4; ?>%;">
-                                <?php echo $erg4; ?>%
-                            </div>
-                        </div>
 
-                    </div>
-                </section>
-            </div>
-            <!-- Ende Ergebnisse ausgeben -->
+                <!-- Ende Begrenzung -->
             <!-- Ende Ergebnisse anzeigen -->
 
 

@@ -1,3 +1,9 @@
+<!-- Start Include Dateien -->
+<?php include ("includes/session.php"); ?>
+<?php include ("includes/verbindung.php"); ?>
+<!-- Ende Include Dateien -->
+
+
 <!DOCTYPE html>
 
 <html lang="de">
@@ -28,11 +34,6 @@
         <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
         <!-- Ende Custom CSS -->
-
-
-        <!-- Start Include Dateien -->
-        <?php include ("includes/verbindung.php"); ?>
-        <!-- Ende Include Dateien -->
 
 
     </head>
@@ -82,54 +83,54 @@
 
 
         <!-- Start Votings auslesen -->
-        <!-- Start Votings aus DB abfragen -->
-        <?php
-            //Auf die DB-Verbindung wird eine Methode eingesetzt, die einen String mit SQL akzeptiert und an die DB sendet.
-            //Der Code wird in $abfr gespeichert
-            try
-            {
-                $abfr = $db->prepare('SELECT Votingname
-                                      FROM Voting
-                                      WHERE Papierkorb=:papierkorb');
-                $abfr->bindValue(':papierkorb', 0, PDO::PARAM_INT);
-                $abfr->execute();
-                $erg = $abfr->fetchAll();
-                //var_dump($erg);
-                unset($abfr);
-            }
-            catch(PDOException $e)
-            {
-                echo $e->getMessage();
-            }
-        ?>
-        <!-- Ende Votings aus DB abfragen -->
+            <!-- Start Votings aus DB abfragen -->
+            <?php
+                //Auf die DB-Verbindung wird eine Methode eingesetzt, die einen String mit SQL akzeptiert und an die DB sendet.
+                //Der Code wird in $abfr gespeichert
+                try
+                {
+                    $abfr = $db->prepare('SELECT Votingname
+                                          FROM Voting
+                                          WHERE Papierkorb=:papierkorb');
+                    $abfr->bindValue(':papierkorb', 0, PDO::PARAM_INT);
+                    $abfr->execute();
+                    $erg = $abfr->fetchAll();
+                    //var_dump($erg);
+                    unset($abfr);
+                }
+                catch(PDOException $e)
+                {
+                    echo $e->getMessage();
+                }
+            ?>
+            <!-- Ende Votings aus DB abfragen -->
 
 
-        <!-- Start Votings per foreach in Tabelle ausgeben -->
-        <div class="container">
-            <section class="row  row-centered">
-                <div class="col-md-8 col-md-offset-2">
-                    <p class="überschrift">Bereits angelegte Votings</p>
-                    <ul class="nav nav-pills nav-stacked" id="pills">
+            <!-- Start Votings per foreach in Tabelle ausgeben -->
+            <div class="container">
+                <section class="row  row-centered">
+                    <div class="col-md-8 col-md-offset-2">
+                        <p class="überschrift">Bereits angelegte Votings</p>
+                        <ul class="nav nav-pills nav-stacked" id="pills">
 
-                        <?php foreach ($erg AS $voting): ?>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php echo $voting['Votingname']; ?>
-                                    <span class="caret"></span></a>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li><a href="includes/voting_live.php?name=<?php echo $voting['Votingname']; ?>">Live schalten</a></li>
-                                    <li><a href="includes/voting_beenden.php?name=<?php echo $voting['Votingname']; ?>">Beenden</a></li>
-                                    <li><a href="ergebnisse.php?name=<?php echo $voting['Votingname']; ?>">Ergebnisse anzeigen</a></li>
-                                    <li><a href="includes/loeschen.php?name=<?php echo $voting['Votingname']; ?>">Löschen</a></li>
-                                </ul>
-                            </li>
-                        <?php endforeach; ?>
+                            <?php foreach ($erg AS $voting): ?>
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php echo $voting['Votingname']; ?>
+                                        <span class="caret"></span></a>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                        <li><a href="includes/voting_live.php?name=<?php echo $voting['Votingname']; ?>">Live schalten</a></li>
+                                        <li><a href="includes/voting_beenden.php?name=<?php echo $voting['Votingname']; ?>">Beenden</a></li>
+                                        <li><a href="ergebnisse.php?name=<?php echo $voting['Votingname']; ?>">Ergebnisse anzeigen</a></li>
+                                        <li><a href="includes/loeschen.php?name=<?php echo $voting['Votingname']; ?>">Löschen</a></li>
+                                    </ul>
+                                </li>
+                            <?php endforeach; ?>
 
-                    </ul>
-                </div>
-            </section>
-        </div>
-        <!-- Ende Votings per foreach in Tabelle ausgeben -->
+                        </ul>
+                    </div>
+                </section>
+            </div>
+            <!-- Ende Votings per foreach in Tabelle ausgeben -->
         <!-- Ende Votings auslesen -->
         
 

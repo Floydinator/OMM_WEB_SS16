@@ -1,7 +1,11 @@
+<!-- Start Include Dateien -->
+<?php include ("session.php"); ?>
+<?php include ("verbindung.php"); ?>
+<!-- Ende Include Dateien -->
+
+
 <!-- Start Voting in Papierkorb verschieben -->
 <?php
-
-    include ("verbindung.php");
 
     $name = $_GET["name"];
 

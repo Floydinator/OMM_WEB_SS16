@@ -1,4 +1,5 @@
 <!-- Start Include Dateien -->
+<?php include ("session.php"); ?>
 <?php include ("verbindung.php"); ?>
 <!-- Ende Include Dateien -->
 

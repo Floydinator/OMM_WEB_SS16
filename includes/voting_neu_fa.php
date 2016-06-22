@@ -1,7 +1,11 @@
+<!-- Start Include Dateien -->
+<?php include ("session.php"); ?>
+<?php include ("verbindung.php"); ?>
+<!-- Ende Include Dateien -->
+
+
 <!-- Start Voting anlegen -->
 <?php
-
-    include ("verbindung.php");
 
     $name = $_POST['name'];
     $frage = $_POST['frage'];
@@ -10,7 +14,7 @@
     $ant3 = $_POST['ant3'];
     $ant4 = $_POST['ant4'];
 
-    if (isset($name) AND isset($frage) AND isset($ant1) AND isset($ant2) AND isset($ant3) AND isset($ant4))
+    if (!($name == "") AND !($frage == "") AND !($ant1 == "") AND !($ant2 == ""))
     {
         try
         {
