@@ -1,0 +1,18 @@
+<!-- Start Session -->
+<?php
+
+    session_start();
+
+    //in Session gespeichert
+    //$_SESSION['benutzername']
+    //$_SESSION['bid']
+    //$_SESSION['dsid']
+
+    if(!isset($_SESSION['benutzername']))
+    {
+        header('Location: https://mars.iuk.hdm-stuttgart.de/~fs096/login.php');
+        exit; //Mit exit die beenden wir den weiteren Scriptablauf
+    }
+
+?>
+<!-- Ende Session -->
