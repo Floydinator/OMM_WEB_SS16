@@ -1,0 +1,221 @@
+<!-- Start Include Dateien -->
+<?php include ("includes/session.php"); ?>
+<?php include ("includes/verbindung.php"); ?>
+<!-- Ende Include Dateien -->
+
+
+<!-- Start Dozenten aus DB abfragen -->
+<?php
+
+    //Auf die DB-Verbindung wird eine Methode eingesetzt, die einen String mit SQL akzeptiert und an die DB sendet.
+    //Der Code wird in $abfr gespeichert
+    try
+    {
+        $abfr = $db->prepare('SELECT Benutzername
+                              FROM Benutzer
+                              WHERE Typ=:typ');
+        $abfr->bindValue(':typ', 1, PDO::PARAM_INT);
+        $abfr->execute();
+        //Gibt das Ergebnis in Form eines mehrdimensionalen Arrays zurück und speichert es in der Variablen $abfr
+        //fetch oder eine andere Variante wird nur zum lesen benötigt
+        $erg = $abfr->fetchAll();
+        //var_dump($erg);
+        //Abfrage schließen
+        unset($abfr);
+    }
+    catch(PDOException $e)
+    {
+        echo $e->getMessage();
+    }
+
+?>
+<!-- Ende Dozenten aus DB abfragen -->
+
+
+<!-- Start Dozent in DB eintragen -->
+<?php
+
+    $typ = 1;
+    $bname = $_POST['bname'];
+    $email = $_POST['email'];
+    $pw = rand();
+
+    if (isset($bname) AND isset($email))
+    {
+        $betreff = "Willkommen bei TeachHaus!";
+        $text = "Hallo,
+
+            ein Account auf TeachHaus wurde angelegt.
+            Dein Benutzername lautet " . $bname . " und dein Passwort ist " . $pw . ".
+            Log dich unter https://mars.iuk.hdm-stuttgart.de/~fs096/login.php ein!
+
+            Viel Spass,
+
+            dein TeachHaus Team.";
+        $absender = "From: TeachHaus <fs096@hdm-stuttgart.de>";
+
+        mail($email, $betreff, $text, $absender);
+
+        $pw = md5($pw);
+
+        try
+        {
+            $abfr = $db->prepare('INSERT INTO Benutzer (Typ, Benutzername, Passwort)
+                                  VALUES (:typ, :bname, :pw)');
+            $abfr->bindParam(':typ', $typ, PDO::PARAM_STR);
+            $abfr->bindParam(':bname', $bname, PDO::PARAM_STR);
+            $abfr->bindParam(':pw', $pw, PDO::PARAM_STR);
+            $abfr->execute();
+            unset($abfr);
+        }
+        catch(PDOException $e)
+        {
+            echo $e->getMessage();
+        }
+
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }
+
+?>
+<!-- Ende Dozent in DB eintragen -->
+
+
+
+
+
+<!-- --------------------------------------------------- PHP -> HTML ----------------------------------------------- -->
+
+
+
+
+
+<!DOCTYPE html>
+
+<html lang="de">
+
+
+
+
+
+    <head>
+
+
+        <title>Administration</title>
+
+        <meta charset="utf-8"/>
+
+
+        <!-- Start Bootstrap Einbindung -->
+        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> <!-- Die Fehlermeldung kann ignoriert werden -->
+        <script src="js/bootstrap.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Ende Bootstrap Einbindung -->
+
+
+        <!-- Start Custom CSS -->
+        <link href="css/landing-page.css" rel="stylesheet" media="screen">
+        <link href="css/admin.css" rel="stylesheet" type="text/css" media="screen">
+        <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+        <!-- Ende Custom CSS -->
+
+
+    </head>
+
+
+
+
+
+    <body>
+
+
+        <div id="full">
+
+            <!-- Start Navigation -->
+            <nav class="navbar navbar-default topnav" role="navigation">
+                <div class="container topnav">
+
+                    <!-- Marke und Toogle-Funktion werden für bessere mobile Darstellung gruppiert -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand topnav" id="brand"><span id="brand-glyphicon" class="glyphicon glyphicon-home" aria-hidden="true"></span> TeachHaus</a>
+                    </div>
+
+                    <!-- Nav-Links, Formulare und anderer Content werden für das Umschalten gesammelt -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <form class="navbar-form navbar-right">
+                                    <div class="form-group">
+                                        <a href="login.php" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a>
+                                    </div>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Ende navbar-collapse -->
+
+                </div>
+                <!-- Ende container -->
+            </nav>
+            <!-- Ende Navigation -->
+
+
+            <!-- Start Dozenten per foreach in Tabelle ausgeben -->
+            <div class="container">
+                <section class="row  row-centered">
+                    <div class="col-md-8 col-md-offset-2">
+                        <p class="überschrift">Bereits angelegte Dozenten</p>
+                        <ul class="list-group">
+                            <?php foreach ($erg AS $dozent): ?>
+                                <li class="list-group-item"><?php echo $dozent['Benutzername']; ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+            <!-- Ende Dozenten per foreach in Tabelle ausgeben -->
+
+
+            <!-- Start Dozent per Formular einlesen -->
+                <div class="container" id="formular">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <p class="überschrift">Neuen Dozent anlegen</p>
+                            <form class="form-inline" method="POST" action="admin.php">
+                                <div class="form-group">
+                                    <label class="sr-only" for="Benutzername">Benutzername</label>
+                                    <input type="text" class="form-control" id="bname" name="bname" placeholder="Benutzername">
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="email">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-md" id="button">Anlegen</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            <!-- Ende Dozent per Formular einlesen -->
+
+        </div>
+
+        
+        <!-- Start Footer -->
+        <?php include ("includes/footer.php"); ?>
+        <!-- Ende Footer -->
+
+    
+    </body>
+
+
+
+
+
+</html>

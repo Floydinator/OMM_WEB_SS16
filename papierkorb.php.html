@@ -1,0 +1,244 @@
+<!-- Start Include Dateien -->
+<?php include ("includes/session.php"); ?>
+<?php include ("includes/verbindung.php"); ?>
+<!-- Ende Include Dateien -->
+
+
+<!-- Start Votings aus DB abfragen -->
+<?php
+
+    try
+    {
+        $abfr = $db->prepare('SELECT Voting.Votingname
+                              FROM Voting INNER JOIN Vorlesung ON Voting.VorID = Vorlesung.VorID
+                              WHERE Vorlesung.BID=:bid
+                              AND Papierkorb=:papierkorb');
+        $abfr->bindValue(':bid', $_SESSION['bid'], PDO::PARAM_INT);
+        $abfr->bindValue(':papierkorb', 1, PDO::PARAM_INT);
+        $abfr->execute();
+        $erg = $abfr->fetchAll();
+        unset($abfr);
+    }
+    catch(PDOException $e)
+    {
+        echo $e->getMessage();
+    }
+
+?>
+<!-- Ende Votings aus DB abfragen -->
+
+
+<!-- Start Voting wiederherstellen -->
+<?php
+
+    $vot_name_wieder = $_GET["vot_name_wieder"];
+
+    if (isset($vot_name_wieder))
+    {
+        try
+        {
+
+            $stmt = $db->prepare("UPDATE Voting
+                                  SET Papierkorb=:papierkorb
+                                  WHERE Votingname=:votingname");
+            $stmt->bindValue(':papierkorb', 0, PDO::PARAM_INT);
+            $stmt->bindParam(':votingname', $vot_name_wieder, PDO::PARAM_STR);
+            $stmt->execute();
+            unset($stmt);
+        }
+        catch(PDOException $e)
+        {
+            echo $e->getMessage();
+        }
+
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+
+    }
+
+?>
+<!-- Ende Voting wiederherstellen -->
+
+
+<!-- Start Voting endgültig löschen -->
+<?php
+
+    $vot_name_end_loeschen = $_GET["vot_name_end_loeschen"];
+
+    if (isset($vot_name_end_loeschen))
+    {
+        try
+        {
+
+            //<!-- Start Voting endgültig in DB löschen -->
+            $stmt3 = $db->prepare("DELETE FROM Voting
+                                   WHERE Votingname=:vot_name_end_loeschen");
+            $stmt3->bindParam(':vot_name_end_loeschen', $vot_name_end_loeschen, PDO::PARAM_STR);
+            $stmt3->execute();
+            unset($stmt3);
+            //<!-- Ende Voting endgültig in DB löschen -->
+
+
+            //<!-- Start VotID auslesen -->
+            $abfr = $db->prepare('SELECT VotID
+                                  FROM Voting
+                                  WHERE Votingname=:vot_name_end_loeschen');
+            $abfr->bindParam(':vot_name_end_loeschen', $vot_name_end_loeschen, PDO::PARAM_STR);
+            $abfr->execute();
+            $votid = $abfr->fetch();
+            $votid = $votid['VotID'];
+            unset($abfr);
+            //<!-- Ende VotID auslesen -->
+
+
+            //<!-- Start Beziehung zwischen VorID und VotID endgültig in DB löschen -->
+            $abfr = $db->prepare("DELETE FROM Zu_Vorlesung_Voting
+                                  WHERE VotID=:votid");
+            $abfr->bindValue(':votid', $votid, PDO::PARAM_INT);
+            $abfr->execute();
+            unset($stmt3);
+            //<!-- Ende Beziehung zwischen VorID und VotID endgültig in DB löschen -->
+
+
+        }
+        catch(PDOException $e)
+        {
+            echo $e->getMessage();
+        }
+
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+
+    }
+
+?>
+<!-- Ende Voting endgültig löschen -->
+
+
+
+
+
+<!-- --------------------------------------------------- PHP -> HTML ----------------------------------------------- -->
+
+
+
+
+
+<!DOCTYPE html>
+
+<html lang="de">
+
+
+
+
+
+    <head>
+    
+    
+        <title>Dozentenbereich - Papierkorb</title>
+    
+        <meta charset="utf-8"/>
+    
+    
+        <!-- Start Bootstrap Einbindung -->
+        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> <!-- Die Fehlermeldung kann ignoriert werden -->
+        <script src="js/bootstrap.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Ende Bootstrap Einbindung -->
+    
+    
+        <!-- Start Custom CSS -->
+        <link href="css/landing-page.css" rel="stylesheet" media="screen">
+        <link href="css/papierkorb.css" rel="stylesheet" type="text/css" media="screen">
+        <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+        <!-- Ende Custom CSS -->
+
+    
+    </head>
+    
+    
+    
+
+    
+    <body>
+
+
+        <div id="full">
+        
+            <!-- Start Navigation -->
+            <nav class="navbar navbar-default topnav" role="navigation">
+                <div class="container topnav">
+
+                    <!-- Marke und Toogle-Funktion werden für bessere mobile Darstellung gruppiert -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand topnav" id="brand"><span id="brand-glyphicon" class="glyphicon glyphicon-home" aria-hidden="true"></span> TeachHaus</a>
+                    </div>
+
+                    <!-- Nav-Links, Formulare und anderer Content werden für das Umschalten gesammelt -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <form class="navbar-form navbar-right">
+                                    <div class="form-group">
+                                        <a href="vorlesungen.php"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Vorlesungen</a>
+                                        <a href="papierkorb.php"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Papierkorb</a>
+                                        <a href="login.php" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a>
+                                    </div>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Ende navbar-collapse -->
+
+                </div>
+                <!-- Ende container -->
+            </nav>
+            <!-- Ende Navigation -->
+
+
+            <!-- Start Votings per foreach in Tabelle ausgeben -->
+            <div class="container" id="main">
+                <section class="row  row-centered">
+                    <div class="col-md-8 col-md-offset-2">
+                        <p class="überschrift">Papierkorb</p>
+                        <ul class="nav nav-pills nav-stacked" id="pills">
+
+                            <?php foreach ($erg AS $voting): ?>
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php echo $voting['Votingname']; ?>
+                                        <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="papierkorb.php?vot_name_wieder=<?php echo $voting['Votingname']; ?>">Wiederherstellen</a></li>
+                                        <li><a href="papierkorb.php?vot_name_end_loeschen=<?php echo $voting['Votingname']; ?>">Endgültig löschen</a></li>
+                                    </ul>
+                                </li>
+                            <?php endforeach; ?>
+
+                        </ul>
+                    </div>
+                </section>
+            </div>
+            <!-- Ende Votings per foreach in Tabelle ausgeben -->
+
+            
+        </div>
+
+
+        <!-- Start Footer -->
+        <?php include ("includes/footer.php"); ?>
+        <!-- Ende Footer -->
+
+
+    </body>
+
+
+
+
+
+</html>

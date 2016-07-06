@@ -1,0 +1,107 @@
+<!-- Start Include Dateien -->
+<?php include ("includes/gast_session.php"); ?>
+<?php include ("includes/verbindung.php"); ?>
+<!-- Ende Include Dateien -->
+
+
+
+
+
+<!-- --------------------------------------------------- PHP -> HTML ----------------------------------------------- -->
+
+
+
+
+
+<!DOCTYPE html>
+
+<html lang="de">
+
+
+
+
+
+    <head>
+
+
+        <title>Danke</title>
+
+        <meta charset="utf-8"/>
+
+
+        <!-- Start Bootstrap Einbindung -->
+        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> <!-- Die Fehlermeldung kann ignoriert werden -->
+        <script src="js/bootstrap.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Ende Bootstrap Einbindung -->
+
+
+        <!-- Start Custom CSS -->
+        <link href="css/landing-page.css" rel="stylesheet" media="screen">
+        <link href="css/danke.css" rel="stylesheet" type="text/css" media="screen">
+        <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+        <!-- Ende Custom CSS -->
+
+
+    </head>
+
+
+
+
+
+    <body>
+
+
+        <div id="full">
+
+            <!-- Start Navigation -->
+            <nav class="navbar navbar-default topnav" role="navigation">
+                <div class="container topnav">
+                    
+                    <!-- Marke und Toogle-Funktion werden für bessere mobile Darstellung gruppiert -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand topnav" id="brand"><span id="brand-glyphicon" class="glyphicon glyphicon-home" aria-hidden="true"></span> TeachHaus</a>
+                    </div>
+                    
+                </div>
+                <!-- Ende container -->
+            </nav>
+            <!-- Ende Navigation -->
+
+
+            <!-- Anfang "Pop-Up-Fenster" -->
+            <div class="container">
+                <section class="row  row-centered">
+                    <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2 arrow_box" id="maincontent">
+
+                        <h1 class="überschrift">Danke für deine Teilnahme!</h1>
+                        <p>Das Voting ist beendet.</p>
+
+                    </div>
+                </section>
+            </div>
+            <!-- Ende "Pop-Up-Fenster" -->
+
+        </div>
+
+
+        <!-- Start Footer -->
+        <?php include ("includes/footer.php"); ?>
+        <!-- Ende Footer -->
+
+
+    </body>
+
+
+
+
+
+</html>

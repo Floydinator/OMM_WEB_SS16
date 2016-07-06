@@ -1,0 +1,418 @@
+<!-- Start Include Dateien -->
+<?php include ("includes/gast_session.php"); ?>
+<?php include ("includes/verbindung.php"); ?>
+<!-- Ende Include Dateien -->
+
+
+<!-- Start SID auslesen und in der Session speichern -->
+<?php $_SESSION['ssid'] = session_id() ?>
+<!-- Start SID auslesen und in der Session speichern -->
+
+
+<!-- Start Liveschaltung auslesen -->
+<?php
+
+    $votid = $_GET["id"];
+
+    try
+    {
+        $abfr = $db->prepare('SELECT Live
+                              FROM Voting
+                              WHERE VotID=:votid');
+        $abfr->bindValue(':votid', $votid, PDO::PARAM_INT);
+        $abfr->execute();
+        $live = $abfr->fetch();
+        $live = $live['Live'];
+        unset($abfr);
+    }
+    catch(PDOException $e)
+    {
+        echo $e->getMessage();
+    }
+
+?>
+<!-- Ende Liveschaltung auslesen -->
+
+
+<!-- Start Fragen und mögliche Antworten auslesen -->
+<?php
+
+    if ($live == 1)
+    {
+        try
+        {
+
+
+            //<!-- Start Frage -->
+            $abfr = $db->prepare('SELECT Frage
+                                  FROM Voting
+                                  WHERE VotID=:votid');
+            $abfr->bindValue(':votid', $votid, PDO::PARAM_INT);
+            $abfr->execute();
+            $frage = $abfr->fetch();
+            unset($abfr);
+            //<!-- Ende Frage -->
+
+
+            //<!-- Start Antwort 1 -->
+            $abfr = $db->prepare('SELECT Ant1
+                                  FROM Voting
+                                  WHERE VotID=:votid');
+            $abfr->bindValue(':votid', $votid, PDO::PARAM_INT);
+            $abfr->execute();
+            $ant1 = $abfr->fetch();
+            $ant1 = $ant1['Ant1'];
+            unset($abfr);
+            //<!-- Ende Antwort 1 -->
+
+
+            //<!-- Start Antwort 2 -->
+            $abfr = $db->prepare('SELECT Ant2
+                                  FROM Voting
+                                  WHERE VotID=:votid');
+            $abfr->bindValue(':votid', $votid, PDO::PARAM_INT);
+            $abfr->execute();
+            $ant2 = $abfr->fetch();
+            $ant2 = $ant2['Ant2'];
+            unset($abfr);
+            //<!-- Ende Antwort 2 -->
+
+
+            //<!-- Start Antwort 3 -->
+            $abfr = $db->prepare('SELECT Ant3
+                                  FROM Voting
+                                  WHERE VotID=:votid');
+            $abfr->bindValue(':votid', $votid, PDO::PARAM_INT);
+            $abfr->execute();
+            $ant3 = $abfr->fetch();
+            $ant3 = $ant3['Ant3'];
+            unset($abfr);
+            //<!-- Ende Antwort 3 -->
+
+
+            //<!-- Start Antwort 4 -->
+            $abfr = $db->prepare('SELECT Ant4
+                                  FROM Voting
+                                  WHERE VotID=:votid');
+            $abfr->bindValue(':votid', $votid, PDO::PARAM_INT);
+            $abfr->execute();
+            $ant4 = $abfr->fetch();
+            $ant4 = $ant4['Ant4'];
+            unset($abfr);
+            //<!-- Ende Antwort 4 -->
+
+
+        }
+        catch(PDOException $e)
+        {
+            echo $e->getMessage();
+        }
+    }
+
+?>
+<!-- Ende Fragen und mögliche Antworten auslesen -->
+
+
+<!-- Start Prüfen ob Student schon abgestimmt hat -->
+    <!-- Start Prüfen ob die SID der aktuellen Session für dieses Voting schon in die DB geschrieben wurde -->
+    <?php
+
+        try
+        {
+            $abfr = $db->prepare('SELECT SID
+                                  FROM Ergebnis
+                                  WHERE SID=:ssid
+                                  AND VotID=:votid');
+            $abfr->bindParam(':ssid', $_SESSION['ssid'], PDO::PARAM_INT);
+            $abfr->bindParam(':votid', $votid, PDO::PARAM_INT);
+            $abfr->execute();
+            $ssid = $abfr->fetch();
+            $ssid = $ssid['SID'];
+            unset($abfr);
+        }
+        catch(PDOException $e)
+        {
+            echo $e->getMessage();
+        }
+
+    ?>
+    <!-- Start Prüfen ob die SID der aktuellen Session für dieses Voting schon in die DB geschrieben wurde -->
+
+
+    <!-- Start Ergebnis speichern -->
+    <?php
+
+        if (isset($_POST['antwort']) AND $_SESSION['dsid'] !== $_SESSION['ssid'] AND $_SESSION['ssid'] !== $ssid)
+        {
+            try
+            {
+
+
+                //<!-- Start Ergebnis in DB speichern -->
+                $abfr = $db->prepare('INSERT INTO Ergebnis (SID, Vote, VotID)
+                                      VALUES (:ssid, :antwort, :votid)');
+                $abfr->bindParam(':ssid', $_SESSION['ssid'], PDO::PARAM_INT);
+                $abfr->bindParam(':antwort', $_POST['antwort'], PDO::PARAM_INT);
+                $abfr->bindParam(':votid', $votid, PDO::PARAM_INT);
+                $abfr->execute();
+                unset($abfr);
+                //<!-- Ende Ergebnis in DB speichern -->
+
+
+                //<!-- Start ErgID auslesen -->
+                $abfr = $db->prepare('SELECT ErgID
+                                      FROM Ergebnis
+                                      WHERE SID=:ssid');
+                $abfr->bindParam(':ssid', $_SESSION['ssid'], PDO::PARAM_INT);
+                $abfr->execute();
+                $ergid = $abfr->fetch();
+                $ergid = $ergid['ErgID'];
+                unset($abfr);
+                //<!-- Ende ErgID auslesen -->
+
+
+                //<!-- Start VotID und ErgID in DB eintragen um eine Beziehung herzustellen -->
+                $abfr = $db->prepare('INSERT INTO Zu_Voting_Ergebnis(VotID, ErgID)
+                                      VALUES (:votid, :ergid)');
+                $abfr->bindParam(':votid', $votid, PDO::PARAM_INT);
+                $abfr->bindParam(':ergid', $ergid, PDO::PARAM_INT);
+                $abfr->execute();
+                unset($abfr);
+                //<!-- Start VotID und ErgID in DB eintragen um eine Beziehung herzustellen -->
+
+
+            }
+            catch(PDOException $e)
+            {
+                echo $e->getMessage();
+            }
+
+            header("Location: https://mars.iuk.hdm-stuttgart.de/~fs096/danke.php");
+        }
+
+    ?>
+    <!-- Ende Ergebnis speichern -->
+<!-- Ende Prüfen ob Student schon abgestimmt hat -->
+
+
+
+
+
+<!-- --------------------------------------------------- PHP -> HTML ----------------------------------------------- -->
+
+
+
+
+
+<!DOCTYPE html>
+
+<html lang="de">
+
+
+
+
+
+    <head>
+    
+    
+        <title>Studentenbereich</title>
+    
+        <meta charset="utf-8"/>
+    
+    
+        <!-- Start Bootstrap Einbindung -->
+        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> <!-- Die Fehlermeldung kann ignoriert werden -->
+        <script src="js/bootstrap.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Ende Bootstrap Einbindung -->
+    
+    
+        <!-- Start Custom CSS -->
+        <link href="css/landing-page.css" rel="stylesheet" media="screen">
+        <link href="css/studenten.css" rel="stylesheet" type="text/css" media="screen">
+        <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+        <!-- Ende Custom CSS -->
+
+    
+    </head>
+
+
+
+
+
+    <body>
+
+
+        <div id="full">
+
+        <!-- Start Navigation -->
+        <nav class="navbar navbar-default topnav" role="navigation">
+            <div class="container topnav">
+                <!-- Marke und Toogle-Funktion werden für bessere mobile Darstellung gruppiert -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand topnav" id="brand"><span id="brand-glyphicon" class="glyphicon glyphicon-home" aria-hidden="true"></span> TeachHaus</a>
+                </div>
+                <!-- Nav-Links, Formulare und anderer Content werden für das Umschalten gesammelt -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                </div>
+                <!-- Ende navbar-collapse -->
+            </div>
+            <!-- Ende container -->
+        </nav>
+        <!-- Ende Navigation -->
+
+
+        <!-- Start Liveschaltung prüfen -->
+        <?php if ($live == 1 AND $_SESSION['ssid'] !== $ssid)
+        { ?>
+            <!-- Start Frage anzeigen -->
+            <div class="container">
+                <section class="row  row-centered">
+                    <div class="col-md-8 col-md-offset-2">
+                        <p class="überschrift"><?php echo $frage['Frage']; ?></p>
+                    </div>
+                </section>
+            </div>
+            <!-- Ende Frage anzeigen -->
+
+
+            <!-- Start mögliche Antworten in Tabelle anzeigen -->
+                <!-- Start Begrenzung der Antwortmöglichkeiten -->
+                    <?php
+                    //<!-- Start 2 Antwortmöglichkeiten -->
+                    if (($ant4 == "") AND ($ant3 == ""))
+                    { ?>
+
+                        <div class="container">
+                            <section class="row">
+                                <div class="col-md-8 col-md-offset-2">
+                                    <form role="form" method="POST" action="studenten.php?id=<?php echo $_GET["id"]; ?>">
+                                        <ul class="list-group">
+                                            <li class="list-group-item">
+                                                <div class="radio">
+                                                    <label><input type="radio" name="antwort" value="1" checked="checked"><?php echo $ant1; ?></label>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div class="radio">
+                                                    <label><input type="radio" name="antwort" value="2"><?php echo $ant2; ?></label>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <button type="submit" class="btn btn-primary btn-md" id="button">Absenden</button>
+                                    </form>
+                                </div>
+                            </section>
+                        </div>
+
+                    <?php }
+                    //<!-- Ende 2 Antwortmöglichkeiten -->
+
+
+                    //<!-- Start 3 Antwortmöglichkeiten -->
+                    elseif ($ant4 == "")
+                    { ?>
+
+                        <div class="container">
+                            <section class="row">
+                                <div class="col-md-8 col-md-offset-2">
+                                    <form role="form" method="POST" action="studenten.php?id=<?php echo $_GET["id"]; ?>">
+                                        <ul class="list-group">
+                                            <li class="list-group-item">
+                                                <div class="radio">
+                                                    <label><input type="radio" name="antwort" value="1" checked="checked"><?php echo $ant1; ?></label>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div class="radio">
+                                                    <label><input type="radio" name="antwort" value="2"><?php echo $ant2; ?></label>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div class="radio">
+                                                    <label><input type="radio" name="antwort" value="3"><?php echo $ant3; ?></label>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <button type="submit" class="btn btn-primary btn-md" id="button">Absenden</button>
+                                    </form>
+                                </div>
+                            </section>
+                        </div>
+
+                    <?php }
+                    //<!-- Ende 3 Antwortmöglichkeiten -->
+
+
+                    //<!-- Start 4 Antwortmöglichkeiten -->
+                    else
+                    { ?>
+
+                        <div class="container">
+                            <section class="row">
+                                <div class="col-md-8 col-md-offset-2">
+                                    <form role="form" method="POST" action="studenten.php?id=<?php echo $_GET["id"]; ?>">
+                                        <ul class="list-group">
+                                            <li class="list-group-item">
+                                                <div class="radio">
+                                                    <label><input type="radio" name="antwort" value="1" checked="checked"><?php echo $ant1; ?></label>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div class="radio">
+                                                    <label><input type="radio" name="antwort" value="2"><?php echo $ant2; ?></label>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div class="radio">
+                                                    <label><input type="radio" name="antwort" value="3"><?php echo $ant3; ?></label>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div class="radio">
+                                                    <label><input type="radio" name="antwort" value="4"><?php echo $ant4; ?></label>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <button type="submit" class="btn btn-primary btn-md" id="button">Absenden</button>
+                                    </form>
+                                </div>
+                            </section>
+                        </div>
+
+                    <?php } ?>
+                    <!-- Ende 4 Antwortmöglichkeiten -->
+                <!-- Ende Begrenzung der Antwortmöglichkeiten -->
+            <!-- Ende mögliche Antworten in Tabelle anzeigen -->
+        <?php }
+        else
+        {
+            header("Location: https://mars.iuk.hdm-stuttgart.de/~fs096/danke.php");
+        }
+        ?>
+        <!-- Ende Liveschaltung prüfen -->
+
+
+        </div>
+
+
+        <!-- Start Footer -->
+        <?php include ("includes/footer.php"); ?>
+        <!-- Ende Footer -->
+
+
+    </body>
+
+
+
+
+
+</html>

@@ -1,0 +1,311 @@
+<!-- Start Include Dateien -->
+<?php include ("includes/session.php"); ?>
+<?php include ("includes/verbindung.php"); ?>
+<!-- Ende Include Dateien -->
+
+
+<!-- Start SID auslesen und in der Session speichern -->
+<?php $_SESSION['dsid'] = session_id() ?>
+<!-- Start SID auslesen und in der Session speichern -->
+
+
+<!-- Start BID auslesen und in der Session speichern -->
+<?php
+
+    try
+    {
+        $abfr = $db->prepare('SELECT BID
+                              FROM Benutzer
+                              WHERE Benutzername=:name');
+        $abfr->bindParam(':name', $_SESSION['benutzername'], PDO::PARAM_STR);
+        $abfr->execute();
+        $bid = $abfr->fetch();
+        $_SESSION['bid'] = $bid['BID'];
+        unset($abfr);
+    }
+    catch(PDOException $e)
+    {
+        echo $e->getMessage();
+    }
+
+?>
+<!-- Ende BID auslesen und in der Session speichern -->
+
+
+<!-- Start Vorlesungen aus DB abfragen -->
+<?php
+
+    try
+    {
+        $abfr = $db->prepare('SELECT Vorlesung.Vorlesungsname
+                              FROM Vorlesung INNER JOIN Zu_Benutzer_Vorlesung ON Vorlesung.VorID = Zu_Benutzer_Vorlesung.VorID
+                              WHERE Vorlesung.BID=:bid
+                              AND Vorlesung.VorID = Zu_Benutzer_Vorlesung.VorID');
+        $abfr->bindValue(':bid', $_SESSION['bid'], PDO::PARAM_INT);
+        $abfr->execute();
+        $erg = $abfr->fetchAll();
+        unset($abfr);
+    }
+    catch(PDOException $e){
+        echo $e->getMessage();
+    }
+
+?>
+<!-- Ende Vorlesungen aus DB abfragen -->
+
+
+<!-- Start Vorlesung endgültig löschen -->
+<?php
+
+$vor_name_loeschen = $_GET["vor_name_loeschen"];
+
+if (isset($vor_name_loeschen))
+{
+    try
+    {
+
+        //<!-- Start Vorlesung endgültig in DB löschen -->
+        $stmt3 = $db->prepare("DELETE FROM Vorlesung
+                               WHERE Vorlesungsname=:vor_name_loeschen");
+        $stmt3->bindParam(':vor_name_loeschen', $vor_name_loeschen, PDO::PARAM_STR);
+        $stmt3->execute();
+        unset($stmt3);
+        //<!-- Ende Vorlesung endgültig in DB löschen -->
+
+
+        //<!-- Start VorID auslesen -->
+        $abfr = $db->prepare('SELECT VorID
+                              FROM Vorlesung
+                              WHERE Vorlesungsname=:vor_name_loeschen');
+        $abfr->bindParam(':vor_name_loeschen', $vor_name_loeschen, PDO::PARAM_STR);
+        $abfr->execute();
+        $vorid = $abfr->fetch();
+        $vorid = $vorid['VorID'];
+        unset($abfr);
+        //<!-- Ende VorID auslesen -->
+
+
+        //<!-- Start Beziehung zwischen BID und VorID endgültig in DB löschen -->
+        $abfr = $db->prepare("DELETE FROM Zu_Benutzer_Vorlesung
+                              WHERE VorID=:vorid");
+        $abfr->bindValue(':vorid', $vorid, PDO::PARAM_INT);
+        $abfr->execute();
+        unset($stmt3);
+        //<!-- Ende Beziehung zwischen BID und VorID endgültig in DB löschen -->
+
+
+    }
+    catch(PDOException $e)
+    {
+        echo $e->getMessage();
+    }
+
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+
+}
+
+?>
+<!-- Ende Vorlesung endgültig löschen -->
+
+
+<!-- Start Vorlesung anlegen -->
+<?php
+
+    $vor_name_anlegen = $_GET['vor_name_anlegen'];
+
+    if (isset($vor_name_anlegen))
+    {
+        try
+        {
+
+
+            //<!-- Start Vorlesung in DB anlegen -->
+            $abfr = $db->prepare('INSERT INTO Vorlesung(BID, Vorlesungsname)
+                                  VALUES (:bid, :vor_name_anlegen)');
+            $abfr->bindValue(':bid', $_SESSION['bid'], PDO::PARAM_INT);
+            $abfr->bindParam(':vor_name_anlegen', $vor_name_anlegen, PDO::PARAM_STR);
+            $abfr->execute();
+            unset($abfr);
+            //<!-- Ende Vorlesung in DB anlegen -->
+
+
+            //<!-- Start VorID auslesen -->
+            $abfr = $db->prepare('SELECT VorID
+                                  FROM Vorlesung
+                                  WHERE Vorlesungsname=:vor_name_anlegen');
+            $abfr->bindParam(':vor_name_anlegen', $vor_name_anlegen, PDO::PARAM_STR);
+            $abfr->execute();
+            $vorid = $abfr->fetch();
+            $vorid = $vorid['VorID'];
+            unset($abfr);
+            //<!-- Ende VorID auslesen -->
+
+
+            //<!-- Start BID und VorID in DB eintragen um eine Beziehung herzustellen -->
+            $abfr = $db->prepare('INSERT INTO Zu_Benutzer_Vorlesung(BID, VorID)
+                                  VALUES (:bid, :vorid)');
+            $abfr->bindValue(':bid', $_SESSION['bid'], PDO::PARAM_INT);
+            $abfr->bindValue(':vorid', $vorid, PDO::PARAM_INT);
+            $abfr->execute();
+            unset($abfr);
+            //<!-- Start BID und VorID in DB eintragen um eine Beziehung herzustellen -->
+
+
+        }
+        catch(PDOException $e){
+            echo $e->getMessage();
+        }
+
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }
+
+?>
+<!-- Ende Vorlesung anlegen -->
+
+
+
+
+
+<!-- --------------------------------------------------- PHP -> HTML ----------------------------------------------- -->
+
+
+
+
+
+<!DOCTYPE html>
+
+<html lang="de">
+
+
+
+
+
+    <head>
+
+
+        <title>Dozentenbereich - Vorlesungen</title>
+
+        <meta charset="utf-8"/>
+
+
+        <!-- Start Bootstrap Einbindung -->
+        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> <!-- Die Fehlermeldung kann ignoriert werden -->
+        <script src="js/bootstrap.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Ende Bootstrap Einbindung -->
+
+
+        <!-- Start Custom CSS -->
+        <link href="css/landing-page.css" rel="stylesheet" media="screen">
+        <link href="css/vorlesungen.css" rel="stylesheet" type="text/css" media="screen">
+        <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+        <!-- Ende Custom CSS -->
+
+
+    </head>
+
+
+
+
+
+    <body>
+
+
+        <div id="full">
+
+            <!-- Start Navigation -->
+            <nav class="navbar navbar-default topnav" role="navigation">
+                <div class="container topnav">
+
+                    <!-- Marke und Toogle-Funktion werden für bessere mobile Darstellung gruppiert -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand topnav" id="brand"><span id="brand-glyphicon" class="glyphicon glyphicon-home" aria-hidden="true"></span> TeachHaus</a>
+                    </div>
+
+                    <!-- Nav-Links, Formulare und anderer Content werden für das Umschalten gesammelt -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <form class="navbar-form navbar-right">
+                                    <div class="form-group">
+                                        <a href="vorlesungen.php"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Vorlesungen</a>
+                                        <a href="papierkorb.php"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Papierkorb</a>
+                                        <a href="login.php" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a>
+                                    </div>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Ende navbar-collapse -->
+
+                </div>
+                <!-- Ende container -->
+            </nav>
+            <!-- Ende Navigation -->
+
+
+            <!-- Start Vorlesungen per foreach in Tabelle ausgeben -->
+            <div class="container">
+                <section class="row  row-centered">
+                    <div class="col-md-8 col-md-offset-2">
+                        <p class="überschrift">Bereits angelegte Vorlesungen</p>
+                        <ul class="nav nav-pills nav-stacked" id="pills">
+
+                            <?php foreach ($erg AS $vorlesung):?>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php echo $vorlesung['Vorlesungsname']; ?>
+                                    <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="votings.php?vor_name=<?php echo $vorlesung['Vorlesungsname']; ?>">Votings anzeigen</a></li>
+                                    <li><a href="vorlesungen.php?vor_name_loeschen=<?php echo $vorlesung['Vorlesungsname']; ?>"> Vorlesung löschen</a></li>
+                                </ul>
+                            </li>
+                            <?php endforeach; ?>
+
+                        </ul>
+                    </div>
+                </section>
+            </div>
+            <!-- Ende Vorlesungen auslesen -->
+
+
+            <!-- Start Vorlesung per Formular einlesen -->
+            <div class="container" id="formular">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <form class="form-inline" method="GET" action="vorlesungen.php">
+                            <p class="überschrift">Neue Vorlesung anlegen</p>
+                            <div class="form-group">
+                                <label class="sr-only" for="Vorlesung">Vorlesung</label>
+                                <input type="text" class="form-control" id="vor_name_anlegen" name="vor_name_anlegen" placeholder="Vorlesungsname">
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-md" id="button">Anlegen</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Ende Vorlesung per Formular einlesen -->
+            
+        </div>
+
+
+        <!-- Start Footer -->
+        <?php include ("includes/footer.php"); ?>
+        <!-- Ende Footer -->
+    
+
+    </body>
+
+
+
+
+
+</html>

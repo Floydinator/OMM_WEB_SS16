@@ -1,0 +1,213 @@
+<!-- Start Include Dateien -->
+<?php include ("includes/session.php"); ?>
+<?php include ("includes/verbindung.php"); ?>
+<!-- Ende Include Dateien -->
+
+
+<!-- Start Voting anlegen -->
+<?php
+
+    $vor_name = $_POST['vor_name'];
+    $vot_name = $_POST['vot_name'];
+    $frage = $_POST['frage'];
+    $ant1 = $_POST['ant1'];
+    $ant2 = $_POST['ant2'];
+    $ant3 = $_POST['ant3'];
+    $ant4 = $_POST['ant4'];
+
+    if (!($vot_name == "") AND !($frage == "") AND !($ant1 == "") AND !($ant2 == ""))
+    {
+        try
+        {
+
+
+            //<!-- Start VorID auslesen -->
+            $abfr = $db->prepare('SELECT VorID
+                                  FROM Vorlesung
+                                  WHERE Vorlesungsname=:vor_name');
+            $abfr->bindValue(':vor_name', $vor_name, PDO::PARAM_STR);
+            $abfr->execute();
+            $vorid = $abfr->fetch();
+            $vorid = $vorid['VorID'];
+            unset($abfr);
+            //<!-- Ende VorID auslesen -->
+
+
+            //<!-- Start Voting in DB anlegen -->
+            $abfr = $db->prepare('INSERT INTO Voting (VorID, Votingname, Frage, Ant1, Ant2, Ant3, Ant4, Live, Papierkorb)
+                                  VALUES (:vorid, :vot_name, :frage, :ant1, :ant2, :ant3, :ant4, :live, :papierkorb)');
+            $abfr->bindValue(':vorid', $vorid, PDO::PARAM_INT);
+            $abfr->bindParam(':vot_name', $vot_name, PDO::PARAM_STR);
+            $abfr->bindParam(':frage', $frage, PDO::PARAM_STR);
+            $abfr->bindParam(':ant1', $ant1, PDO::PARAM_STR);
+            $abfr->bindParam(':ant2', $ant2, PDO::PARAM_STR);
+            $abfr->bindParam(':ant3', $ant3, PDO::PARAM_STR);
+            $abfr->bindParam(':ant4', $ant4, PDO::PARAM_STR);
+            $abfr->bindValue(':live', 0, PDO::PARAM_INT);
+            $abfr->bindValue(':papierkorb', 0, PDO::PARAM_INT);
+            $abfr->execute();
+            unset($abfr);
+            //<!-- Ende Voting in DB anlegen -->
+
+
+            //<!-- Start VotID auslesen -->
+            $abfr = $db->prepare('SELECT VotID
+                                  FROM Voting
+                                  WHERE Votingname=:vot_name');
+            $abfr->bindValue(':vot_name', $vot_name, PDO::PARAM_STR);
+            $abfr->execute();
+            $votid = $abfr->fetch();
+            $votid = $votid['VotID'];
+            unset($abfr);
+            //<!-- Ende VotID auslesen -->
+
+
+            //<!-- Start VorID und VotID in DB eintragen um eine Beziehung herzustellen -->
+            $abfr = $db->prepare('INSERT INTO Zu_Vorlesung_Voting(VorID, VotID)
+                                  VALUES (:vorid, :votid)');
+            $abfr->bindValue(':vorid', $vorid, PDO::PARAM_INT);
+            $abfr->bindValue(':votid', $votid, PDO::PARAM_INT);
+            $abfr->execute();
+            unset($abfr);
+            //<!-- Start BID und VorID in DB eintragen um eine Beziehung herzustellen -->
+
+
+        }
+        catch(PDOException $e)
+        {
+            echo $e->getMessage();
+        }
+
+        header("Location: https://mars.iuk.hdm-stuttgart.de/~fs096/votings.php?vor_name=$vor_name");
+    }
+
+?>
+<!-- Ende Voting anlegen -->
+
+
+
+
+
+<!-- --------------------------------------------------- PHP -> HTML ----------------------------------------------- -->
+
+
+
+
+
+<!DOCTYPE html>
+
+<html lang="de">
+
+
+
+
+
+    <head>
+    
+    
+        <title>Dozentenbereich - Votings anlegen</title>
+    
+        <meta charset="utf-8"/>
+    
+    
+        <!-- Start Bootstrap Einbindung -->
+        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> <!-- Die Fehlermeldung kann ignoriert werden -->
+        <script src="js/bootstrap.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Ende Bootstrap Einbindung -->
+    
+    
+        <!-- Start Custom CSS -->
+        <link href="css/landing-page.css" rel="stylesheet" media="screen">
+        <link href="css/votings-anlegen.css" rel="stylesheet" type="text/css" media="screen">
+        <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+        <!-- Ende Custom CSS -->
+
+    
+    </head>
+    
+
+    <body>
+
+
+        <div id="full">
+
+            <!-- Start Navigation -->
+            <nav class="navbar navbar-default topnav" role="navigation">
+                <div class="container topnav">
+
+                    <!-- Marke und Toogle-Funktion werden für bessere mobile Darstellung gruppiert -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand topnav" id="brand"><span id="brand-glyphicon" class="glyphicon glyphicon-home" aria-hidden="true"></span> TeachHaus</a>
+                    </div>
+
+                    <!-- Nav-Links, Formulare und anderer Content werden für das Umschalten gesammelt -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <form class="navbar-form navbar-right">
+                                    <div class="form-group">
+                                        <a href="vorlesungen.php"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Vorlesungen</a>
+                                        <a href="papierkorb.php"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Papierkorb</a>
+                                        <a href="login.php" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a>
+                                    </div>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Ende navbar-collapse -->
+
+                </div>
+                <!-- Ende container -->
+            </nav>
+            <!-- Ende Navigation -->
+
+
+            <!-- Start Frage und Antworten per Formular einlesen -->
+            <div class="container">
+                <section class="row  row-centered">
+                    <div class="col-md-8 col-md-offset-2">
+                        <form role="form" id="formular" method="POST" action="votings-anlegen.php">
+                            <div class="form-group">
+                                <p class="überschrift">Neues Voting anlegen</p>
+                                <input type="hidden" class="form-control" id="vor_name" name="vor_name" value="<?php echo $_GET['vor_name']; ?>">
+                                <input type="hidden" class="form-control" id="vot_name" name="vot_name" value="<?php echo $_GET['vot_name']; ?>">
+                                <p class="definierung">Geben Sie hier Ihre Frage ein</p>
+                                <input type="text" class="form-control" id="frage" name="frage" placeholder="Frage (benötigt)">
+                                <p class="definierung">Geben Sie hier mindestens zwei Antwortmöglichkeiten ein</p>
+                                <input type="text" class="form-control" id="ant1" name="ant1" placeholder="Antwort 1 (benötigt)">
+                                <input type="text" class="form-control" id="ant2" name="ant2" placeholder="Antwort 2 (benötigt)">
+                                <input type="text" class="form-control" id="ant3" name="ant3" placeholder="Antwort 3">
+                                <input type="text" class="form-control" id="ant4" name="ant4" placeholder="Antwort 4">
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-md" id="button">Anlegen</button>
+                        </form>
+                    </div>
+                </section>
+            </div>
+            <!-- Ende Frage und Antworten per Formular einlesen -->
+
+
+        </div>
+
+
+        <!-- Start Footer -->
+        <?php include ("includes/footer.php"); ?>
+        <!-- Ende Footer -->
+
+
+    </body>
+
+
+
+
+
+</html>
